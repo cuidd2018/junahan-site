@@ -1,0 +1,112 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              服务网格 101
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com 
+#+DATE:              2018-07-06
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* 摘要
+** 什么是服务网格 (Service Mesh)
+这里引用 William Morgan 对[[https://buoyant.io/2017/04/25/whats-a-service-mesh-and-why-do-i-need-one/][服务网格的定义]]：
+A service mesh is a dedicated infrastructure layer for handling service-to-service communication. It’s responsible for the reliable delivery of requests through the complex topology of services that comprise a modern, cloud native application. In practice, the service mesh is typically implemented as an array of lightweight network proxies that are deployed alongside application code, without the application needing to be aware.
+
+服务网格是一个基础设施层，用于处理服务间通信。云原生应用有着复杂的服务拓扑，服务网格保证请求可以在这些拓扑中可靠地穿梭。在实际应用当中，服务网格通常是由一系列轻量级的网络代理组成的，它们与应用程序部署在一起，但应用程序不需要知道它们的存在。
+
+服务网格特点总结：
+- 它是专用的基础设施层。
+- 轻量级高性能网络代理。
+- 提供安全的、快速的、可靠地服务间通讯。
+- 与实际应用部署一起，但对应用透明。
+
+** TODO 为什么使用服务网格
+
+** 相关名词和概念
+- 服务网格 (Service Mesh) - 服务网格是一个基础设施层，用于处理服务间通信以保证请求可以在这些服务网络中可靠的穿梭。它将微服务架构中的网络通讯部分抽离出来，相对于和应用结合紧密的库的方式，它采用了边车模式，通过一个和应用部署在一起的代理来实现，从而将这一次变成应用不必关心的基础设施层。
+- 服务发现 (Service Discovery) - 
+- 熔断 (Circuit Breaker) - 
+- 边车 (Sidecar) - 
+- 控制平面 (Control Plane) - 负责管理和配置代理来路由流量，以及在运行时执行策略等功能。
+- 数据平面 (Data Plane) - 由一组智能代理（Envoy）组成，代理部署为边车，调解和控制微服务之间所有的网络通信。
+
+** 问题和限制
+- 使用边车拦截和转发通讯引入的延迟可能导致其不适用于那些对实时性要求很高的场合；
+- 中心化控制平面可能带来单点故障；
+- 截止目前 (2018 年 7 月)，相关基础设施还处于快速发展阶段，尚未达到产品应用的成熟度；
+
+* [[http://philcalcado.com/2017/08/03/pattern_service_mesh.html][服务网格模式]]
+该模式由 Phil Calçado 发表于 2017 年 8 月。该文章以网络堆栈的演化为类比，以熔断和服务发现为列子，阐述了微服务架构如何符合逻辑的将常用熔断和服务发现抽象并从业务逻辑层剥离至独立运行的边车 (Sidecar) 层，进一步由边车节点相互链接构成的服务网格 (Service Mesh) ，而后又引入控制平面 (Control Plane) 的概念。文章简洁明了，推荐阅读。[[http://www.infoq.com/cn/articles/pattern-service-mesh?from%3Dawesome-servicemesh][中文版本 ]]由[[http://www.infoq.com/cn/profile/%E8%96%9B%E5%91%BD%E7%81%AF][薛命灯]] 翻译。
+
+* 服务网格需求及标准功能
+** 需求
+- 服务发现
+- 负载均衡
+- 故障恢复
+- 指标收集
+- 监控
+- A/B 测试
+- 金丝雀发布
+- 限流
+- 熔断
+- 访问控制
+- 端到端认证
+
+** 数据平面 (Data Plane - Sidecar) 
+- 
+- 
+
+** 控制平面 (Control Plane)
+- 
+- 
+
+* 工具和框架
+** TODO Linkerd
+
+** TODO Envoy
+
+** TODO Istio
+
+** TODO Conduit
+
+** 业界其他实践
+- Nginmesh - 
+- 华为 CES Mesh - 详情请参阅[[https://gitbook.cn/books/5a1e7dca387c5b4ee351790b/index.html][Service Mesh 在华为公有云的实践]]，By 田晓亮。
+- 微博 Motan Mesh - 详情请参阅[[http://dockone.io/article/2996][明星分分合合的洪荒点击量，微博Mesh服务化改造如何支撑?]] By 周晶。
+- 腾讯 Service Mesh - 详情请参阅[[http://dockone.io/article/5803][腾讯云TSF微服务平台及ServiceMesh技术实践]], By 单家骏。
+- UCloud Service Mesh -  详情请参阅[[https://www.csdn.net/article/a/2018-05-04/15947689][轻量ServiceMesh实践]], By 徐亮。
+- SOFA mesh - 蚂蚁金服计划中的服务网格产品，详情请参阅 [[https://skyao.io/publication/service-mesh-explore/][大规模微服务架构下的 Service Mesh 探索之路]]，By [[https://skyao.io][敖小剑]]。
+
+* 推荐阅读列表
+- [[http://philcalcado.com/2017/08/03/pattern_service_mesh.html][Pattern: Service Mesh]] - by Phil Calçado, 有关 Service Mesh 模式的定义，相当简洁和清晰。[[http://www.infoq.com/cn/articles/pattern-service-mesh?from%3Dawesome-servicemesh][中文版本 ]]由[[http://www.infoq.com/cn/profile/%E8%96%9B%E5%91%BD%E7%81%AF][薛命灯]] 翻译。
+- [[https://skyao.io/publication/istio-introduction/][服务网格新生代-Istio]] (By [[https://skyao.io][敖小剑]]) - 针对 Istio 的介绍。
+- [[https://yq.aliyun.com/articles/606655][浅谈 Service Mesh 体系中的 Envoy]] (By [[https://yq.aliyun.com/users/1211452223316191][中间件小哥]]) - 针对 Envoy 的介绍。
+
+* 参考文献
+1. Microservices Home, http://microservices.io.
+2. Service Mesh definition, https://buoyant.io/2017/04/25/whats-a-service-mesh-and-why-do-i-need-one/.
+3. Pattern: Service Mesh, http://philcalcado.com/2017/08/03/pattern_service_mesh.html.
+4. Pattern: Service Mesh 中文翻译, http://www.infoq.com/cn/articles/pattern-service-mesh?from=awesome-servicemesh.
+5. Istio, https://istio.io.
+6. 服务网格新生代-Istio, https://skyao.io/publication/istio-introduction/, [[https://skyao.io][敖小剑]]
+7. Linkerd, https://linkerd.io.
+9. Envoy, https://www.envoyproxy.io.
+10. Envoy 官方文档中文版，http://www.servicemesher.com/envoy/.
+11. Conduit, https://conduit.io.
+51. Service Mesh 和 Envoy, https://www.toutiao.com/i6574934526085038599/. 
+61. Metrics 2.0, http://metrics20.org.
+63. Google Dapper, http://research.google.com/pubs/pub36356.html.
+65. Zipkin Home, http://zipkin.io.
+67. OpenTracing Home, http://opentracing.io.
+69. OpenTracing Document, https://wu-sheng.gitbooks.io/opentracing-io/content/.
+71. Prometheus Home, https://prometheus.io.
+73. SOFATracer, https://github.com/alipay/sofa-tracer.
+75. SOFALookout, https://github.com/alipay/sofa-lookout.
+77. Grafana, https://grafana.com.
+79. SOFA mesh - 大规模微服务架构下的 Service Mesh 探索之路, https://skyao.io/publication/service-mesh-explore/, By [[https://skyao.io][敖小剑]]
+81. ServiceMesher 社区，http://www.servicemesher.com.
+83. 浅谈 Service Mesh 体系中的 Envoy，https://yq.aliyun.com/articles/606655, By [[https://yq.aliyun.com/users/1211452223316191][中间件小哥]]
+85. Awesome Service Mesh, http://www.servicemesher.com/awesome-servicemesh/.
+87. (Micro) Service Meshes The Past, Present, and Future, https://github.com/thomaslwq/publicfiles/blob/master/oreilly2017microservicemeshesfinal-170727101149.pdf.

@@ -1,0 +1,32 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              IPFS - MISC
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com 
+#+DATE:              2018-05-25
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* 摘要
+
+* Clone
+
+* Config Cross Compile Envrionment
+
+* Build from Source Code
+** Build for x84-32
+
+** Build for ARM
+
+* MISC
+
+* 参考文献
+1. Go-IPFS in github, https://github.com/ipfs/go-ipfs#build-from-source.
+3. Go Cross Compiling, http://golangcookbook.com/chapters/running/cross-compiling/.
+5. Golang 的跨平台编译,  http://www.cnblogs.com/ghj1976/archive/2013/04/19/3030703.html.
+7. Cross-compling Go, https://solovyov.net/en/2012/cross-compiling-go/.
+20. Beginner’s Guide To Installing IPFS On A Raspberry Pi 2, https://www.siliconian.com/blog/16-bitcoin-blockchain/23-beginner-s-guide-to-installing-ipfs-on-a-raspberry-pi-2.
+31. 第一次安装-ipfs-的笔记, https://medium.com/@miaoski/第一次安裝-ipfs-的筆記-9fb6491bcbee.
+

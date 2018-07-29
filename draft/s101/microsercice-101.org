@@ -1,0 +1,30 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              微服务架构和服务网络 - 101
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com 
+#+DATE:              2018-07-06
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* 摘要
+
+
+* 历史
+
+* 工具和框架
+- Nginx/Apache/HAProxy
+- Istio 
+- Envoy
+- Linkerd
+
+* 参考文献
+1. Microservices Home, http://microservices.io.
+3. Pattern: Service Mesh, http://philcalcado.com/2017/08/03/pattern_service_mesh.html.
+5. Istio, https://istio.io.
+7. Linkerd, https://linkerd.io.
+9. Envoy, https://www.envoyproxy.io.
+51. Service Mesh 和 Envoy, https://www.toutiao.com/i6574934526085038599/. 
+

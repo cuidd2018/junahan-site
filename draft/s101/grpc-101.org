@@ -1,0 +1,57 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              GRPC - S101
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com
+#+DATE:              2018-06-23
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* 摘要
+
+* GRPC 介绍
+** What
+gRPC is a modern RPC protocol implemented on top of HTTP/2. HTTP/2 is a Layer 7 (Application layer) protocol, that runs on top of a TCP (Layer 4 - Transport layer) protocol, which runs on top of IP (Layer 3 - Network layer) protocol. 
+
+** Why
+gRPC has many [[https://http2.github.io/faq/#why-is-http2-binary][advantages]] over traditional HTTP/REST/JSON mechanism such as
+
+- Binary protocol (HTTP/2),
+- Multiplexing many requests on one connection (HTTP/2)
+- Header compression (HTTP/2)
+- Strongly typed service and message definition (Protobuf)
+- Idiomatic client/server library implementations in many languages
+- In addition, gRPC integrates seamlessly with ecosystem components like service discovery, name resolver, load balancer, tracing and monitoring, among others.
+
+* GRPC Java 架构
+
+
+* gRPC Naming
+gRPC supports DNS as the default name-system. A number of alternative name-systems are used in various deployments. We support an API that is general enough to support a range of name-systems and the corresponding syntax for names. The gRPC client library in various languages will provide a plugin mechanism so resolvers for different name-systems can be plugged in.
+- DNS
+- etcd
+- zookeeper
+
+* gRPC  Load Balancing
+** Load Balancing
+- Proxy Load Balancing
+  - L3/L4 - trnasport level (e.g. HAproxy, Nginx, GCLB, etc.)
+  - L7 - applycation level (e.g. Envoy)
+- Blancing-aware Client - Thick Client
+- External Load Balancing - Lookaside Load Balancing - for example, the client side LB with ZooKeeper/Etcd/Consul/Eureka.
+
+** Envoy
+[[https://www.envoyproxy.io][Envoy]] is an open source edge and service proxy, designed for cloud-native applications. 
+
+* 参考文献
+1. GRPC Home, https://grpc.io.
+2. grpc-java project, https://github.com/grpc/grpc-java.
+5. Why is http2 binary, https://http2.github.io/faq/#why-is-http2-binary.
+21. gRPC Load-balancing README, https://github.com/grpc/grpc/blob/master/doc/load-balancing.md.
+23. Using Envoy to Load Balance gRPC Traffic, https://blog.bugsnag.com/envoy/.
+25. gRPC 服务发现和负载均衡，https://segmentfault.com/a/1190000008672912.
+27. gRPC Load Balancing Blog, https://grpc.io/blog/loadbalancing.
+29. A toy example using zookeeper for load balancing with gRPC, https://github.com/makdharma/grpc-zookeeper-lb.
+31. Envoy Home, https://www.envoyproxy.io.

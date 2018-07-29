@@ -1,0 +1,26 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              MISC - Blockchain
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com
+#+DATE:              2018-05-11
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* 摘要
+
+* Cryptographic Hash Function
+
+** Pigeonhole Principle
+
+
+* MISC
+** W3C Payment Request API
+
+** 
+
+* 参考文献
+1. Payment Request API, https://www.w3.org/TR/payment-request/.
+11. Pigeonhole Principle, https://en.wikipedia.org/wiki/Pigeonhole_principle.

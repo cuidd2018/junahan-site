@@ -1,0 +1,156 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              Blockchain - MISC
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com 
+#+DATE:              2018-05-17
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* 摘要
+
+* TODO P2P Network
+* TODO 共识算法
+共识算法是数字加密货币或者说是区块链的核心协议。
+
+** 拜占庭问题
+
+** TODO PoW
+PoW (Proof of Work / 工作量证明) 的历史可以追溯到 1999 年，Markus Jakobsson 和 Ari Juels 实现该算法用于防止垃圾邮件。PoW 算法被比特币网络用于对交易顺序达成共识，从而解决货币双花问题，并保护比特币网络免受 DDoS 攻击。
+
+*** PoW 简介
+PoW 的核心是实现一个 Hash 算法，该算法满足：
+#+BEGIN_SRC 
+// B 是当前区块的整个数据，B 中包含一个唯一可以调整的 nonce
+// m 是符合当前计算难度要求的一个实数
+H(B) <= m 
+#+END_SRC
+
+该算法的特点：
+- 无法预测，无法简单的计算，只能不断的改变 =nonce= 并尝试计算散列。
+- 验证简单，可以简单到只需要数一数前导 0 的个数即可。
+- 难度可调，例如，通过要求前导连续 0 的个数来调控尝试次数。
+
+以 Bitcoin 为例，一个矿工挖矿的简单过程如下：
+1. 准备当前区块数据 - 在上一个成功挖出的区块基础上，矿工收集挖掘下个区块需要的数据，数据包括前一个区块的 Hash 值，包含进该区块的待确认的交易数据 (包括给到矿工创建区块奖励的交易，如 25 个比特币)，并追加一个随机数 - =nonce= 。
+2. 使用 Hash 算法计算当前区块数据的散列值。
+3. 根据当前难度要求检查步骤 1 计算的散列值是否符合要求，例如，当前难度要求散列值前 20 位是数字 0：
+ - 如果不符合要求，则调整区块中 =nonce= 的值，重复步骤 2 ；
+ - 如果符合当前难度要求，代表矿工成功挖出当前区块，矿工向网络广播该区块。
+4. 其他矿工收到区块广播信息，根据当前难度要求检查该区块是否合法，如果符合当前难度要求，则确认，确认的方法是在这个区块基础上重复步骤 1 进行挖矿活动，以不断延伸区块。
+
+*** PoW 的优势
+PoW 在比特币网络中用于达成对交易顺序的共识，从而解决双花问题 (Double Spending) ，也保护比特币网络免受 DDoS 攻击。
+
+*** PoW 的问题
+- 需要消耗大量的能源
+- 出块的速度受到限制
+- 算力集中和垄断导致的中心化风险和由此带来的安全问题
+
+*** PoW 可能攻击方法
+- 51% 算力攻击 - 
+
+** TODO PoS
+不同于 PoW 要求矿工拥有算力和能源, PoS (Proof of Stake / 权益证明)  要求矿工拥有大量加密货币，矿工挖出区块的概率和其拥有并锁定的加密货币份额呈正比。
+
+*** PoS 简介
+
+- Validator need to locks up their stake (i.e. ether in Ethereum) into a deposit
+- Consensus algorithm selects winner for next block creation from validators
+- Two major types consensus algorithm - chain-based proof of stake and BFT-style proof of stake
+
+*** Two Types Consensus Algorithm
+- Chain-based PoS - the algorithm pseudo-randomly selects a validator during each time slot (eg. every period of 10 seconds might be a time slot), and assigns that validator the right to create a single block, and this block must point to some previous block (normally the block at the end of the previously longest chain), and so over time most blocks converge into a single constantly growing chain.
+
+- BFT-style PoS - validators are randomly assigned the right to propose blocks, but agreeing on which block is canonical is done through a multi-round process where every validator sends a "vote" for some specific block during each round, and at the end of the process all (honest and online) validators permanently agree on whether or not any given block is part of the chain.
+
+*** PoS 的优势
+- 更加安全 (security)  - 
+- 减弱中心化危险 (reduced risk of centralization) 
+- 节省能源 (energy efficiency) - 相对于 PoW 而言
+
+*** PoS 的问题
+- 安全性争议 - 更加安全还是更加容易受到攻击？
+- 
+
+*** PoS 可能攻击方法
+- Nothing-at-stake - 
+- Initial Distribution Problem - 
+- Long-Range Attack
+- Bribe Attack
+- Coin Age Accumulation Attack - 
+- Precomputing Attack
+- Sybil Attack
+
+** TODO DPoS
+
+** TODO RandAlgo
+
+
+** TODO Paxos
+
+** TODO Raft
+
+** 共识算法潜在安全问题和攻击方法
+- Nothing-at-stake - 
+- Initial Distribution Problem - 
+- Long-Range Attack
+- Bribe Attack
+- Coin Age Accumulation Attack - 
+- Precomputing Attack
+- DDoS
+- Sybil Attack
+- Liveness denial
+- Censorship attack
+
+* BitCoin
+- 发行量 - 总量为 2100 万个
+- 平均出块速度 - 10 分钟
+- PoW 难度调整 - 每 2,016 个区块中的所有节点都会调整难度。难度的调整公式是由最新 2,016 个区块的花费时长与 20,160 分钟（两周，即这些区块以 10 分钟一个速率所期望花费的时长）比较得出的。 会根据算力和出块速度做调整（例如，如果当前 20 分钟尚未出块，则允许挖难度更低的区块）。
+
+  
+** 几个重要概念
+- 未花费输出
+- 货币发行机制
+- 挖矿
+- Merkle trees
+
+** TODO SVP 节点
+** TODO BIPs 
+
+* Ethereum
+- 发行量 - ICO 7200 万，以后每年按照 7200*25% = 1800 万的规模增长
+- 平均出块速度 - 15s
+- PoW 难度调整 - 
+- PoS 算法
+- EVM
+- 智能合约
+- 代币
+- Solidity
+
+** TODO 智能合约
+** TODO EVM
+** TODO Solidity
+
+* 闪电网络
+
+* 安全
+
+* 参考文献
+1. Satoshi Nakamoto（中本聪），"Bitcoin: A Peer-to-Peer Electronic Cash System", http://www.bitcoin.org/en/bitcoin-paper, 2009.
+3. Ethereum Witepaper, https://github.com/ethereum/wiki/wiki/White-Paper.
+5. Ethereum Yellopaper, https://ethereum.github.io/yellowpaper/paper.pdf.
+7. Ethereum Wiki, https://github.com/ethereum/wiki/wiki.
+9. BFT, https://en.wikipedia.org/wiki/Byzantine_fault_tolerance.
+13. Guide: Proof of Work (PoW) vs Proof of Stake (PoS) vs Delegated Proof of Stake (DPoS), https://steemit.com/bitcoin/@mooncryption/guide-proof-of-work-pow-vs-proof-of-stake-pos-vs-delegated-proof-of-stake-dpos.
+15. Selfish Mining: A 25% Attack Against the Bitcoin Network, https://bitcoinmagazine.com/articles/selfish-mining-a-25-attack-against-the-bitcoin-network-1383578440/.
+17. Majority is not Enough: Bitcoin Mining is Vulnerable, by Ittay Eyal, Emin Gun Sirer,  https://arxiv.org/abs/1311.0243, 2013.
+17. Paxos, 
+19. Raft, 
+21. 普林斯顿大学课程, "Bitcoin and Cryptocurrency Technologies", https://www.coursera.org/learn/cryptocurrency, 2016.
+23. BIP 32, "Hierarchical Deterministic Wallets", https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki, 2012.
+25. PoS FAQ, https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ.
+27. Plasma, http://plasma.io.
+

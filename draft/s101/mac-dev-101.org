@@ -1,0 +1,124 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              MAC - Dev - 101
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com
+#+DATE:              2018-04-29
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* 简介
+
+* Homebrew
+** Install Homebrew
+在终端运行如下命令安装 Homebrew。
+#+BEGIN_SRC 
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+#+END_SRC
+
+** 配置 HOMEBREW 国内 MIRROR
+*** 替换现有上游
+#+BEGIN_SRC sh
+cd "$(brew --repo)"
+git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git
+cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
+brew update
+#+END_SRC
+
+*** 使用 homebrew-science 或者 homebrew-python
+#+BEGIN_SRC sh
+cd "$(brew --repo)/Library/Taps/homebrew/homebrew-science"
+git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-science.git
+cd "$(brew --repo)/Library/Taps/homebrew/homebrew-python"
+git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-python.git
+brew update
+#+END_SRC
+
+*** Homebrew-bottles 镜像
+#+BEGIN_SRC sh
+echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles' >> ~/.bash_profile
+source ~/.bash_profile
+#+END_SRC
+
+
+* SDKMan
+#+BEGIN_SRC shell
+$ curl -s "https://get.sdkman.io" | bash
+#+END_SRC
+
+* Docker
+** 安装
+#+BEGIN_SRC shell
+brew cask install docker
+#+END_SRC
+
+** 配置使用国内 Registry
+修改 =/etc/docker/daemon.json= 配置文件，添加如下配置。修改完毕后，运行 =docker deamon= 重新启动守护进程。
+#+BEGIN_SRC 
+{
+  "registry-mirrors": ["https://registry.docker-cn.com"]
+}
+#+END_SRC
+
+
+* Python
+
+* Maven
+
+* Gradle
+#+BEGIN_SRC shell
+brew install gradle bash-completion gradle-completion
+
+# Source completion scripts from bash-completion in your bash profile
+echo '[ -f $(brew --prefix)/etc/bash_completion ] && . $(brew --prefix)/etc/bash_completion' >> ~/.bash_profile
+
+# Load changes to bash profile
+source ~/.bash_profile
+#+END_SRC
+
+* Wireshark
+Run following command to install wireshark. 
+#+BEGIN_SRC sh
+brew cask install wireshark
+#+END_SRC
+
+* Cisco VPN Client
+** AnyConnect 删除不干净无法重新安装 AnyConnect 的问题
+在删除 Cisco AnyConnect 的后，会出现无法重新安装 AnyConnect 的问题，解决方案：
+- 在终端运行如下命令查看 =com.cisco= 相关包信息：
+#+BEGIN_SRC sh
+pkgutil --pkgs|grep com.cisco
+#+END_SRC
+
+可能结果如下：
+#+BEGIN_SRC sh
+com.cisco.pkg.anyconnect.vpn
+com.cisco.pkg.anyconnect.fireamp
+com.cisco.pkg.anyconnect.dart
+com.cisco.pkg.anyconnect.websecurity_v2
+com.cisco.pkg.anyconnect.nvm_v2
+com.cisco.pkg.anyconnect.umbrella
+com.cisco.pkg.anyconnect.iseposture
+com.cisco.pkg.anyconnect.posture
+#+END_SRC
+
+- 在终端运行如下命令后，就可以重新安装 AnyConnect :
+#+BEGIN_SRC sh
+sudo pkgutil --forget com.cisco.pkg.anyconnect.vpn
+#+END_SRC
+
+注意：如上命令仅仅忘掉 =com.cisco.pkg.anyconnect.vpn=, 需要分别运行如上命令忘掉其他包信息。
+
+* 参考文献
+1. Homebrew Home, https://brew.sh.
+3. SDKMan Home, http://sdkman.io.
+5. Dokder Document, https://docs.docker.com.
+7. Python Home, https://www.python.org.
+9. Maven Home, https://maven.apache.org.
+11. Gradle Home, https://gradle.org.
+31. Wireshark Home, https://www.wireshark.org.
+33. Wireshark Http2 plugin, https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=9042.
+

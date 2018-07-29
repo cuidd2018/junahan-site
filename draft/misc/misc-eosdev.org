@@ -1,0 +1,27 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              EOS Smart Contract Dev  - MISC
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com 
+#+DATE:              2018-05-25
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* 摘要
+
+* WASM
+
+
+* Tool Chain
+
+* Test Network
+
+* 参考文献
+1. EOS Wiki Home, https://github.com/EOSIO/eos/wiki.
+3. EOS Smart Contract, https://github.com/EOSIO/eos/wiki/Smart-Contract#introduction-to-eos-smart-contracts.
+5. EOS Tool Chain, https://github.com/EOSIO/eos/wiki/Programs-&-Tools#eosiocpp.
+7. EOS Local Environment, https://github.com/EOSIO/eos/wiki/Local-Environment.
+11. WASM, https://webassembly.org.
+

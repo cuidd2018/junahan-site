@@ -1,0 +1,116 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              Fabric Paper
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com 
+#+DATE:              2018-07-16
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+#+BEGIN_QUOTE
+原文：Hyperledger Fabric: A Distributed Operating System for Permissioned Blockchains, https://arxiv.org/pdf/1801.10228v1.pdf,
+译文：
+#+END_QUOTE
+
+* TODO 介绍
+
+* TODO 背景
+
+* 架构
+在这个章节，我们介绍三阶段即执行-排序-验证 (execute-order-validate) 架构，然后介绍交易流程。Fabric 组件在第四章节讨论。
+
+** Fabric 概述
+
+** 执行阶段
+在执行阶段，客户端发送交易提议 (transaction proposal) 到一个或者多个背书节点去执行。记得前面说过每个链码 (chaincode) 通过背书策略间接的指定了一个背书节点集合。一个交易提议包含提交该交易提议的客户端身份 (由 MSP 确定) ，交易负载表现为一个要执行的操作、参数表、和链码所属实体的识别码。交易识别码来自客户端身份识别码和一个临时随机数，该临时随机数 (如计数或者随机值) 只能被使用一次。客户端会对交易提议签名。
+
+背书节点通过在执行被安装在区块链上指定链码的操作来模拟执行交易。链码运行在一个和背书节点主进程隔离的 Docker 容器里面。
+
+在此刻，交易提议在背书节点本地区块链状态下被模拟执行，并不同步至其他节点，此外，背书节点不存储模拟执行结果至账本。区块链状态被 PTM (peer transaction manager) 以一个版本化键值对 (key-vaue) 方式存储维护，该版本化键值对存储为对同一个键的连续更新而产生一个单调递增的版本号。The state created by a chaincode is scoped exclusively to that chaincode and can-not be accessed directly by another chaincode. 注意链码不支持保留局部程序代码中的局部变量，仅仅保留具有 GetState, PutState, 和 DelState 操作状态至区块链。如果给予合适的权限，一个链码可能调用位于同一通道 (channel) 的另外一个链码去访问它的状态。
+
+每个背书节点产生一个 writeset 的值作为模拟执行结果，consisting of the state updates produced by simulation (i.e., the modified keys along with their new val- ues), as well as a readset, representing the version dependen- cies of the proposal simulation (i.e., all keys read during sim- ulation along with their version numbers). 模拟执行结束后，背书节点对一个称之为背书 (endorsement) 的消息进行签名，背书包含 readset 和 writeset (连同诸如交易 ID、背书节点 ID、以及背书节点签名) 并发送给客户端作为交易申请的响应返回。客户端收集这些背书直至满足所调用链码的背书策略。特别的，这要求所有根据背书策略选定的背书节点需要产生相同的执行结果 (如，相同的 readset 和 writeset)。然后，客户端开始创建交易并且传递给排序服务 (ordering service)。
+
+...
+
+** 排序阶段
+
+** 验证阶段
+区块通过直接链接到排序服务或者通过 gossip 协议传送。当一个新区块到达，节点就进入验证阶段，该阶段由三个依序执行步骤：
+1. 对该区块包含的所有交易进行背书策略评估，评估并发执行。评估由称之为系统验证链码 (validation system chaincode / VSCC) 执行。该链码是一个静态库，是区块链配置的一部分。它负责根据链码的背书策略配置验证交易背书。如果背书不满足，该交易或被标记为非法并且其结果被忽略。
+2. 对区块内所有交易的读写冲突检查 (read-write conflict check) 按序依次执行。For each transaction it compares the versions of the keys in the readset field to those in the current state of the ledger, as stored locally by the peer, and ensures they are still the same. 如果版本不匹配，该交易被标记为非法且其结果被忽略。
+3. 账本更新阶段最后执行，在该阶段，区块被附加至本地账本并更新区块链状态。
+
+* Fabric 组件
+
+** 成员关系服务 (Membership Service)
+
+** 排序服务
+
+** 对等节点八卦协议
+
+** 账本
+账本组件存在每个对等节点上，对等节点在持久化存储上维护账本以及区块链状态并激活模拟、验证和账本更新阶段。整体上来说，它由区块存储和一个对等交易管理 (PTM / peer transaction manager) 构成。
+
+*账本区块存储* : 账本区块存储持久化交易区块并被实现为一组只能追加记录文件。由于区块是不可更改并且以确定的顺序到达，一个只能追加记录的结构可以最大化性能。额外的，区块存储维护一些索引以便于随机访问区块或者区块内的交易。
+
+*对等交易管理员 (PTM)* : PTM 在一个版本化键值对存储里维护最新状态。它为链码每个唯一记录 key 存储一个形为 (key, val, ver) 的三元组，用于存储该 key 最近的值 val 和它最新的版本 ver。版本由区块序号和区块内的交易序列号 (存储入口) 组成。这保证版本唯一且单调增长。
+
+PTM 使用本地键值对存储数据库来实现版本化键值对存储。支持 Go 语言实现的 LevelDB (https://github.com/syndtr/goleveldb) 以及 Apache CouchDB (http://couchdb.apache.org/)。
+
+在模拟执行期间，PTM 提供一个最新交易最新状态的一个稳定快照。在上一章节曾提到过，PTM 将每个通过 =GetState= 访问的条目做为一个两元组 (key, ver) 记录入 =readset= ，并且为每一个使用 =PutState= 更新的条目作为一个两元组 (key, ver) 记录入 =writeset= 。额外的，PTM 支持范围查询，它为范围查询结果 (一个两元组 （key, ver) 集合) 计算一个密码学哈希并且将该查询字符串本身和结果哈希记录进 =readset= 。
+
+至于交易验证，PTM 按照在区块中的顺序校验所有交易。校验检查交易是否和先前的交易冲突 (在当前区块或者更早的区块)。对于在 =redset= 内的任意键，如果在 =redset= 内的版本记录和当前最新状态 (假设所有此前的交易均已经被提交) 的版本记录不同，那么 PTM 将该交易标记为非法。至于范围查询，PTM 重新执行该查询和计算该查询结果哈希值并和 =readset= 内该查询的哈希值进行比较，以确保不存在幽灵读情形发生。This read-write conflict semantics results in one-copy serializability.
+
+账本组件在账本更新期间容忍对等节点崩溃。当接收到一个新的区块后，PTM 已经执行完验证并且标记了交易是否合法，标记方法是如章节 3.4 提到的比特掩码。现在账本将该区块写入账本区块存储并刷新至硬盘，并随后更新区块存储索引。然后 PTM 应用所有 =writeset= 中所有合法交易至本地版本化存储。最后，它计算并且存储一个保存点值，该值表示最大成功应用的区块号。保存点值被用于在崩溃恢复中从持久区块中恢复索引和最新状态。
+
+** 链码执行
+链码在一个和对等节点松散耦合的环境下执行并且支持添加新链码编程语言插件。当前支持三种链码编程语言：Go, Java 和 Node 。
+
+任何用户级别或者应用链码作为一个独立的进程运行于 Docker 容器环境中，链码运行进程相互隔离并且独立于对等节点。这也简化了链码生命周期的管理 (如，启动、停止、或者终止链码) 。链码和对等节点之间使用 gRPC 消息通讯。通过这种松散的耦合，对等节点并不知道实现链码的实际语言。
+
+和应用链码相反，系统链码直接运行在对等节点进程中。系统链码能够实现 Fabric 需要的特定功能并可能被用于那些隔离的用户链码受限的情形。更多关于系统链码的信息在下个章节给出。
+
+** 配置和系统链码
+Fabric 基本行为是通过定制通道配置和特殊链码，也就是系统链码实现。
+
+*通道配置* : 记得前面所说过，一个通道形成一个逻辑区块链。通道配置通过持久化进入特定配置区块的元数据维护。每一个配置区块包含所有区块配置信息并且不包含任何交易。每个区块链开始于一个被称之为创世快的配置区块，该区块用于引导该通道。通道配置包括：
+- 定义参与节点的成员关系 (MSPs) 。
+- 序列服务节点 (OSNs) 网络地址。
+- 共识实现和序列服务的共享配置，如批量大小和超时。
+- 访问序列服务运作 (广播，或者传递) 的治理规则。
+- 通道配置每个可能被修改部分的治理规则。
+
+通道配置可能通过通道配置更新交易被改变。这个交易包含了有关配置更新的表示以及签名集合。序列服务节点使用当前配置的变更授权签名去验证配置更改是否合法。序列服务随后产生新的配置区块，该区块嵌入新的配置和配置更新交易。对等节点收到这个区块后基于当前配置验证配置更新是否被授权，如果合法，他们更新当前的配置。
+
+*系统链码* : The application chaincodes are de-ployed with a reference to an endorsement system chaincode (ESCC) and to a validation system chaincode (VSCC). These two chaincodes are selected in a symmetric way, such that the output of the ESCC (an endorsement) may be validated as part of the input to the VSCC. 
+
+The ESCC takes as input a proposal and the proposal simulation results. If the results are satisfactory, then the ESCC produces a response, containing the results and the endorsement. For the default ESCC, this endorsement is simply a signature by the peer’s local signing identity.
+
+The VSCC takes as input a transaction and outputs whether that transaction is valid. For the default VSCC, the endorsements are collected and evaluated against the endorsement policy specified for the chaincode.
+
+Further system chaincodes implement other support func- tions, such as configuration and chaincode lifecycle.
+
+* TODO 评估
+
+
+* TODO 相关工作
+
+
+* 引用
+1. P.-L. Aublin, R. Guerraoui, N. Knezˇevic ́, V. Que ́ma, and M. Vukolic ́. The next 700 BFT protocols. ACM Trans. Com- put. Syst., 32(4):12:1–12:45, Jan. 2015.
+2. E. Ben-Sasson, A. Chiesa, C. Garman, M. Green, I. Miers, E. Tromer, and M. Virza. Zerocash: Decentralized anonymous payments from bitcoin. In IEEE Symposium on Security & Privacy, pages 459–474, 2014.
+3. A. N. Bessani, J. Sousa, and E. A. P. Alchieri. State ma- chine replication for the masses with BFT-SMART. In In- ternational Conference on Dependable Systems and Networks (DSN), pages 355–362, 2014.
+4. G. Bracha and S. Toueg. Asynchronous consensus and broad- cast protocols. J. ACM, 32(4):824–840, 1985.
+5. E. Buchman. Tendermint: Byzantine fault tolerance in the age of blockchains. M.Sc. Thesis, University of Guelph, Canada, June 2016.
+6. N. Budhiraja, K. Marzullo, F. B. Schneider, and S. Toueg. The primary-backup approach. In S. Mullender, editor, Distributed Systems (2nd Ed.), pages 199–216. ACM Press/Addison- Wesley, 1993.
+7. C. Cachin, R. Guerraoui, and L. E. T. Rodrigues. Introduction to Reliable and Secure Distributed Programming (2. ed.). Springer, 2011.
+8. C.Cachin,S.Schubert,andM.Vukolic ́.Non-determinism in byzantine fault-tolerant replication. In 20th International Conference on Principles of Distributed Systems (OPODIS), 2016.
+9. C. Cachin and M. Vukolic ́. Blockchain consensus protocols in the wild. In A. W. Richa, editor, 31st Intl. Symposium on Distributed Computing (DISC 2017), pages 1:1–1:16, 2017.
+10. J. Camenisch and E. V. Herreweghen. Design and imple- mentation of the idemix anonymous credential system. In ACM Conference on Computer and Communications Security (CCS), pages 21–30, 2002.
+11. M. Castro and B. Liskov. Practical Byzantine fault toler- ance and proactive recovery. ACM Trans. Comput. Syst., 20(4):398–461, Nov. 2002.
+12. Chain. Chain protocol whitepaper. https://chain.com/ docs/1.2/protocol/papers/whitepaper, 2017.
+13. B. Charron-Bost, F. Pedone, and A. Schiper, editors. Replica- tion: Theory and Practice, volume 5959 of Lecture Notes in Computer Science. Springer, 2010.
+
+

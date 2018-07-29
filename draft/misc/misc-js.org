@@ -1,0 +1,140 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              JavaScript 学习笔记 - MISC
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com 
+#+DATE:              2018-05-25
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* TODO 摘要
+
+* Promises, async/await
+
+** TODO Promises
+
+*** Promises Chain
+
+** Async/await
+*** Async function
+函数前面的关键字 =asyn= 意味着该函数总是返回一个 =promise= ，如果代码并没有指定返回值是一个 =promise= ，JavaScript 会自动包装返回值为一个 =promise= 。
+#+BEGIN_SRC js
+async function f() {
+  return 1;
+}
+
+f().then(alert); // 1
+#+END_SRC
+如上代码片段，返回值被自动包装为一个 =promise= 。
+
+#+BEGIN_SRC js
+async function f() {
+  return Promise.resolve(1);
+}
+
+f().then(alert); // 1
+#+END_SRC
+该代码片段和前一段代码片段效果一样。
+
+*** Await
+**** Await 语法和使用
+Await 语法如下：
+#+BEGIN_SRC js
+// works only inside async functions
+let value = await promise;
+#+END_SRC
+关键字 =await= 只能用于 =async= 函数体内部，它让 JavaScript 等待直到 =promise= 完成并返回。
+
+如下代码片段带有一个在 1 秒内完成的 =promise= 。
+#+BEGIN_SRC js
+async function f() {
+
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("done!"), 1000)
+  });
+
+  let result = await promise; // wait till the promise resolves (*)
+
+  alert(result); // "done!"
+}
+
+f();
+#+END_SRC
+带有 =*= 号的那行代码会暂停执行直到 =promise= 完成并返回，其返回结果赋给 =result= 变量，然后继续执行。
+
+**** Await 支持 Thenable
+Await 就像 =promise.then= 一样允许 =thenable= 对象。
+#+BEGIN_SRC js
+class Thenable {
+  constructor(num) {
+    this.num = num;
+  }
+  then(resolve, reject) {
+    alert(resolve); // function() { native code }
+    // resolve with this.num*2 after 1000ms
+    setTimeout(() => resolve(this.num * 2), 1000); // (*)
+  }
+};
+
+async function f() {
+  // waits for 1 second, then result becomes 2
+  let result = await new Thenable(1);
+  alert(result);
+}
+
+f();
+#+END_SRC
+
+*** 错误处理
+Promise 可能出错，可以使用 =try...catch= 捕获异常并进行处理。
+#+BEGIN_SRC js
+async function f() {
+
+  try {
+    let response = await fetch('/no-user-here');
+    let user = await response.json();
+  } catch(err) {
+    // catches errors both in fetch and response.json
+    alert(err);
+  }
+}
+
+f();
+#+END_SRC
+
+如果没有 =try...catch= 语句， =async =f()= 仍然会把错误结果返回，随后可以通过 =.catch= 语句捕获并处理。
+#+BEGIN_SRC js
+async function f() {
+  let response = await fetch('http://no-such-url');
+}
+
+// f() becomes a rejected promise
+f().catch(alert); // TypeError: failed to fetch // (*)
+#+END_SRC
+如果我们忘记使用 =.catch= 语句捕获异常，我们会有一个未处理的 promise 错误（错误会在控制台看到），我们可以使用一个全局事件处理函数来捕获该错误并进行处理，类似于我们在 [[*Promises%20Chain][Promises chain]] 里的做法。
+
+*** Summary
+The async keyword before a function has two effects:
+
+1. Makes it always return a promise.
+2. Allows to use await in it.
+
+The await keyword before a promise makes JavaScript wait until that promise settles, and then:
+
+1. If it’s an error, the exception is generated, same as if throw error were called at that very place.
+2. Otherwise, it returns the result, so we can assign it to a value.
+
+Together they provide a great framework to write asynchronous code that is easy both to read and write.
+
+With async/await we rarely need to write promise.then/catch, but we still shouldn’t forget that they are based on promises, because sometimes (e.g. in the outermost scope) we have to use these methods. Also Promise.all is a nice thing to wait for many tasks simultaneously.
+
+更多有关该主题，请参阅 [[https://javascript.info/async][Promises, async/await]]。
+
+* 参考文献
+1. babel, http://babeljs.io.
+3. node.js, https://nodejs.org/en/.
+5. npmjs, https://www.npmjs.com.
+10. Promises, async/await, https://javascript.info/async.
+13. 

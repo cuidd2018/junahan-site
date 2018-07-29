@@ -1,0 +1,206 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              Mysql - 101
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com 
+#+DATE:              2018-06-27
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* 摘要
+
+* 复制 (Replication)
+
+** 复制方式
+Mysql 8 支持两种不同的复制方式：
+- 传统的基于二进制日志 (Binary Log) 的复制方式；
+- 新的基于 golobal transaction identifiers (GTIDs) 的复制方式，该方式极大简化常用的复制任务并利用 GTIDs 确保主从服务器数据一致性。
+
+*** 基于Binary Log File Position 复制方式配置
+所有数据库更新和变化操作均由主（master）完成，主服务器将更新和变化作为事件（events）写入二进制日志。从服务器被配置为从主服务器读取这些日志并且在从服务器数据库上重演日志中的事件，从而保持和主服务器数据的同步。由于重演日志事件是从服务器的责任，因此从服务器也可以选择仅重演部分日志事件，例如，重演特定数据库或者特定表的日志事件。
+
+通用的配置任务：
+- 主服务器需要配置一个唯一服务器标示 (Unique Sercer ID) 并确保激活二进制日志日志，需要主服务器重新启动；
+- 每个从服务器也需要配置唯一服务器标示，需要从服务器重新启动；
+- 可选，建议为每个从服务器创建一个用户（在主服务器上）用于读取二进制日志授权；
+- 在创建数据库快照或者启动复制处理之前，在主服务器上应当记录当前二进制日志位置。这个信息在配置从服务器的时候需要以便于从服务器知道该从那里开始执行重演事件。
+- 如果在主服务器上已经由数据存在，就需要创建数据快照并同步数据快照至每个从服务器。创建快照和快照数据同步的操作方式和使用的数据库引擎有关，请参阅相关信息。
+- 配置从服务器链接至主服务器需要配置相关信息，如主服务器主机名 (host name), 登录信息，以及二进制日志文件名和位置等信息。
+- 根据不同的应用场景，需要配置和执行相关的任务：
+ - 全新主从服务器复制配置，没有现存数据；
+ - 使用一个已经存在数据的 MySQL 服务器配置主从复制；
+ - 在一个已经存在的复制环境中添加一个新的从服务器；
+
+**** 主服务器配置选项
+**** 从服务器配置选项
+**** 创建复制用户
+**** 获取主服务器二进制日志坐标
+**** 选择数据快照方法
+**** 配置从服务器
+**** 在从服务器上设置相关主服务器复制配置选项
+**** 添加从服务器至已有复制环境
+
+*** 基于 GTIDs 复制方式配置
+使用 GTIDs，每一个提交至源服务器的事务被标示和跟踪并应用于所有从服务器。由于基于 GTID 的复制是完全基于事务，因此可以简单的确定主从服务器数据是否一致，所有提交至主服务器的事务也会被同样提交至从服务器，从而确保数据一致性。
+
+**** GTID 格式和存储
+- GTID 在整个复制拓扑中保持唯一；
+- GTID 格式：
+#+BEGIN_SRC ansi
+GTID = source_id:transaction_id
+#+END_SRC
+ - source_id 是来源服务器标示，通常是源服务器（Master）的 server_uuid；
+ - transaction_id 是一个单调递增的连续数字，代表在该服务器上提交的事务的顺序；
+- 在主服务器上，当一个事务被提交，就会被分配一个 GTID，并且该事务被写入二进制日志。其中的 =transaction_id= 被确保连续单调递增。如果事务不被写入二进制日志（例如，只读事务），该事务不会被分配 GTID；
+- 系统表格 =mysql.gtid_executed= 被用于 GTIDs；
+#+BEGIN_SRC sql
+CREATE TABLE gtid_executed (
+    source_uuid CHAR(36) NOT NULL,
+    interval_start BIGINT(20) NOT NULL,
+    interval_end BIGINT(20) NOT NULL,
+    PRIMARY KEY (source_uuid, interval_start)
+)
+#+END_SRC
+- GTIDs 只有在 =gtid_mode= 是 =ON= 或者 =ON_PERMISSIVE= 时才会被保存在 =mysql.gtid_executed= 表格里；
+- 当二进制日志被激活的情况下， =mysql.gtid_executed= 表格不提供完整的已执行事务 GTIDs 记录；
+
+**** TODO GTID 生命周期
+1. 当一个事务被执行并在主服务器提交时，该事务被分配一个 GTID，该 GTID 被写入主服务器二进制日志 (立刻并先于事务本身)。如果该事务不被写入二进制日志，就不会产生并分配 GTID 给该事务；
+2. 如果一个 GTID 被分配给一个事务，在事务提交的时候，该 GTID 作为该事务的开头部分 被原子性写入二进制日志。无论二进制日志被替换或者服务器关闭，服务器都将前一个二进制日志文件事务的 GTIDs 写入 =mysql.gtid_executed= 表格。
+3. If a GTID was assigned for the transaction, the GTID is externalized non-atomically (very shortly
+after the transaction is committed) by adding it to the set of GTIDs in the gtid_executed system variable (@@global.gtid_executed). This GTID set contains a representation of the set of all committed GTID transactions. With binary logging enabled (as required for the master), the set of GTIDs in the gtid_executed system variable is a complete record of the transactions applied, but the mysql.gtid_executed table is not, because the most recent history is still in the current binary log file.
+
+**** GTID 自动定位 (Auto-positioning)
+**** 配置基于 GTID 的复制
+下面是配置基于 GTID 的复制步骤：
+Step 1: 同步数据库服务器
+该步骤适用于现有复制环境不是基于 GTID 的情形。对于新配置复制而言，该步骤并不需要。执行如下命令设置服务器工作在只读模式。
+#+BEGIN_SRC sql
+mysql > SET @@global.read_only = ON;
+#+END_SRC
+等待所有已有的事务完成。在继续之前，极其重要的一点是必须确保从服务器已经同步了所有的更新。理想情况是等待服务器合并所有的二进制日志。
+
+/警告：一旦激活 GTIDs 选项，服务器将不再处理没有 GTIDs 的事务。因此，继续之前，必须确保整个复制环境中不再存在没有 GTIDs 的事务。/
+
+Step 2: 停止所有的服务器
+使用 =mysqladmin= 停止所有的服务器：
+#+BEGIN_SRC sh
+> mysqladmin -uusername -p shutdown
+#+END_SRC
+
+Step 3: 启动激活 GTIDs 选项的主从服务器
+配置主从服务器激活 GTID 模式。
+#+BEGIN_SRC 
+ gtid_mode=ON
+enforce-gtid-consistency=true
+#+END_SRC
+额外的，在开始配置从服务器之前，需要使用 =--skip-slave-start= 选项启动从服务器。
+主服务器必须激活二进制日志选项以能够正常复制，但从服务器可以仅使用 GTIDs 而不必激活二进制日志。
+
+Step 4: 配置从服务器使用基于 GTID 的自动位置 (auto-positioning)
+在从服务器上，通过 =CHANGE MASTER TO= 语句配置从服务器使用主服务器复制数据源。
+#+BEGIN_SRC 
+mysql> CHANGE MASTER TO
+> MASTER_HOST = host,
+> MASTER_PORT = port,
+> MASTER_USER = user,
+> MASTER_PASSWORD = password,
+> MASTER_AUTO_POSITION = 1;
+#+END_SRC
+这里配置 =MASTER_AUTO_POSITION= 的值为 1 以使用基于 GTID 的自动位置功能，该配置代替基于文件位置的配置。
+
+Step 5: 备份
+激活 GTIDs 后，已存在的备份将不能够再使用，在这个点进行数据备份以产生一个随后可用的备份。
+
+Step 6: 启动从服务器并关闭只读模式
+运行如下命令启动从服务器：
+#+BEGIN_SRC sql
+mysql > START SLAVE;
+#+END_SRC
+
+运行如下命令关闭只读模式：
+#+BEGIN_SRC sql
+mysql > SET @@global.read_only = OFF;
+#+END_SRC
+
+**** 使用 GTID 做故障恢复和扩展
+**** GTIDs 复制的限制
+
+*** TODO 多来源复制
+
+*** TODO 通用复制管理任务
+
+** 复制应用方案
+*** 使用复制做备份
+*** 处理意外停止复制从服务器
+*** 监控基于行 (Row-based) 的复制
+*** 主从服务器采用不同存储引擎下的数据复制
+*** 使用复制做横向扩展
+*** 复制不同的数据库至不同的从服务器（分库）
+*** 提升复制性能
+*** 在故障恢复期间切换主服务器
+*** 配置复制使用加密链接
+*** 延时复制
+*** 半同步 (semisynchronous) 复制
+
+* TODO 群组复制 (Group Replication)
+
+For a transaction to commit, the majority of the group have to agree on the order of a given transaction
+in the global sequence of transactions. Deciding to commit or abort a transaction is done by each server individually, but all servers make the same decision. If there is a network partition, resulting in a split where members are unable to reach agreement, then the system does not progress until this issue is resolved. Hence there is also a built-in, automatic, split-brain protection mechanism.
+
+All of this is powered by the provided Group Communication System (GCS) protocols. These provide a failure detection mechanism, a group membership service, and safe and completely ordered message delivery. At the very core of this technology lies an implementation of the Paxos algorithm. It acts as the group communication engine.
+
+To summarize, MySQL Group Replication provides a highly available, highly elastic, dependable MySQL service.
+
+Group Replication Details:
+- Failure Detection
+- Group Membership
+- Fault-tolerance
+
+* TODO InnoDB 集群
+- Using Group Replication
+- Using MySQL Router in client to access the cluster
+
+* 分表 (Partitioning)
+** Overview
+- MySQL 仅支持水平分区 (horizontal partitioning)；
+- 仅 InnoDB 引擎支持分区；
+#+BEGIN_SRC sql
+CREATE TABLE ti (id INT, amount DECIMAL(7,2), tr_date DATE)
+    ENGINE=INNODB
+    PARTITION BY HASH( MONTH(tr_date) )
+    PARTITIONS 6;
+#+END_SRC
+该语句基于 =tr_date= 列 MONTH 的 HASH 值分区；
+- 分区作用于表格的所有数据以及索引，不能仅做数据分区而不做索引分区，反之亦不可行，也不能仅对表格的部分数据做分区。
+
+** 分区类型
+- 基于值范围分区 (RANGE COLUMNS partitioning)
+- 基于列表分区 (LIST COLUMNS partitioning)
+- 基于散列分区 (HASH partitioning)
+- 基于 KEY 分区 (KEY partitioning)
+
+一个非常常用的数据库分区是通过日期分割数据。
+#+BEGIN_SRC sql
+CREATE TABLE members (
+    firstname VARCHAR(25) NOT NULL,
+    lastname VARCHAR(25) NOT NULL,
+    username VARCHAR(16) NOT NULL,
+    email VARCHAR(35),
+    joined DATE NOT NULL
+)
+PARTITION BY KEY(joined)
+PARTITIONS 6;
+#+END_SRC
+
+** RANGE 分区
+
+* 参考文献
+1. Mysql 8 Reference Manual, https://dev.mysql.com/doc/refman/8.0/en/.
+11. Cobar, https://github.com/alibaba/cobar.
+13. MyCat, http://mycat.io.
+15. Sharding-jdbc, http://shardingjdbc.io.
+
+

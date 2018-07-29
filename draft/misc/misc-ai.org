@@ -1,0 +1,56 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              Reinforcement Learning - MISC
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com
+#+DATE:              2018-05-11
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* 摘要
+
+* Reinforcement Learning
+
+** Q-Learning
+- State value function - 
+- State-action value function - 
+- Optimal policy - Monte Carlo
+- off-policy approach
+- Exploration vs Exploitation
+
+- Bellman Optimality Equation - 
+#+CAPTION: Bellman Equation
+#+ATTR_HTML: :width 60%
+[[file:images/bellman-equation.png]]
+
+** Deep Q-Learning
+
+** Gorila
+General Reinforcement Learning Architecture
+#+CAPTION: Gorila
+#+ATTR_HTML: :width %60
+[[file:images/gorila_architecture.png]]
+
+* 随机算法
+** Las Vegas 算法
+Las Vegas 算法总是精确的返回一个正确答案（或者没有找到答案）。该算法占用随机的计算资源（内存或者时间）。
+
+** 蒙特卡罗 (Monte Carlo) 方法
+蒙特卡罗算法是一种近似算法，返回的答案是一个近似解，具有随机大小的错误，投入更多的计算资源可以减少这种错误。
+
+** 马尔可夫链蒙特卡罗方法
+
+* 最新进展
+** OpenAI Glow
+OpenAI 发布 [[https://blog.openai.com/glow/][Glow]] - Better Reversible Generative Models, [[https://d4mucfpksywv.cloudfront.net/research-covers/glow/paper/glow.pdf][Glow论文]] 和[[https://github.com/openai/glow][代码]]。
+
+* 参考文献
+11. A brief introduction to reinforcement learning, http://www.cs.ubc.ca/~murphyk/Bayes/pomdp.html.
+21. A Painless Q-learning Tutorial (一个 Q-learning 算法的简明教程), https://blog.csdn.net/itplus/article/details/9361915.
+25. Massively Parallel Methods for Deep Reinforcement Learning, https://arxiv.org/abs/1507.04296.
+27. 谷歌Gorila强化学习体系解析, https://www.csdn.net/article/2015-07-19/2825249.
+51. Glow: Better Reversible Generative Models, https://blog.openai.com/glow/, 2018-07-09.
+
+

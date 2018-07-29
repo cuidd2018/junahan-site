@@ -1,0 +1,24 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              Hugo 101
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com 
+#+DATE:              2018-07-08
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* 摘要
+** 什么是 Hugo
+
+** 为什么使用 Hugo
+
+** 问题和限制
+
+* 安装
+
+* 参考文献
+1. Hugo Quick Start, https://gohugo.io/getting-started/quick-start/.
+11. Hugo 中文手册, https://jimmysong.io/hugo-handbook/, By Jimmy Song.
+

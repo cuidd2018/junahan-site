@@ -1,0 +1,25 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              Envoy 101
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com 
+#+DATE:              2018-07-12
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* 摘要
+** Envoy 是什么
+** 为什么使用 Envoy
+** 问题和限制
+
+* 推荐阅读列表
+
+* 参考文献
+1. Envoy Home, https://envoyproxy.io.
+3. Envoy official blog, https://blog.envoyproxy.io.
+5. The universal data plane API, https://blog.envoyproxy.io/the-universal-data-plane-api-d15cec7a, by [[https://blog.envoyproxy.io/@mattklein123][mattklein123]].
+11. Envoy 官方文档中文版 (1.7), http://www.servicemesher.com/envoy/.
+13. 浅谈Service Mesh体系中的Envoy，https://yq.aliyun.com/articles/606655, By [[https://yq.aliyun.com/users/1211452223316191][中间件小哥]].
+

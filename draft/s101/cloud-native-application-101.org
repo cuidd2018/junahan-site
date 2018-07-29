@@ -1,0 +1,114 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              云原生技术栈 101
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com 
+#+DATE:              2018-07-12
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* 摘要
+
+** 什么是云原生应用
+云原生架构的几个主要特征和最初的定义：
+- 12 因素应用 - 12 因素应用是一系列云原生应用架构的模式集合，最初由 Heroku 提出。这些模式可以用来说明什么样的应用才是云原生应用。它们关注速度、安全、通过声明式配置扩展、可横向扩展的无状态/无共享进程以及部署环境的整体松耦合。
+- 符合微服务架构
+- 自服务敏捷架构
+- 基于 API 的协作
+- 抗脆弱性 - 
+
+[[https://cncf.io][CNCF]] 的定义 (译文来自 [[https://jimmysong.io/kubernetes-handbook/cloud-native/cloud-native-definition.html][云原生定义]] - Jimmy Song)：
+#+BEGIN_QUOTE
+Cloud native technologies empower organizations to build and run scalable applications in modern, dynamic environments such as public, private, and hybrid clouds. Containers, service meshes, microservices, immutable infrastructure, and declarative APIs exemplify this approach.
+#+END_QUOTE
+云原生技术帮助公司和机构在公有云、私有云和混合云等新型动态环境中，构建和运行可弹性扩展的应用。云原生的代表技术包括容器、服务网格、微服务、不可变基础设施和声明式API。
+#+BEGIN_QUOTE
+These techniques enable loosely coupled systems that are resilient, manageable, and observable. Combined with robust automation, they allow engineers to make high-impact changes frequently and predictably with minimal toil.
+#+END_QUOTE
+这些技术能够构建容错性好、易于管理和便于观察的松耦合系统。结合可靠的自动化手段，云原生技术可以使开发者轻松地对系统进行频繁并可预测的重大变更。
+#+BEGIN_QUOTE
+The Cloud Native Computing Foundation seeks to drive adoption of this paradigm by fostering and sustaining an ecosystem of open source, vendor-neutral projects. We democratize state-of-the-art patterns to make these innovations accessible for everyone.
+#+END_QUOTE
+云原生计算基金会（CNCF）致力于培育和维护一个厂商中立的开源生态系统，来推广云原生技术。我们通过将最前沿的模式普惠，让这些创新为大众所用。
+
+** 为什么使用云原生应用
+- 速度 - 基于云基础设施的弹性和自服务特性，结合可靠的自动化手段，云原生技术可以使开发者轻松地对系统进行频繁并可预测的重大变更 - 由传统交付模型的以周或者月为单位的交付模型改变为每天上百次发布的交付模型。
+- 安全 - 云原生架构通过功能丰富的指标、监控、警报、数据可视化架构和工具提供必要的可视化能力；通过拆分单体服务架构为微服务架构实现良好的故障隔离能力并支持良好的容错模型；并凭借可视化、故障隔离和容错能力，系统可以安全的从故障中恢复，并在进行错误检测和故障恢复的过程中为客户提供合理的服务水平。
+- 弹性扩展 - 通过虚拟机和容器技术，云原生支持应用的快速部署并改善资源利用率；通过 API 进行配置提高部署速度，以最大限度提高应对需求变化的速度；通过将状态外部化到内存数据网络、缓存和持久化对象存储，保持应用程序实例本身无状态，从而支持应用程序的快速创建和销毁，增强系统的弹性、可扩展性和相应能力；
+- 移动应用和客户端多样性 - 移动平台的巨大差异也对应用架构提出了要求。云原生应用程序架构还通过诸如API网关之类的设计模式来支持移动优先开发的概念，API网关将服务聚合负担转移回服务器端；
+
+** 问题和限制
+- 技术栈跨越基础设施、虚拟化、容器化、服务网格等技术，学习曲线陡峭；
+- 尚处于发展阶段，服务网格等技术成熟度尚不够；
+- 依赖于云供应商提供成熟的技术栈支持；
+
+* CNCF
+#+BEGIN_QUOTE
+CNCF (Cloud native computing foundation) is an open source software foundation dedicated to making cloud native computing universal and sustainable. Cloud native computing uses an open source software stack to deploy applications as microservices, packaging each part into its own container, and dynamically orchestrating those containers to optimize resource utilization. Cloud native technologies enable software developers to build great products faster.
+#+END_QUOTE
+CNCF 是一个开源软件基金会组织，专注于云原生计算的普及和可持续化发展。云原生计算使用开放源码软件技术栈部署微服务应用，打包每个应用部件进入单独的容器，并且动态编排这些容器以优化资源利用率。云原生技术使得开发者能够更加快速的构建优秀的产品。
+
+CNCF 主持众多优秀的云原软件栈项目，包括 Kubernetes, Prometheus 和 Envoy 这样的开源项目。
+
+* 云原生应用技术栈和项目介绍
+
+** Docker
+
+** Kubernetes
+#+BEGIN_QUOTE
+Kubernetes is the world’s most popular container-orchestration platform and the first CNCF project. Kubernetes helps users build, scale and manage modern applications and their dynamic lifecycles. First developed at Google, Kubernetes now counts more than 2,300 contributors and is used by some of the world’s most-innovative companies, across a wide range of industries. The cluster scheduler capability lets developers build cloud native applications, while focusing on code rather than ops. Kubernetes future-proofs application development and infrastructure management on-premises or in the cloud, without vendor or cloud-provider lock-in.
+#+END_QUOTE
+
+** Prometheus
+#+BEGIN_QUOTE
+Prometheus delivers real-time monitoring, alerting and time-series database capabilities (including powerful queries and visualizations) for cloud native applications, and integrates with many popular open source tools for data import/export. It is already the de facto standard for monitoring container-based infrastructure, and continues to add major features as user requirements mature. Prometheus provides needed visibility into and troubleshooting for cloud native architectures, including Kubernetes and other next-generation components.
+#+END_QUOTE
+
+** OPENTRACING
+#+BEGIN_QUOTE
+Tracing is a critical part of a microservice-based environment, in order to track behavior of requests that span multiple services. OpenTracing is a distributed tracing API that works across a wide variety of popular open source and commercial tracing tools. The OpenTracing API makes it possible to monitor microservice interactions using, or switching between, popular tools such as Jaeger, Zipkin, DataDog and more. It’s the product of a community effort by engineers at LightStep, Red Hat, Uber and other companies, which gives developers a single tool for accurate tracing even in heterogeneous environments.
+#+END_QUOTE
+
+** Fluentd
+#+BEGIN_QUOTE
+Fluentd is a unified logging tool that collects data from any number of sources (including databases, application servers and end-user devices) and works with numerous alerting, analytics and storage options. Fluentd helps users better understand what’s happening in their environments by providing a unified layer for collecting, filtering, and routing log data among many popular sources and destinations. Fluentd makes log analysis easier by providing a unified platform for collecting, structuring (in JSON, if possible) and exporting data. It utilizes a pluggable architecture to simplify the addition of new data sources (e.g., connected devices) and backend systems (e.g., cloud storage and databases) come online, thanks to its unified platform and pluggable architecture and is integrated into popular products from Atlassian, Microsoft and other software vendors.
+#+END_QUOTE
+
+** GRPC
+#+BEGIN_QUOTE
+gRPC is a high-performance RPC (Remote Procedure Call) framework developed by Google and optimized for the large-scale, multi-platform nature of cloud native computing environments connecting services across languages, clouds and data centers, and connecting mobile devices to backend servers. gRPC supports 10 popular languages and is used by some of the world’s leading businesses, technology vendors and universities. gRPC improves latency of remote calls in distributed computing environments, while supporting polyglot programming and including client libraries for iOS and Android, as well as backend servers.
+#+END_QUOTE
+
+** ContainerD
+
+** Rtk
+
+** CNI
+
+** Envoy
+
+** Jaeger
+
+** Notary
+
+** TUF
+
+** Vitess
+
+** CoreDNS
+
+** Nats
+
+** Linkerd
+
+** HELM
+
+
+* 参考文献
+1. Migrating to Cloud Native Application Architectures, https://content.pivotal.io/ebooks/migrating-to-cloud-native-application-architectures, by Matt Stine.
+3. 迁移到云原生应用架构 (Migrating to Cloud Native Application Architectures 中文翻译) , https://jimmysong.io/migrating-to-cloud-native-application-architectures/, by Jimmy Song.
+11. CNCF (Cloud Native Computing Foundation), http://cncf.io/.
+13. 
+

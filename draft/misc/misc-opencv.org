@@ -1,0 +1,37 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:               MISC - OPENCV
+#+AUTHOR:          Junahan
+#+EMAIL:              junahan@outlook.com 
+#+DATE:               2018-06-20
+#+LANGUAGE:    CN
+#+OPTIONS:         H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:         TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:          CC BY 4.0
+
+* 摘要
+
+* 安装 OpenCV in Mac
+执行如下命令安装 opencv 以及 opencv-python 绑定。
+#+BEGIN_SRC sh
+# 安装 opencv 最新版本
+brew install opencv
+
+# 创建 conda python 环境
+conda-env create -n opencv341
+source activate opencv341
+# 安装 opencv-python  绑定
+pip install opencv-python
+#+END_SRC
+
+* Build from source code
+
+#+BEGIN_SRC sh
+git clone https://github.com/opencv/opencv.git
+
+#+END_SRC
+
+* 参考文献
+1. OpenCV Home, https://opencv.org.
+3. OpenCV 入门教程, https://www.w3cschool.cn/opencv/opencv-ot3a28u5.html.
+

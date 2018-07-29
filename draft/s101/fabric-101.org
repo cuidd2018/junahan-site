@@ -1,0 +1,21 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              Fabric 101
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com 
+#+DATE:              2018-07-16
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* 摘要
+
+
+
+* 参考文献
+1. Fabric release 1.2 document, http://hyperledger-fabric.readthedocs.io/en/release-1.2/whatis.html#
+2. Fabric Wiki, https://wiki.hyperledger.org/projects/Fabric.
+3. Fabric paper, https://arxiv.org/pdf/1801.10228v1.pdf.
+5. Fabric 1.0 架构和原理, https://blog.csdn.net/xcjing/article/details/78883642.
+

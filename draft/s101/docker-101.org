@@ -1,0 +1,205 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              Docker 101
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com 
+#+DATE:              2018-07-01
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* TODO 摘要
+
+** Docker 是什么
+
+** 为什么使用 Docker
+- 一个新的应用交付方式
+- 可移植性 (Portability) - 
+- 服务发现 (Services Discovery) - 
+- 负载均衡 (Load Balancing) - 
+- 安全 (Security) - 
+- 性能 (Performance) - 
+- 可扩展性 (Scalability) - 
+
+** 问题和限制
+- 
+
+
+** FAQ
+
+* TODO 快速启动
+
+* 容器网络
+** 网络概述
+Docker 网络支持 Docker 容器可以相互链接以及和容器以外的网络链接，并可以支持在不同 Host OS 之间以一致的方式提供支持。如在 Linux Host 中，Docker 通过维护 =iptable= 规则实现网络隔离和路由。有关 Docker 网络实现的架构和细节，可以参考 [[https://docs.docker.com/network/iptables/][Docker and Iptable]] 以及 [[http://success.docker.com/article/networking][Docker 参考架构：设计可扩展、可移植的 Docker 容器网络]]。
+
+** 网络驱动
+- Bridge Networks - 
+- Host Networks - 
+- Overlay Networks
+- Macvlan Networks
+- None
+
+** 使用网桥
+网桥常用于在同一个 Host 下多个容器之间的相互通讯。
+
+*** 默认网桥 和用户自定义网桥之间的区别
+- 用户定义网桥提供容器化应用之间更好的隔离和交互。链接至相同用户定义网桥的容器自动相互暴露端口并且没有端口暴露至外部，而链接至默认网桥的容器之间需要通过 =--publish= 选项相互暴露端口。
+- 用户自定义网桥提供自动化容器间 DNS 解析服务，而链接至默认网桥的容器之间只能通过 IP 地址访问。
+- 容器可以加入 (attached) 用户自定义网桥，也可以从中脱离 (deattached) 而不用停止或者重启容器 (on the fly)。
+- 每个用户自定义网桥创建一个单独的网桥配置
+- 链接 (Linked) 到默认网桥的容器共享环境变量
+
+***  管理用户定义网桥
+使用 =docker network create= 命令创建用户自定义网桥：
+#+BEGIN_SRC sh
+$ docker network create my-net
+#+END_SRC
+
+使用 =docker network rm= 命令移除用户自定义网桥：
+#+BEGIN_SRC sh
+$ docker network rm my-net
+#+END_SRC
+
+*** 链接容器至用户自定义网桥
+如下命令在创建一个容器 (my-nginx) 的同时，链接该容器至用户自定义网桥：
+#+BEGIN_SRC sh
+$ docker create --name my-nginx \
+  --network my-net \
+  --publish 8080:80 \
+  nginx:latest
+#+END_SRC
+
+如下命令链接一个运行中的容器 (my-nginx) 至用户自定义网桥：
+#+BEGIN_SRC sh
+$ docker network connect my-net my-nginx
+#+END_SRC
+
+*** 从用户自定义网桥中移除容器
+使用 =docker network disconnect= 命令可以断开容器至用户自定义网桥的链接：
+#+BEGIN_SRC sh
+$ docker network disconnect my-net my-nginx
+#+END_SRC
+
+*** 激活从容器至外部网络的转发
+默认情形下，从容器链接至默认网桥的包不会被转发至外部。要激活转发，需要在  Host 上进行配置，例如在 Linux OS 上，可以通过如下配置激活转发：
+- 配置 Linux 内核允许 IP 转发：
+#+BEGIN_SRC sh
+$ sysctl net.ipv4.conf.all.forwarding=1
+#+END_SRC
+
+- 更改 =iptables= =FORWARD= 策略：
+#+BEGIN_SRC sh
+$ sudo iptables -P FORWARD ACCEPT
+#+END_SRC
+
+** 使用 Overlay 网络
+
+
+* TODO 管理应用数据
+Docker 提供两种方法用于存储文件和数据至宿主机器，存储卷 (volumes) 和绑定挂载点 (bind mounts) 。如果在 Linux 下运行，也可以使用 =tmpfs= 挂载点。
+- Volumes - 存储卷是宿主文件系统的一部分，由 Docker 创建和管理 (/var/lib/docker/volumns/ on Linux)。非 Docker 进程不应当修改存储卷内容。推荐使用该方式。
+- Bind mounts - 
+- tmpfs - 仅仅存储至宿主内存，不会写入宿主文件系统。
+
+** Volumes 最佳使用案例
+推荐使用 Volumes 持久化数据。一些好的使用案例如下：
+- 在多个容器之间共享数据
+- 当 Docker 宿主无法保证提供目录或者文件结构式的一致性；例如，如果宿主进程更改文件和目录内容；
+- 当你需要存储容器数据到远程主机或者云供应商而不是本地；
+- 当你需要备份、恢复或者迁移数据的时候；
+
+** Bind mounts 最佳使用案例
+通常情况下，应当使用 =volumes= ，Bind mounts 适合于如下几种情形：
+- 共享宿主配置文件至容器。
+- 在宿主和容器间共享开发环境下的源代码和构建档案。例如，通过挂载 Maven =target/= 目录至容器，可以在宿主机器上每次构建 Maven 项目的时候，容器会得到最新构建的档案。
+- 当宿主能够确保文件或者目录结构一致性的情况下。
+
+** tmpfs 最佳使用案例
+适用于由于安全或者其他原因，不想持久化数据至宿主和容器。
+
+
+* 在生产环境下运行应用
+** 配置 Docker 对象
+
+*** Docker  对象标签
+标签是一种为 Docker 对象提供元数据的一种机制，可以为如下 Docker 对象创建标签：
+- Images
+- Containers
+- Local daemons
+- Volumes
+- Networks
+- Swarm nodes
+- Swarm services
+
+*** TODO 应用自定义元数据至 Docker 对象
+
+
+*** 修剪不再使用的对象
+可以通过 =prune= 命令修剪不再使用的 Docker 对象。
+- 修剪不再使用的 Image
+#+BEGIN_SRC sh 
+$ docker image prune
+#+END_SRC
+
+- 修剪不再使用的 Containers
+#+BEGIN_SRC sh
+$ docker container proune
+#+END_SRC
+
+- 修剪不再使用的 Volumes
+#+BEGIN_SRC sh
+$ docker volume prune
+#+END_SRC
+
+- 修剪不再使用的 Networks
+#+BEGIN_SRC sh
+$ docker network proune
+#+END_SRC
+
+*** 格式化命令行和日志输出
+Docker 使用 [[https://golang.org/pkg/text/template/][Go 模版]]并提供基本功能用于操作模版元素。
+
+- join 
+#+BEGIN_SRC sh
+docker inspect --format '{{join .Args " , "}}' container
+#+END_SRC
+- json
+- lower
+- split
+- title
+- upper
+- println
+
+** 配置 Docker Daemon
+
+** 配置容器
+
+
+* 编写 Dockerfile
+
+* 工具
+** Kubernetes
+
+** Jib
+[[https://github.com/GoogleContainerTools/jib/][Jib]] 可以将你的 Java 应用构建为 Docker 或者 OCI 镜像，Jib 可以作为 Maven 和 Gradle 插件使用。
+
+** Rule Docker
+[[https://github.com/bazelbuild/rules_docker][Rules_docker]] 是 [[https://github.com/bazelbuild/bazel][Bazel 构建系统]]下用于容器镜像构建的工具，适用于多种语言，如 Python, NodeJS, Java, Scala, Groovy, C, Go, Rust, 以及 D 语言。
+
+* TODO 推荐阅读列表
+
+* 参考文献
+1. Docker Home, https://www.docker.com.
+3. Docker Docs, https://docs.docker.com.
+5. Docker 中文文档，https://docs.docker-cn.com.
+11. Kubernetes Home, https://kubernetes.io.
+13. Ansible, https://www.ansible.com.
+21. Docker and Iptables, https://docs.docker.com/network/iptables/.
+23. Docker Reference Architecture: Designing Scalable, Portable Docker Continer Networks, http://success.docker.com/article/networking.
+31. Dockerfile Reference, https://docs.docker.com/engine/reference/builder/.
+33. Jib, https://github.com/GoogleContainerTools/jib/.
+35. Distroless, https://github.com/GoogleCloudPlatform/distroless.
+37. Rule_docker, https://github.com/bazelbuild/rules_docker.
+39. Docker 中文手册, https://jimmysong.io/docker-handbook/, By [[https://jimmysong.io/][Jimmy Song]].

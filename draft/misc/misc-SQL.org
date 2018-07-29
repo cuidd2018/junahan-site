@@ -1,0 +1,40 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              MISC - SQL
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com 
+#+DATE:              2018-05-12
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* 摘要
+本文根据作者多年的从业经验，包括面试和被面试的经历，汇总的有关知识要点，主要是适用于 Java 高级技术岗位方向，除了 Java 相关的章节外，其他章节也适用于其他编程相关的高级职位方向。本文主要包含 Java、SQL、算法基础、软件复用和设计模式、高并发架构设计、安全、DevOps、优化等主题。
+
+希望该文能够对你有所帮助。如果有你有意补充本文遗漏的主题或者发现本文的任何谬误，欢迎联系我 - junahan@outlook.com。
+
+
+* SQL 基础
+1. SQL basic principle
+2. SQL standard statement
+3. Index and Performance
+ - Index primary/foreign key
+ - Index frequency usage column in where sub statement
+ - Index unique column
+4. RDBM design normalization
+ - 1NF - Eliminate repeating groups in individual tables; Create a separate table for each set of related data; Identify each set of related data with a primary key. 
+ - 2NF - 1NF + every non-prime attribute of the relation is dependent on the whole of every candidate key.
+ - 3NF - 2NF + all the attributes in a table are determined only by the candidate keys of that relation and not by any non-prime attributes. 3NF is designed to minimize storage costs. 3NF data modeling was ideal for OLTP application.
+
+* SQL 事务
+
+* Mysql
+
+
+* 参考文献
+
+
+#+BEGIN_QUOTE
+本作品采用[[http://creativecommons.org/licenses/by/4.0/][知识共享署名 4.0 国际许可协议]]进行许可。
+#+END_QUOTE

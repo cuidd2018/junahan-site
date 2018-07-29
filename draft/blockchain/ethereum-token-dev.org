@@ -1,0 +1,30 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              Ethereum ER20 代币发行
+#+AUTHOR:         Junahan
+#+EMAIL:             junahan@outlook.com 
+#+DATE:              2018-05-04
+#+LANGUAGE:    CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:         CC BY 4.0
+
+* 摘要
+
+* 代币相关标准
+
+** ERC20
+
+** ERC827
+
+** ERC721
+
+* TODO 开发和测试代币
+
+* TODO 开发和测试钱包
+
+* 参考文献
+1. EIP20 - ERC 20 Token Standard，https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md.
+2. EIP827 - ERC 827 Token Standard, https://github.com/ethereum/EIPs/issues/827.
+3. EIP721 - ERC 721 Token Standard, https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md.
+
