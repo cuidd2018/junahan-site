@@ -1,0 +1,33 @@
+#+title:  Fabric 接入网关设计
+#+author:  Tiedang Yang
+#+email:  junahan@outlook.com
+#+date:  2018-07-29
+#+language:  cn
+#+options:  H:3 num:nil toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+options:  TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+infojs_opt:  view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+license:  CC BY 4.0
+
+* 摘要
+
+* 设计原则
+接入网关要访问 Fabric 网络，需要维护较多的状态信息和管理到 Fabric 网络的链接，包括：
+
+1. 用户证书和秘钥；
+2. 到 CA Server 的链接 (HTTPS)；
+3. RPC 链接至 Peer，Orderer；
+
+设计上亦需要符合如下原则：
+
+1. 支持用户通过 SaaS 系统接入；
+2. 支持用户通过部署一个网关客户端或者一体化网关接入；
+3. 需要考虑客户端秘钥存储的安全；
+4. 支持大规模部署和营运；
+
+* CA 服务设计
+
+
+
+* 参考文献
+1. Fabric Document, http://hyperledger-fabric.readthedocs.io/.
+
