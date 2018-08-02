@@ -1,0 +1,179 @@
++++
+title = "Solidity 开发工具组合 - In Mac"
+author = "Junahan"
+date = 2018-05-04
+keywords = ["ethereum", "solidity", "blockchain"]
+lastmod = 2018-08-02T09:57:23+08:00
+tags = ["Ethereum", "Solidity"]
+categories = ["Blockchain"]
+draft = false
++++
+
+## <span class="section-num">1</span> 摘要 {#摘要}
+
+本文根据作者搭建 Solidity 开发环境的经验，做了一些基本梳理，并推荐了逐步进阶的工具套件组合。
+
+_提醒：本文提到的相关环境仅在 `Mac OS - Darwin Kernel Version 17.5.0` 上搭建和验证。_
+
+_提醒：Solidity 语言甚至是 Ethereum 都在快速的发展之中，相应的工具和组合也在不断完善和发展之中，请注意本文所述所使用的各工具版本，这里列出一些相关版本号供参考：_
+
+-   Go-ethereum 1.8.7-stable (可以通过 `geth version` 查看版本号)
+-   Solidity 0.4.23+commit.124ca40d.Darwin.appleclang (可以通过 `solc --version` 查看版本号)
+-   Remix-ide 0.6.2 (可以通过 `npm -g list remix-ide` 查看版号 )
+
+
+## <span class="section-num">2</span> 开发环境和工具 {#开发环境和工具}
+
+Solidity 是官方智能合约开发高级语言，Solidity 开发涉及到一些列工具套件和组合，这里推荐首先使用简单的组合以快速上手学习，并有利于了解 Solidity 开发最基本的知识。随着对 Solidity 的了解加深，可以尝试更加丰富的工具套件组合并使用开发框架来提高生产力。
+
+
+### <span class="section-num">2.1</span> 最简工具 {#最简工具}
+
+推荐使用 Remix，它是一个基于浏览器的 IDE，集成了 Solidity 编译器 ( `solcjs` )，基本编辑工具，以及 Solidity 的运行环境。官方提供了在线 [Remix-ide](https://remix.ethereum.org) ，无需安装即可通过浏览器使用。你也可以选择安装 Remix 至本地。以 MacOS 为例，可以在终端中运行 `npm install remixd remix-ide -g` 命令安装 Remix-ide。在终端中运行 `remix-ide` 命令即可启动 Remix-ide，如下所示，是我的电脑上运行 `remix-ide` 命令的终端输出。
+
+```shell
+$ remix-ide
+setup notifications for /Users/junahan/ethlab
+Shared folder : /Users/junahan/ethlab
+Starting Remix IDE at http://localhost:8080 and sharing /Users/junahan/ethlab
+Wed May 09 2018 09:52:55 GMT+0800 (CST) Remixd is listening on 127.0.0.1:65520
+```
+
+-   Remixd 启动在 127.0.0.1:65520 提供运行环境。
+-   Remix IDE 启动在 <http://localhost:8080> 端口。
+-   启动 `remix-ide` 命令所在目录被作为共享目录，可以在 Remix IDE 里面链接并加载该目录，建议该目录为你 Solidity 代码目录，这样就可以直接在 Remix IDE 里面访问这些代码。
+
+在浏览器中打开 <http://localhost:8080> ，就可以使用 Remix-ide了。
+
+{{< figure src="https://ws4.sinaimg.cn/large/006tKfTcgy1ftv2tuuwlpj31kw0ywaju.jpg" caption="Figure 1: Remix-ide" width="80%" >}}
+
+-   点击位于左上方的链接状图标，既可以链接本地共享目录。
+-   Remix IDE 使用的环境是 JavaScript VM，可以通过右上方的 Run 标签链接查看使用使用的环境。
+-   默认提供四个账户，每账户各 100 ether 以供测试（可在右上方 Run 标签页查看账户信息）。
+
+这种方式使用 Remix，你只能在 JavaScript VM 环境里面运行代码，作为快速上手是合适的。如果你需要连接开发节点或者测试网络，你需要更加合适的工具组合。
+
+
+### <span class="section-num">2.2</span> 基本工具套件组合 {#基本工具套件组合}
+
+这里推荐使用基本组合来编辑和调试 Solidity 代码，建议使用 Geth 客户端创建开发环境节点，也可以连接至 Ethereum 测试网络进行代码的部署和测试。
+
+
+#### <span class="section-num">2.2.1</span> 基本组合工具安装配置 {#基本组合工具安装配置}
+
+-   Geth - Go-ethereum 是 Ethereum 默认客户端。在开发 Solidity 开发过程中，Geth 是开发环境基本工具，用于启动本地节点，连接 Ethereum 网络，提供 Solidity 部署和运行环境。在终端运行 `brew install geth` 安装 Geth。通过运行 `geth version` 验证安装。
+-   Solc - Solidity 编译器。运行如下命令安装 Solidity：
+
+```shell
+brew update
+brew upgrade
+brew tap ethereum/ethereum
+brew install solidity
+#使用如下命令验证安装。
+solc --version
+```
+
+-   Solium - Solidity 代码语法风格以及代码安全分析和检查工具，Solidity-mode 使用该工具进行代码检查。运行 `npm install solium -g` 安装并使用 `solium -V` 检查安装结果。
+-   Remix-ide / Remix - Remix 提供 Remix-ide 运行环境，Remix-ide 用于 Solidity 代码编辑和调试。运行 `npm install remixd remix-ide -g` 命令安装 Remix 运行环境和 IDE。
+-   Emacs + Solidity-mode - 我用于 Solidity 代码编辑的工具，有关 Solidity Emacs Mode 的安装和配置，请参阅 [Solidity Emacs 配置](https://github.com/junahan/junahan-emacs/blob/master/docs/solidity-ide.org)。你也可以选择自己常用的编辑器，有关更多工具集成，请参阅[可用 Solidity 集成工具](http://solidity.readthedocs.io/en/latest/#available-solidity-integrations)。
+
+
+#### <span class="section-num">2.2.2</span> 基本组合工具使用 {#基本组合工具使用}
+
+按照如下步骤分别启动 `geth`, `remixd` 并使用浏览器连接和使用 Remx-ide：
+
+1.  在终端中运行 `geth --vmdebug --ipcpath ~/devchains/chain1/eth.ipc --datadir ~/devchains/chain1 --rpc --rpccorsdomain "*" --rpcport 8545 --rpcapi web3,eth,debug,net,personal --dev --nodiscover console 2>> /temp/geth-dev.log` 启动 Geth 节点：
+    -   `--dev` 选项指定 Geth 启动开发网络环境，该环境为开发环境，可挖矿，采用 PoA (proof-of-authority) 共识算法，预先设定一个开发者账户，默认发生交易的时候挖矿。
+    -   `--datadir` 选项指定 Geth 节点数据和账户 Key 存储的位置。
+    -   `--rpccorsdomain` 选项是必须的，该选项允许通过浏览器连接 RPC。
+    -   `--rpcapi` 选项列出允许通过 RPC 访问的 API 接口，需要允许 web3, personal 等 API 以便于 Remix-ide 能够连接并使用这些 API。
+    -   `--rpcport 8545` 选项 指定 Geth 在 8545 端口启动 RPC 服务，Remix-ide 随后可通过该端口连接 Geth 节点并使用该环境。
+2.  在终端中运行 `remixd -s ~/ethlab` 命令启动 Remixd 服务。这里允许 Remix-ide 加载共享目录 `~/ethlab` 。建议将共享目录修改为你 Solidity 项目的根目录。
+3.  在浏览器中打开 <http://localhost:8080>。
+
+至此，以上步骤启动 Remix-ide，这个和最简单配置中，使用 Remix-ide 相似，所不同的是，你可以通过 Remix-ide 配置使用 Geth 节点环境。环境配置位于 Remix IDE 右上角 Run 标签页面。在 Run 标签页面环境下拉选项连选择 Web3 Provider 项，即可连接 Geth 节点环境。成功连接 Geth 节点后的界面如下：
+
+[[<img src="https://ws4.sinaimg.cn/large/006tKfTcgy1ftv2v7tyy1j30q40i440j.jpg" alt="006tKfTcgy1ftv2v7tyy1j30q40i440j.jpg" width="80%" />
+
+你也可以配置 Geth 连接测试网络，详情请参阅[Ethereum 网络](#ethereum-网络) 。同样的，通过使用 Web3 Provider 选项连接 Geth 节点，即可在不同的网络进行代码测试和调试。
+
+
+### <span class="org-todo todo TODO">TODO</span> <span class="section-num">2.3</span> 开发框架组合 {#开发框架组合}
+
+建议使用 [Truffle 框架](http://truffleframework.com/docs/)，Truffle 框架号称是以太坊瑞士军刀。该框架是一个开发环境、测试框架，目标是使以太坊开发者的日常工作更加容易。该框架包括：
+
+-   内置智能合约编译、链接、部署和二进制文件管理
+-   快速开发自动化合约测试
+-   脚本化，可扩展部署和迁移框架
+-   网络管理 - 允许部署至任意公共和私有网络
+-   使用 EthPM 和 NPM 进行包管理，使用 [ERC190](https://github.com/ethereum/EIPs/issues/190) 标准
+-   可交互控制台 - 可直接和合约进行交互
+-   可配置构建管道 - 支持高度集成
+-   支持外部脚本 - 可在 Truffle 环境下执行外部脚本
+
+
+#### <span class="section-num">2.3.1</span> 安装 {#安装}
+
+在终端运行 `npm install -g truffle` 可安装 Truffle 框架及其依赖包。运行 `truffle version` 验证安装。
+
+```sh
+$ truffle version
+Truffle v4.1.8 (core: 4.1.8)
+Solidity v0.4.23 (solc-js)
+```
+
+
+#### <span class="org-todo todo TODO">TODO</span> <span class="section-num">2.3.2</span> 快速启用 {#快速启用}
+
+
+### <span class="section-num">2.4</span> 其他工具 {#其他工具}
+
+
+#### <span class="section-num">2.4.1</span> Remix App {#remix-app}
+
+相对于 Remix-ide，Remix-app 提供了本地运行的体验，编译构建 Remix App：
+
+```shell
+git clone https://github.com/horizon-games/remix-app
+cd remix-app
+yarn install
+yarn dist
+```
+
+安装包位于 `remix-app/dist` 目录。
+
+
+#### <span class="section-num">2.4.2</span> Puppeth {#puppeth}
+
+Puppeth 可用于帮助创建私有网络，详情请参阅[使用 Puppeth 搭建私有网络](#使用-puppeth-搭建私有网络)。
+
+
+## <span class="section-num">3</span> APIs {#apis}
+
+Enthereum 提供 [RPC API](https://github.com/ethereum/wiki/wiki/JSON-RPC#json-rpc-methods) 和 [Web3 API](https://web3js.readthedocs.io/en/1.0/)。RPC API 是底层 API，Web3 API 由 JavaScript 语言写成，建立在 RPC API 基础之上，更加易于使用。在智能合约开发过程中，可以通过 Geth Console 使用 Web3 API 进行账户配置，测试等。
+
+
+## <span class="section-num">4</span> Ethereum 网络 {#ethereum-网络}
+
+在开发智能合约或者 dApp 期间，你需要有更加真实的环境来部署和测试你的代码。Ethereum 社区提供相关的测试网络，你也可以使用相关工具搭建本地网络用于测试。
+
+-   Testnet - Ropsten 测试网络，预定义可挖矿，采用 PoW (proof-of-work) 共识，启动挖矿会导致你的 CPU 风扇狂转。可以使用 `geth --testnet` 命令启动 Geth 节点并连接 Ropsten 测试网络。
+-   Rinkeby - Rinkeby 测试网络，预定义可挖矿，采用 PoA (proof-of-authority) 共识算法。可以使用 `geth --rinkeby` 命令启动 Geth 节点并连接 Rinkeby 测试网络。
+-   Solo - 临时开发网络，可挖矿，采用 PoA 共识算法，预先设定一个开发者账户，默认发生交易的时候挖矿，也可以定义挖矿间隔。可以使用 `geth --dev` 命令启动 Geth 节点并连接开发网络。
+-   私有网络 -  可以自己动手搭建私有网络以测试智能合约代码。Puppeth 工具可以帮助创建私有网络。
+
+
+### <span class="org-todo todo TODO">TODO</span> <span class="section-num">4.1</span> 使用 Puppeth 搭建私有网络 {#使用-puppeth-搭建私有网络}
+
+
+## <span class="section-num">5</span> 参考文献 {#参考文献}
+
+1.  Ethereum Homestead Document, <http://www.ethdocs.org/en/latest/>.
+2.  RPC APIs, <https://github.com/ethereum/wiki/wiki/JSON-RPC#json-rpc-methods>.
+3.  Web3 Document, <http://web3js.readthedocs.io/en/1.0/web3.html>.
+4.  JavaScript API wiki, <https://github.com/ethereum/wiki/wiki/JavaScript-API>.
+5.  Solidiky Document, <https://solidity.readthedocs.io>
+6.  Truffle, <http://truffleframework.com>
+7.  EthereumToken Contracts, <https://github.com/ConsenSys/Tokens>.
+
+> 本作品采用[知识共享署名 4.0 国际许可协议](http://creativecommons.org/licenses/by/4.0/)进行许可。
