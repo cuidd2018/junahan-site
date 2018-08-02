@@ -1,24 +1,18 @@
----
-title: "AI 学习阅读列表"
-date: 2018-05-01T12:00:00+08:00
-draft: true
-author: "Junahan"
-authrolink: "https://github.com/junahan"
-summary: ""
-tags: ["AI","人工智能", "深度学习"]
-categories: ["AI", "Deep Learning", "深度学习"]
-keywords:  ["AI", "deep learning"]
----
-
 #+TITLE:              AI 学习阅读列表
 #+AUTHOR:         Junahan
 #+EMAIL:             junahan@outlook.com
 #+DATE:              2018-05-01
+#+hugo_base_dir: ../
+#+hugo_auto_set_lastmod: t
+#+hugo_tags: AI "Deep Learning" 人工智能 深度学习
+#+hugo_categories: AI "Deep Learning" 深度学习 人工智能
+#+hugo_draft: false
+#+KEYWORDS: "deep learning" 人工智能 深度学习
 #+LANGUAGE:    CN
-#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+OPTIONS:         H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:         TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
 #+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
-#+LICENSE:         CC BY 4.0
+#+LICENSE:          CC BY 4.0
 
 * 简介
 本文根据作者学习 AI (特别是深度神经网络) 的一些经验，介绍 AI 学习的阅读列表，主要包括书籍、有关机器学习和深度学习的课程、论文、工具和框架、数据集等几个方面。有鉴于作者主要关注深度学习方面，有关阅读列表可能更加侧重于深度学习相关主题。
