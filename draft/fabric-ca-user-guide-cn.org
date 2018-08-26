@@ -10,7 +10,7 @@
 #+hugo_draft: false
 #+keywords: fabric
 #+language:  cn
-#+options:  H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+options:  H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
 #+options:  TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
 #+infojs_opt:  view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
 #+license:  CC BY 4.0
@@ -233,7 +233,7 @@ ca:
 如果你想 Fabric CA 服务器使用你提供的 CA 签名证书和密钥文件，你必须分别放置这些文件到 =ca.certfile= 和 =ca.keyfile= 引用的目录。两个文件必须是 PEM 编码且不能够被加密。特别是，CA 证书文件内容必须以 =-----BEGIN CERTIFICATE-----= 开头，私钥内容必须以 =-----BEGIN PRIVATE KEY-----= 开头而不是 =-----BEGIN ENCRYPTED PRIVATE KEY-----= 开头。
 
 *** 算法和密钥大小
-CSR 能够被定制以产生支持椭圆曲线 (ECDSA) 算法的X.509 证书和密钥。如下是一个使用曲线 =prime256v1= 和签名算法 =ecdsa-with-SHA256= 的椭圆曲线数字全名算法 (ECDSA) 实例：
+CSR 能够被定制以产生支持椭圆曲线 (ECDSA) 算法的X.509 证书和密钥。如下是一个使用曲线 =prime256v1= 和签名算法 =ecdsa-with-SHA256= 的椭圆曲线数字签名算法 (ECDSA) 实例：
 #+BEGIN_SRC sh
 key:
    algo: ecdsa
@@ -268,7 +268,7 @@ fabric-ca-server start -b <admin>:<adminpw>
 
 如果你想配置 Fabric CA 服务器集群或者使用 LDAP，你可以跳过以下章节去 [[*Fabric%20CA%20%E5%AE%A2%E6%88%B7%E7%AB%AF][Fabric CA 客户端]]一节。
 
-** TODO 配置数据库
+** 配置数据库
 本节描述如何配置 Fabric CA 服务器链接到 PostgreSQL 或者 MySQL 数据库。默认数据库是 SQLite 并且默认数据库文件 =fabric-ca-server.db= 位于 Fabric CA 服务器根目录。
 
 如果你不关心运行 Fabric CA 服务器集群，你可以跳过本节，否则，必须配置 PostgreSQL 或者 MySQL。Fabric CA 服务器集群支持如下版本：
@@ -328,7 +328,62 @@ db:
 
 有关更多 PostgreSQL 服务器 SSL 配置细节，请参阅 PostgreSQL 文档 - https://www.postgresql.org/docs/9.4/static/libpq-ssl.html.
 
-*** TODO MySQL
+*** MySQL
+要使用 MySQL 数据库，需要添加如下示例配置至 CA 服务器配置文件。请确保配置合适的变量值。数据库名字允许使用的字符有限制。有关 MySQL 的更多信息，请参阅文档 - https://dev.mysql.com/doc/refman/5.7/en/identifiers.html。
+
+MySQL 5.7.X 版本特定模式会影响到服务器允许 "0000-00-00" 值。有必要配置 MySQL 服务器放松对零值的支持。我们希望服务器能够接受零值。
+
+#+BEGIN_SRC yaml
+db:
+  type: mysql
+  datasource: root:rootpw@tcp(localhost:3306)/fabric_ca?parseTime=true&tls=custom
+#+END_SRC
+
+如果要使用 TLS 连接 MySQL 服务器， =db.tls.client= 小节也需要像 PostgreSQL 那样设置。
+
+**** MySQL SSL 配置
+*MySQL 服务器 SSL 配置简单介绍:*
+
+1, 打开或者创建 MySQL 服务器配置文件 =my.cnf= 。添加或者去掉 =[mysqld]= 小节注释。这些配置用于指向服务器密钥和证书以及根 CA 证书。
+
+创建服务端和客户端证书的教程：
+http://dev.mysql.com/doc/refman/5.7/en/creating-ssl-files-using-openssl.html
+
+#+BEGIN_SRC 
+[mysqld] ssl-ca=ca-cert.pem ssl-cert=server-cert.pem ssl-key=server-key.pem
+#+END_SRC
+
+运行如下查询以确认 SSL 已经激活：
+
+#+BEGIN_SRC sql
+mysql> SHOW GLOBAL VARIABLES LIKE ‘have_%ssl’;
+#+END_SRC
+
+将看到输出：
+
+| Variable Name | Value | -- |
+| have_openssl  | YES   | -- |
+| hava_ssl      | YES   | -- |
+
+2, 服务端 SSL 配置完成后，下一步是创建一个具有通过 SSL 访问 MySQL 服务器权限的用户。登入 MySQL 服务器，输入如下指令：
+
+#+BEGIN_SRC sql
+mysql> GRANT ALL PRIVILEGES ON . TO ‘ssluser’@’%’ IDENTIFIED BY ‘password’ REQUIRE SSL; 
+mysql> FLUSH PRIVILEGES;
+#+END_SRC
+
+如果你想配置用户访问 MySQL 服务器的 IP 地址，将 '%' 修改为指定 IP 地址即可。
+
+**** MySQL 服务器 - 客户端证书配置
+客户端安全连接配置选项和服务端相似。
+
+- ssl-ca 标识根 CA 证书。如果用到，这个选项必须和服务端使用的证书一样；
+- ssl-cert 标识 MySQL 服务器证书；
+- ssl-key 标识 MySQL 服务器私钥；// 译者备注：TODO - 待确认，这里可能有误；
+
+Suppose that you want to connect using an account that has no special encryption requirements or was created using a GRANT statement that includes the REQUIRE SSL option. As a recommended set of secure-connection options, start the MySQL server with at least –ssl-cert and –ssl-key options. Then set the =db.tls.certfiles= property in the server configuration file and start the Fabric CA server.
+
+To require that a client certificate also be specified, create the account using the REQUIRE X509 option. Then the client must also specify proper client key and certificate files; otherwise, the MySQL server will reject the connection. To specify client key and certificate files for the Fabric CA server, set the =db.tls.client.certfile=, and =db.tls.client.keyfile= configuration properties.
 
 ** 配置 LDAP
 Fabric CA 服务器能够被配置为和 LDAP 服务器一起工作。
@@ -483,14 +538,14 @@ fabric-ca-server start -b admin:adminpw --cafiles ca/ca1/fabric-ca-config.yaml
 #+END_SRC
 
 ** 注册 (Enrolling) 一个中间 CA
-为了给一个中间 CA 创建一个签名证书，中间 CA 必须和一个 CA 客户端一样的方式注册 (enroll) 至 CA 服务器。这可以通过使用 =-u= 选项指定一个父 CA URL , enroment ID 和密码 (如下所述)。和这个注册 ID 相关的身份标示必须具有一个名字为 "hf.IntermediateCA" 且值为 "true" 的属性。其证书中 CN (Common Name) 属性将被设置为 enroment ID。如果一个中间 CA 尝试明确指定一个 CN 属性值将会产生错误。
+为了给一个中间 CA 创建一个签名证书，中间 CA 必须和一个 CA 客户端一样的方式注册 (enroll) 至 CA 服务器。这可以通过使用 =-u= 选项指定一个父 CA URL , enroment ID 和密码 (如下所述)。和这个注册 ID 相关的身份必须具有一个名字为 "hf.IntermediateCA" 且值为 "true" 的属性。其证书中 CN (Common Name) 属性将被设置为 enroment ID。如果一个中间 CA 尝试明确指定一个 CN 属性值将会产生错误。
 #+BEGIN_SRC sh
 fabric-ca-server start -b admin:adminpw -u http://<enrollmentID>:<secret>@<parentserver>:<parentport>
 #+END_SRC
 
 更多有关中间 CA 选项，请参阅 [[*Fabric%20CA%20%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F][Fabric CA 服务器配置文件格式]]一节。
 
-** TODO 升级 CA 服务器
+** 升级 CA 服务器
 Fabric CA 服务器必须先于 Fabric CA 客户端被更新。在更新之前，建议做好当前数据库的备份：
 - 如果使用 sqlite3, 备份当前数据库文件 (默认名字是 =fabric-ca-server.db=)。
 - 对于其他类型的数据库，请使用合适的备份/复制机制。
@@ -505,7 +560,96 @@ Fabric CA 服务器必须先于 Fabric CA 客户端被更新。在更新之前�
 fabric-ca-client getcainfo -u http://<host>:7054
 #+END_SRC
 
-*** TODO 升级一个集群
+*** 升级一个集群
+执行如下过程以升级 fabric-ca-server 集群实例 (无论是使用 MySQL 或者是 PostgreSQL 数据库)。我们假设你有两个成员 =host1= 和 =host2=  fabric-ca-server 构成的一个集群，两者分别启动并监听 7054 端口，并正在使用 haproxy 作负载均衡。经过升级处理流程后，访问流量会分别经负载均衡分配至升级后的 fabric-ca-server 集群成员 =host3= 和 =host4=, 两者分别启动并监听 7054 端口。
+
+为了使用 =haproxy stats= 命令监控变化，需要激活统计数据收集。添加如下两行至 haproxy 配置文件全局小节：
+
+#+BEGIN_SRC sh
+stats socket /var/run/haproxy.sock mode 666 level operator
+stats timeout 2m
+#+END_SRC
+
+重新启动 haproxy 以使配置生效果：
+
+#+BEGIN_SRC sh
+# haproxy -f <configfile> -st $(pgrep haproxy)
+#+END_SRC
+
+下面的函数提供了有用的功能以解析 haproxy "show stat" 命令返回的大量 CSV 数据以显示总结信息：
+
+#+BEGIN_SRC sh
+haProxyShowStats() {
+   echo "show stat" | nc -U /var/run/haproxy.sock |sed '1s/^# *//'|
+      awk -F',' -v fmt="%4s %12s %10s %6s %6s %4s %4s\n" '
+         { if (NR==1) for (i=1;i<=NF;i++) f[tolower($i)]=i }
+         { printf fmt, $f["sid"],$f["pxname"],$f["svname"],$f["status"],
+                       $f["weight"],$f["act"],$f["bck"] }'
+}
+#+END_SRC
+
+1. 初始化 haproxy 配置文件如下：
+
+#+BEGIN_SRC sh
+server server1 host1:7054 check
+server server2 host2:7054 check
+#+END_SRC
+
+改变该配置如下：
+
+#+BEGIN_SRC sh
+server server1 host1:7054 check backup
+server server2 host2:7054 check backup
+server server3 host3:7054 check
+server server4 host4:7054 check
+#+END_SRC
+
+2. 重启 HA proxy：
+
+#+BEGIN_SRC sh
+haproxy -f <configfile> -st $(pgrep haproxy)
+#+END_SRC
+
+="haProxyShowStats"= 现在会反映该配置变化，两个活跃的，老版本的备份服务器和两个新的升级版服务器：
+
+#+BEGIN_SRC sh
+sid   pxname      svname  status  weig  act  bck
+  1   fabric-cas  server3   DOWN     1    1    0
+  2   fabric-cas  server4   DOWN     1    1    0
+  3   fabric-cas  server1     UP     1    0    1
+  4   fabric-cas  server2     UP     1    0    1
+#+END_SRC
+
+3. 分别在 =host3= 和 =host4= 上安装升级版本的 fabric-ca-server。新的升级被服务器 (=host3= 和 =host4=) 被配置为使用和老版本服务器 (=host1= 和 =host2=) 相同的数据库。启动升级版本服务器后，数据库将自动迁移。HA proxy 将自动转发所有新的流量到升级版服务器。可以使用命令 =fabric-ca-client gegcainfo= 验证集群功能正常。而且 =haProxyShowStats= 命令现在会显示所有服务器均处于活跃状态：
+
+#+BEGIN_SRC sh
+sid   pxname      svname  status  weig  act  bck
+  1   fabric-cas  server3    UP     1    1    0
+  2   fabric-cas  server4    UP     1    1    0
+  3   fabric-cas  server1    UP     1    0    1
+  4   fabric-cas  server2    UP     1    0    1
+#+END_SRC
+
+4. 停止老版本服务器 =host1= 和 =host2= 。在继续处理之前，使用 =fabric-ca-client getcainfo= 命令确认新的集群工作正常。然后从 =haproxy= 配置文件去掉老版本服务相关配置，修改后的配置如下：
+
+#+BEGIN_SRC sh
+server server3 host3:7054 check
+server server4 host4:7054 check
+#+END_SRC
+
+5. 重启 HA proxy：
+
+#+BEGIN_SRC sh
+haproxy -f <configfile> -st $(pgrep haproxy)
+#+END_SRC
+
+命令 =haProxyShowStats= 现在会反映该配置变化，现在有两个活跃的升级版服务器：
+
+#+BEGIN_SRC sh 
+sid   pxname      svname  status  weig  act  bck
+  1   fabric-cas  server3   UP       1    1    0
+  2   fabric-cas  server4   UP       1    1    0
+#+END_SRC
 
 * Fabric CA 客户端
 本节描述如何使用 =fabric-ca-client= 命令。
@@ -551,10 +695,11 @@ fabric-ca-client enroll -u http://admin:adminpw@localhost:7054
 
 命令 =enroll= 在 CA 客户端 =msp= 目录存储一个注册证书 (ECert)，该证书和子目录中的一个私钥及证书链 PEM 文件相关。可以看到一些指示 PEM 文件存储位置的消息。
 
-** TODO 登记 (Registering) 一个新身份
+** 登记 (Registering) 一个新身份
 执行登记请求的身份必须是当前已经注册且具有适当登记身份类型授权。
 
 具体的说，在登记操作期间，要通过如下三种授权检查：
+
 1. 管理员 (调用者) 必须具有 "hf.Registra.Roles" 属性，该属性的值是一个逗号隔开的值列表，每一个值代表一个被授权的登记身份类型；例如，如果管理员具有 "hf.Registrar.Roles" 属性值列表为 "peer,app,user"，该管理员可以登记身份类型是 =peer=, =app=, 和 =user= 的身份， 但不能登记身份类型为 =order= 的身份。
 2. 管理员组织属性 (affiliation) 的值必须等于或者是被待登记身份组织属性值的前缀。例如，所属组织为 "a.b" 的管理员可以登记组织为 "a.b.c" 的身份标示但不能登记组织为 "a.c" 的身份。如果登记一个根组织身份，则组织应当指定为点号 (".") 并且管理员也必须是根组织管理员。如果没有指定组织，则新身份被登记为和调用管理员组织相同。
 3. 如果符合如下条件，管理员可以登记一个带有相应属性的身份：
@@ -563,11 +708,13 @@ fabric-ca-client enroll -u http://admin:adminpw@localhost:7054
  - 如果请求的属性名字是 "hf.Registrar.Atrributes" 本身，会执行额外的检查以确保要登记的该属性值和管理员拥有的该属性值的相同或者是其的一个子集。这要求每一个请求的值都要匹配管理员属性 "hr.Registrar.Atrributes" 的相应值。例如，如果管理员属性 "hr.Registrar.Atrributes" 的值是 "a.b.*, x.y.z" 并且请求的属性值是 "a.b.c, x.y.z"，检查合法，因为 "a.b.c" 匹配 "a.b.*" 且 "x.y.z" 匹配管理员属性值 "x.y.z"。
 
 *示例：*
+
 - 合法示例：
  - 如果管理员具有属性 "hf.Registrar.Attributes = ab.*, x.y.z" 并且要登记的属性是 "a.b.c"，这是合法的，因为 "a.b.c" 匹配 "a.b.*"；
  - 如果管理员具有属性 "hf.Registrar.Attributes = ab.*, x.y.z" 并且要登记的属性是 "x.y.z"，这是合法的；
  - 如果管理员具有属性 "hf.Registrar.Attributes = ab.*, x.y.z" 并且要登记的属性是 "a.b.c, x.y.z"，这是合法的；
  - 如果管理员具有属性 "hf.Registrar.Roles = peer,client" 并且要登记的属性 "hf.Registrar.Roles" 的值是 "peer" 或者是 "peer,client"，这是合法的，因为请求的值等于或者是管理员值的一个子集；
+
 - 非法示例：
  - TODO 
 
@@ -584,25 +731,29 @@ fabric-ca-client enroll -u http://admin:adminpw@localhost:7054
 
 注意：当登记一个身份的时候，你可以指定一个属性名字和值列数组。如果该数组包含有多个名字相同的元素，只有最后的元素被使用。换句话说，不支持合并多值属性。
 
-如下命令使用 *admin* 身份证书登记一个新用户，该用户 enrollment id 是 "admin2"，组织是 "org1.department1"，且属性 "hf.Revoker=true"，并且属性 "admin=true"。后缀 ":ecert" 是指默认属性 "admin=true" 将被插入用户 注册证书，随后可被用于访问控制。
+如下命令使用 *admin* 身份证书登记一个新用户，该用户 enrollment id 是 "admin2"，组织是 "org1.department1"，且属性 "hf.Revoker=true"，并且属性 "admin=true"。后缀 ":ecert" 是指默认属性 "admin=true" 将被插入用户注册证书，随后可被用于访问控制。
 
 #+BEGIN_SRC sh
 export FABRIC_CA_CLIENT_HOME=$HOME/fabric-ca/clients/admin
 fabric-ca-client register --id.name admin2 --id.affiliation org1.department1 --id.attrs 'hf.Revoker=true,admin=true:ecert'
 #+END_SRC
 
-Enrollment secret 会在终端打印出来，这个密码会被 =enroll= 命令使用。这允许管理员登记一个身份并随后把 enrollment ID 和密码给另外的人去注册该身份。
+Enrollment 密码会在终端打印出来，这个密码会被 =enroll= 命令使用。这允许管理员登记一个身份并随后把 enrollment ID 和密码给另外的人去注册该身份。
 
 多个属性可以通过 =--id.attrs= 选项指定，每个属性必须使用逗号分割。如果一个属性值包含逗号，该属性必须使用双引号。下面是例子：
+
 #+BEGIN_SRC sh
 fabric-ca-client register -d --id.name admin2 --id.affiliation org1.department1 --id.attrs '"hf.Registrar.Roles=peer,user",hf.Revoker=true'
 #+END_SRC
+
 或者：
+
 #+BEGIN_SRC sh
 fabric-ca-client register -d --id.name admin2 --id.affiliation org1.department1 --id.attrs '"hf.Registrar.Roles=peer,user"' --id.attrs hf.Revoker=true
 #+END_SRC
 
 你可以通过修改客户端配置文件，使用登记命令设置任意域的默认值。例如，如下所示的配置文件：
+
 #+BEGIN_SRC yaml
 id:
   name:
@@ -617,23 +768,24 @@ id:
 #+END_SRC
 
 如下命令会登记一个 enrollment id 是 "admin3" 的新身份，其 enrollment id 来自于命令行，其他部分来自于配置文件，包括 type: "user", affiliation: "org1.department1", 以及属性 "hf.Revoker" 和 "anotherAttrName"。
+
 #+BEGIN_SRC yaml
 export FABRIC_CA_CLIENT_HOME=$HOME/fabric-ca/clients/admin
 fabric-ca-client register --id.name admin3
 #+END_SRC
 
-To register an identity with multiple attributes requires specifying all attribute names and values in the configuration file as shown above.
+如上所示，可登记一个具有多个属性的身份且要求在配置文件指定所有属性的名字和值。
 
-Setting maxenrollments to 0 or leaving it out from the configuration will result in the identity being registered to use the CA’s max enrollment value. Furthermore, the max enrollment value for an identity being registered cannot exceed the CA’s max enrollment value. For example, if the CA’s max enrollment value is 5. Any new identity must have a value less than or equal to 5, and also can’t set it to -1 (infinite enrollments).
+设置 =maxenrollments= 的值为 0 或者不在配置文件中配置该选项，系统会使用 CA =maxenrollments= 值登记身份。并且，一个登记身份的 =maxenrollments= 值不能大于 CA =maxenrollments= 值。例如，如果 CA =maxenrollments= 值为 5, 任何新登记身份 =maxenrollments= 值必须小于或等于 5 ，并且不能够设置为 -1 (无限制)。
 
-Next, let’s register a peer identity which will be used to enroll the peer in the following section. The following command registers the peer1 identity. Note that we choose to specify our own password (or secret) rather than letting the server generate one for us.
+接下去，让我们登记一个对等节点身份，该身份将被用于在随后小节注册 (enroll) 对等节点。如下命令登记 =peer1= 身份。注意，这里我们选择指定我们自己的密码 (secret) 而非让服务器为我们生成。
 
 #+BEGIN_SRC sh
 export FABRIC_CA_CLIENT_HOME=$HOME/fabric-ca/clients/admin
 fabric-ca-client register --id.name peer1 --id.type peer --id.affiliation org1.department1 --id.secret peer1pw
 #+END_SRC
 
-Note that affiliations are case sensitive except for the non-leaf affiliations that are specified in the server configuration file, which are always stored in lower case. For example, if the affiliations section of the server configuration file looks like this:
+请注意，除了被配置在服务器配置文件中的非叶组织 (non-leaf affiliations) 外 (总是使用小写)， 组织 (affiliations) 大小写敏感。例如，如果服务器配置文件中 =affiliations= 小节如下：
 
 #+BEGIN_SRC sh
 affiliations:
@@ -645,34 +797,62 @@ affiliations:
     - Department3
 #+END_SRC
 
-BU1, Department1, BU2 are stored in lower case. This is because Fabric CA uses Viper to read configuration. Viper treats map keys as case insensitive and always returns lowercase value. To register an identity with Team1 affiliation, bu1.department1.Team1 would need to be specified to the –id.affiliation flag as shown below:
+BU1, Department1, BUT2 被存储为小写。这是因为 Fabric CA 使用 Viper 读取配置，Viper 对 map keys 不敏感并且总是返回小写。为了登记一个具有 "Team1 affiliation" 属性的身份，bu1.department1.Team1 需要通过 =-id.affiliation= 选项 指定：
 
 #+BEGIN_SRC sh
 export FABRIC_CA_CLIENT_HOME=$HOME/fabric-ca/clients/admin
 fabric-ca-client register --id.name client1 --id.type client --id.affiliation bu1.department1.Team1
 #+END_SRC
 
-** 注册对等节点身份
-既然你已经成功的登记了一个对等节点身份，现在，你可以提供 enrollment ID 和密码 (由登记调用返回) 以注册对等节点。除了这里可以使用 =-M= 选项填充 Fabric MSP (Membership Service Provider) 目录结构以外，该过程和注册引导身份。
+** 注册 (enrolling) 对等节点身份
 
-如下命令注册 peer1。请确保使用你的节点的 MSP 目录替换 =-M= 选项的值。该目录配置于对等节点 =core.yaml= 配置文件的 "mspConfigPath" 配置项。你也可以设置 =FABRIC_CA_CLIENT_HOME= 执行对等节点的 home 目录。
+既然你已经成功的登记 (Registry) 了一个对等节点身份，现在，你可以提供 enrollment ID 和密码 (由登记调用返回) 以注册对等节点。除了这里可以使用 =-M= 选项填充 Fabric MSP (Membership Service Provider) 目录结构以外，该过程和注册引导身份相同。
+
+如下命令注册 peer1。请确保使用你的节点 MSP 目录替换 =-M= 选项的值。该目录配置于对等节点 =core.yaml= 配置文件的 "mspConfigPath" 配置项。你也可以设置 =FABRIC_CA_CLIENT_HOME= 环境变量并导出对等节点的 =home= 目录。
 
 #+BEGIN_SRC sh
 export FABRIC_CA_CLIENT_HOME=$HOME/fabric-ca/clients/peer1
 fabric-ca-client enroll -u http://peer1:peer1pw@localhost:7054 -M $FABRIC_CA_CLIENT_HOME/msp
 #+END_SRC
 
-组册一个 orderer 节点和此类似，只不过 MSP 目录的路径是 "LocalMSPDir"，该设置位于 orderer 节点 orderer.yaml 配置文件。
+注册一个 orderer 节点和此类似，只不过 MSP 目录的路径是 "LocalMSPDir"，该设置位于 orderer 节点 orderer.yaml 配置文件。
 
 一个被 Fabric CA 服务器颁发的注册证书具有组织单元属性 ("OUs")：
+
 1. OU 根等于身份类型；
 2. 为每个身份组织的构成部分添加一个 OU；
 
 例如，如果身份类型是 =peer= 并且组织属性值是 "department1.team1"，该身份的 OU 层级结构 (从叶节点到根节点) 是 OU=team1, OU=department1, OU=peer。
 
-** TODO 从另外一个 CA 服务器获得一个 CA 证书链
+** 从另外一个 CA 服务器获得一个 CA 证书链
+通常，对等节点 MSP 目录下的 =cacerts= 目录包含所有该对等节点信任的 CA 证书链。命令 =fabric-ca-client getcainfo= 用于从 Fabric CA 服务器实例获取所有证书链。
+
+例如，如下命令会在本地启动名字为 =CA2= 的第二个 Fabric CA 服务器并监听 7055 端口。这代表另外一个由区块链上不同成员管理的完全不同的受信根 CA。
+
+#+BEGIN_SRC sh
+export FABRIC_CA_SERVER_HOME=$HOME/ca2
+fabric-ca-server start -b admin:ca2pw -p 7055 -n CA2
+#+END_SRC
+
+如下命令将安装 CA2 证书链至 对等节点 =peer1= MSP 目录：
+
+#+BEGIN_SRC sh
+export FABRIC_CA_CLIENT_HOME=$HOME/fabric-ca/clients/peer1
+fabric-ca-client getcainfo -u http://localhost:7055 -M $FABRIC_CA_CLIENT_HOME/msp
+#+END_SRC
+
+默认情况下，Fabric CA 服务器以 child-first 顺序返回 CA 链。这意味着返回的 CA 证书链中的每个证书后面跟着发行方证书。如果你须要 CA 服务器以相反顺序返回 CA 链，须要配置环境变量 =CA_CHAIN_PARENT_FIRST= 为 =true= 并重启 CA 服务器。CA 客户端能够正确的处理这两种顺序。
 
 ** TODO 为用户获取一个 Idemix (Identity Mixer) 证书
+Identity Mixer (Idemix) is a cryptographic protocol suite for privacy-preserving authentication and transfer of certified attributes. Idemix allows users to authenticate with verifiers without the involvement of the issuer (CA) and selectively disclose only those attributes that are required by the verifier and can do so without being linkable across their transactions.
+
+Fabric CA 服务器除了 X509 证书外，还能够颁发 Idemix 凭证。一个 Idemix 凭证可以通过 =/api/v1/idemix/credential= API 获取。有关更多 Fabric CA 服务器 API 信息，请参阅 [[https://github.com/hyperledger/fabric-ca/blob/master/swagger/swagger-fabric-ca.json][swagger-fabric-ca.json]]。
+
+Idemix 凭证颁发分两个步骤。首先，通过发送一个空内容请求到 =/api/v1/idemix/credential= API 以获得一个随机值和 CA Idemix 公钥。然后，使用随机数和 CA Idemix 公钥创建一个凭证请求并将其作为另外一个请求的内容发送到 =/api/v1/idemix/credential= API 以获取 Idemix 凭证、CRI (Credential Revocation Information)、以及属性名称和值。当前，只支持三个属性：
+
+- *OU* :: 用户所属组织部门。改属性值被用于设置用户的隶属部门。例如，如果用户隶属于 /dept1.unit1/, 那么 OU 属性值就是 /dept1.unit1/
+- *IsAdmin* :: 用户是否是管理员。该属性值用于设置 /isAdmin/  登记属性
+- *EnrollmentID* :: 用户注册 ID
 
 * TODO 获得 Idemix CRI (证书吊销信息)
 
@@ -687,5 +867,5 @@ fabric-ca-client enroll -u http://peer1:peer1pw@localhost:7054 -M $FABRIC_CA_CLI
 
 * 参考文献
 1. Fabric CA document,  https://hyperledger-fabric-ca.readthedocs.io/en/latest/users-guide.html#table-of-contents.
-3. SoftHSM home, https://www.opendnssec.org/softhsm/.
-5. Fabric CA 1.2 API, https://github.com/hyperledger/fabric-ca/blob/release-1.2/swagger/swagger-fabric-ca.json.
+3. Fabric CA 1.2 API, https://github.com/hyperledger/fabric-ca/blob/release-1.2/swagger/swagger-fabric-ca.json.
+5. SoftHSM home, https://www.opendnssec.org/softhsm/.

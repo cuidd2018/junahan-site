@@ -24,7 +24,7 @@
 ** WebARonARKit 和 WebARonARCore
 
 - [[https://github.com/google-ar/WebARonARKit][WebARonARKit]] - 是一个实验性的 iOS 应用，用于开发者使用 web 技术创建 AR 应用实验。
-- [[https://github.com/google-ar/WebARonARCore][WebARonARCore]] - 是一个实验性的 Android 应用, 用于开发者使用 web 技术创建 AR 应用实验。
+- [[https://github.com/google-ar/WebARonARCore][WebARonCore]] - 是一个实验性的 Android 应用, 用于开发者使用 web 技术创建 AR 应用实验。
 
 ** Three.ar.js
 

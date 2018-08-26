@@ -1,0 +1,36 @@
+# -*- mode: org; coding: utf-8; -*-
+#+title: Swagger - 101
+#+author: Junahan
+#+email:  junahan@outlook.com
+#+date:  2018-08-09
+#+hugo_base_dir: ../../
+#+hugo_auto_set_lastmod: t
+#+hugo_tags: Swagger OpenAPI
+#+hugo_categories: OpenAPI
+#+hugo_draft: false
+#+keywords: swagger open-api
+#+language:  cn
+#+options:  H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+options:  TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+infojs_opt:  view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+license:  CC BY 4.0
+
+* 摘要
+本文是有关 Swagger 入门 101 介绍。
+
+
+* 进阶阅读建议
+- 有关 OpenAPI 2.0 规范，请参阅：[[https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md][OpenAPI Specification v2.0]] 版本定义，
+
+
+* 参考文献
+1. OpenAPI Specification v2.0, https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md.
+3. OpenAPI Specification v3.0, https://github.com/OAI/OpenAPI-Specification/blob/master/README.md.
+5. Swagger Editor, http://editor.swagger.io.
+9. The OAI Announces the OpenAPI Specification 3.0.0, https://www.openapis.org/blog/2017/07/26/the-oai-announces-the-openapi-specification-3-0-0.
+11. 开放 API 规范 v3.0, https://fishead.gitbooks.io/openapi-specification-zhcn-translation/content/versions/3.0.0.zhCN.html#revisionHistory.
+13. 使用 Swagger 文档化和定义 RESTful API, https://www.ibm.com/developerworks/cn/web/wa-use-swagger-to-document-and-define-restful-apis/index.html.
+15. 如何编写基于 OpenAPI 规范的 API 文档, https://huangwenchao.gitbooks.io/swagger/content/.
+
+
+
