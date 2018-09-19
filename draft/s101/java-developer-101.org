@@ -414,14 +414,16 @@ From metrics to insight, power your metrics and alerting with a leading open-sou
 *** 什么是 End-to-end Tracing System
 End-to-end Tracing System 是指一套能够穿透业务系统前后端的业务日志及分析系统。其特点是能够有效的穿透整个业务系统，从最前端的业务开始一直到最后端的数据逻辑层。该系统能够带来的好处包括：
 1. 能够有效的关联整个业务，有助于收集到高质量数据并为数据分析带来便利；
-2. 有助于识别和发现系统问题；
-3. 有助于识别和发现安全攻击；
+2. 有助于跟踪系统每个部分的性能；
+3. 有助于识别和发现系统问题；
+4. 有助于识别和发现安全攻击；
 
 *** 建立的方法
 建立这样的一套系统并不容易，需要业务设计开发上的协调一致，通常发生的情形时，前段业务系统为用户的访问创建了一个唯一标示（例如访问令牌），而到后端的业务日志中却并不记录该标示，从而无法使用该标示穿透整个业务系统日志记录。
 - 协调整个前后端业务系统使用一个唯一标示（如访问令牌），并包含该唯一标示进入业务日志系统中，技术上可以是需要手动将唯一标示编码进入业务日志 (如提供统一的用于 Tracing System 库)，也可以是自动注入的方式加入业务日志系统（如使用 [[https://en.wikipedia.org/wiki/Aspect-oriented_programming][AOP]] 技术提供 Tracing System 注入切面）。
-- 自动收集 Tracing System 日志并导入一个日志分析系统进行分析
-- 提供 Tracing System 数据访问用户接口，为数据分析员和相关人员提供一致的访问入口
+- 自动收集 Tracing System 日志并导入一个日志分析系统进行分析；
+- 提供 Tracing System 数据访问用户接口，为数据分析员和相关人员提供一致的访问入口；
+- 提供符合规范 (如 [[http://opentracing.io][OpenTracing]]) 的实现以向 Tracing System 上报相关数据；
 
 *** 技术和工具
 1. Dapper - 

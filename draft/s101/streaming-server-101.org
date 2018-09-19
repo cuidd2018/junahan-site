@@ -1,13 +1,19 @@
 # -*- mode: org; coding: utf-8; -*-
-#+TITLE:              流媒体服务器 - 101
-#+AUTHOR:         Junahan
-#+EMAIL:             junahan@outlook.com 
-#+DATE:              2018-05-30
-#+LANGUAGE:    CN
-#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
-#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
-#+LICENSE:         CC BY 4.0
+#+title: 流媒体服务器 101
+#+author: Junahan
+#+email:  junahan@outlook.com
+#+date:  2018-09-19
+#+hugo_base_dir: ../../
+#+hugo_auto_set_lastmod: t
+#+hugo_tags: Streaming 
+#+hugo_categories: Streaming
+#+keywords: RTP RTCP RTSP RTMP HLS
+#+hugo_draft: false
+#+language:  cn
+#+options:  H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+options:  TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+infojs_opt:  view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+license:  CC BY 4.0
 
 * 摘要
 针对流媒体播放服务器和客户端做的一个调查汇总。
