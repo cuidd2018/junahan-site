@@ -19,8 +19,21 @@
 * MISC
 ** W3C Payment Request API
 
-** 
+* 有趣的项目
+** IPFS
+IPFS is the Distributed Web - IPFS aims to replace HTTP and build a better web for all of us.
+
+A peer-to-peer hypermedia protocol to make the web faster, safer, and more open.
+
+** StorJ
+
+Decentralized cloud object storage that is affordable, easy to use, private, and secure.
+
+The Storj Network uses client-side encryption so data owners can trust that only they can access their files. Its S3 compatibility also makes it simple to implement and scale along with your needs.
 
 * 参考文献
 1. Payment Request API, https://www.w3.org/TR/payment-request/.
 11. Pigeonhole Principle, https://en.wikipedia.org/wiki/Pigeonhole_principle.
+21. IPFS, https://ipfs.io.
+23. StorJ, https://storj.io.
+
