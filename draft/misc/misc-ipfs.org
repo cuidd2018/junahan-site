@@ -11,6 +11,8 @@
 
 * 摘要
 
+** 
+
 * Clone
 
 * Config Cross Compile Envrionment
@@ -24,6 +26,7 @@
 
 * 参考文献
 1. Go-IPFS in github, https://github.com/ipfs/go-ipfs#build-from-source.
+2. Docs, https://docs.ipfs.io.
 3. Go Cross Compiling, http://golangcookbook.com/chapters/running/cross-compiling/.
 5. Golang 的跨平台编译,  http://www.cnblogs.com/ghj1976/archive/2013/04/19/3030703.html.
 7. Cross-compling Go, https://solovyov.net/en/2012/cross-compiling-go/.

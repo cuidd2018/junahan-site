@@ -1,27 +1,28 @@
-#+TITLE:              AI 学习阅读列表
-#+AUTHOR:         Junahan
-#+EMAIL:             junahan@outlook.com
-#+DATE:              2018-05-01
-#+hugo_base_dir: ../
-#+hugo_auto_set_lastmod: t
-#+hugo_tags: AI "Deep Learning" 人工智能 深度学习
-#+hugo_categories: AI "Deep Learning" 深度学习 人工智能
-#+hugo_draft: false
-#+KEYWORDS: "deep learning" 人工智能 深度学习
-#+LANGUAGE:    CN
-#+OPTIONS:         H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS:         TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
-#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
-#+LICENSE:          CC BY 4.0
+#+TITLE:                      AI 学习阅读列表
+#+AUTHOR:                     Junahan
+#+EMAIL:                      junahan@outlook.com
+#+DATE:                       2018-05-01
+#+hugo_base_dir:              ../
+#+hugo_auto_set_lastmod:      t
+#+hugo_tags:                  AI "Deep Learning" 人工智能 深度学习
+#+hugo_categories:            AI "Deep Learning" 深度学习 人工智能
+#+hugo_draft:                 false
+#+KEYWORDS:                   "deep learning" 人工智能 深度学习
+#+LANGUAGE:                   CN
+#+OPTIONS:                    H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:                    TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:                 view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:                    CC BY 4.0
 
 * 简介
 本文根据作者学习 AI (特别是深度神经网络) 的一些经验，介绍 AI 学习的阅读列表，主要包括书籍、有关机器学习和深度学习的课程、论文、工具和框架、数据集等几个方面。有鉴于作者主要关注深度学习方面，有关阅读列表可能更加侧重于深度学习相关主题。
 
 * 书籍
 - Deep Learning, by Ian Goodfellow, Yoshua Bengio, Aaron Courville，该书由三位享誉全球的神经网络专家编写，涉猎主题广泛，是深度学习方面的教科书。电子版地址 - http://www.deeplearningbook.org。 该书中文版由人民邮电出版社于 2016 年出版发行。
-- [[http://neuralnetworksanddeeplearning.com/index.html][Nural Network and Deep Learning]], By [[http:http://michaelnielsen.org/][Michael Nielsen]]， 该文详细的介绍了有关神经网络和学习算法的知识，特别是有关反向传播算法以及卷积神经网络的细节。 
+- [[http://neuralnetworksanddeeplearning.com/index.html][Nural Network and Deep Learning]], by [[http:http://michaelnielsen.org/][Michael Nielsen]]， 该文详细的介绍了有关神经网络和学习算法的知识，特别是有关反向传播算法以及卷积神经网络的细节。 
 - Machine Learning Yearning, by Andrew NG，值得期待的一本有关深度学习的书。
 - 机器学习，周志华著，有关机器学习的方方面面，机器学习方面的教科书。
+- [[https://www.oreilly.com/ai/free/files/fundamentals-of-deep-learning-sampler.pdf][Fundamentals of Deep Learning]], by Nikhil Buduma with contributions by Nicholas Locascio.
 
 * 课程
 ** 机器学习 (Andrew NG)
@@ -29,6 +30,7 @@
 该课程是传统机器学习著名入门课程之一，由斯坦福大学制作，Andrew Ng 主讲。
 
 课程地址 - https://www.coursera.org/learn/machine-learning
+
 网易云课堂链接：http://study.163.com/course/courseMain.htm?courseId=1004570029
 
 *** 评价
@@ -51,7 +53,6 @@ Google 制作的节奏紧凑、内容实用的机器学习简介课程，涉及�
 
 课程地址 - http://ai.baidu.com/paddlepaddle/openCourses
 
-
 *** 评价
 + 该课程相当全面，基本包罗了深度神经网络的各个层面，如卷积神经网络（CNN）、循环网络（RNN）、生成网络、强化学习等，应用上，介绍了计算机视觉，自然语言等各方面应用。
 + 该课程节奏比较舒缓，可能是主讲人的风格比较慢，感觉不够紧凑，你可以在课程中从容的去打一杯水再回来，也不会错过什么。
@@ -71,6 +72,7 @@ Master Deep Learning, and Break into AI.
 麻省理工学院（MIT）2018 年最新版「MIT 6.S094：深度学习和自动驾驶」。
 
 课程链接：https://selfdrivingcars.mit.edu
+
 网易云课堂链接：http://study.163.com/course/courseMain.htm?courseId=1004938039
 
 *** TODO 评价
@@ -83,12 +85,43 @@ Master Deep Learning, and Break into AI.
 
 *** TODO 评价
 
+** 深度学习和强化学习高级课程 (Advanced Deep Learning & Reinforcement Learning)
+*** 课程简介
+This course, taught originally at UCL and recorded for online access, has two interleaved parts that converge towards the end of the course. One part is on machine learning with deep neural networks, the other part is about prediction and control using reinforcement learning. The two strands come together when we discuss deep reinforcement learning, where deep neural networks are trained as function approximators in a reinforcement learning setting.
+
+The deep learning stream of the course will cover a short introduction to neural networks and supervised learning with TensorFlow, followed by lectures on convolutional neural networks, recurrent neural networks, end-to-end and energy-based learning, optimization methods, unsupervised learning as well as attention and memory. Possible applications areas to be discussed include object recognition and natural language processing.
+
+*** 课程资源链接
+- Youtube - https://www.youtube.com/playlist?list=PLqYmG7hTraZDNJre23vqCGIVpfZ_K2RZs
+
+*** TODO 评价
+
 * TODO 论文和文章
 这里列出我看过的一些自己认为比较好的文章和论文，仅供大家参考。
 
 - [[https://zhuanlan.zhihu.com/p/34346816][这是一份优美的信息图，吴恩达点赞的 deeplearning.ai 课程总结]] - 机器之心整理转载，添加备注并提供原稿下载，由 Tess Ferrandez 完成的一份有关 deeplearning.ai 课程信息图。该信息图提纲携领、形象且优美，值得参阅。2018.04
 - [[https://arxiv.org/abs/1709.02540?context=cs][The Expressive Power of Neural Networks: A View from the Width]] - 
 - [[https://arxiv.org/pdf/1806.10909.pdf][ResNet with one-neuron hidden layers is a Universal Approximator]] -  
+
+* TODO 数据集
+- MNIST - 
+- [[http://www.image-net.org][ImageNet]] - 
+- COCO Object Detection - 
+- VOC Image Segementation - 
+- [[https://storage.googleapis.com/openimages/web/index.html][Google Open Images]] - Open Images Dataset V4, 30,113,078 image-level labels on 19,794 categories.
+- [[https://www.kaggle.com][Kaggle]] - 
+
+** MINIST
+
+** ImageNet
+
+** Google Open Images
+Open Images Dataset V4, 15,440,132 boxes on 600 categories, 30,113,078 image-level labels on 19,794 categories.
+
+Open Images is a dataset of ~9M images that have been annotated with image-level labels and object bounding boxes.
+The training set of V4 contains 14.6M bounding boxes for 600 object classes on 1.74M images, making it the largest existing dataset with object location annotations. The boxes have been largely manually drawn by professional annotators to ensure accuracy and consistency. The images are very diverse and often contain complex scenes with several objects (8.4 per image on average). Moreover, the dataset is annotated with image-level labels spanning thousands of classes.
+
+** Kaggle
 
 * TODO 框架和工具
 
@@ -97,14 +130,6 @@ Master Deep Learning, and Break into AI.
 ** TODO Tensorflow
 
 ** TODO PaddlePaddle
-
-* TODO 数据集
-- MNIST - 
-- ImageNet - 
-- COCO Object Detection - 
-- VOC Image Segementation - 
-- Goopgle Open Images - 
-- Kaggle
 
 * 其他阅读列表
 - List of reading lists and survey papers - http://deeplearning.net/reading-list/ 

@@ -3,7 +3,7 @@ title = "AI 学习阅读列表"
 author = "Junahan"
 date = 2018-05-01
 keywords = ["deep learning", "人工智能", "深度学习"]
-lastmod = 2018-08-02T08:26:10+08:00
+lastmod = 2018-11-26T21:15:04+08:00
 tags = ["AI", "Deep Learning", "人工智能", "深度学习"]
 categories = ["AI", "Deep Learning", "深度学习", "人工智能"]
 draft = false
@@ -17,9 +17,10 @@ draft = false
 ## <span class="section-num">2</span> 书籍 {#书籍}
 
 -   Deep Learning, by Ian Goodfellow, Yoshua Bengio, Aaron Courville，该书由三位享誉全球的神经网络专家编写，涉猎主题广泛，是深度学习方面的教科书。电子版地址 - <http://www.deeplearningbook.org>。 该书中文版由人民邮电出版社于 2016 年出版发行。
--   [Nural Network and Deep Learning](http://neuralnetworksanddeeplearning.com/index.html), By [Michael Nielsen](http:http://michaelnielsen.org/)， 该文详细的介绍了有关神经网络和学习算法的知识，特别是有关反向传播算法以及卷积神经网络的细节。
+-   [Nural Network and Deep Learning](http://neuralnetworksanddeeplearning.com/index.html), by [Michael Nielsen](http:http://michaelnielsen.org/)， 该文详细的介绍了有关神经网络和学习算法的知识，特别是有关反向传播算法以及卷积神经网络的细节。
 -   Machine Learning Yearning, by Andrew NG，值得期待的一本有关深度学习的书。
 -   机器学习，周志华著，有关机器学习的方方面面，机器学习方面的教科书。
+-   [Fundamentals of Deep Learning](https://www.oreilly.com/ai/free/files/fundamentals-of-deep-learning-sampler.pdf), by Nikhil Buduma with contributions by Nicholas Locascio.
 
 
 ## <span class="section-num">3</span> 课程 {#课程}
@@ -33,6 +34,7 @@ draft = false
 该课程是传统机器学习著名入门课程之一，由斯坦福大学制作，Andrew Ng 主讲。
 
 课程地址 - <https://www.coursera.org/learn/machine-learning>
+
 网易云课堂链接：<http://study.163.com/course/courseMain.htm?courseId=1004570029>
 
 
@@ -97,6 +99,7 @@ Master Deep Learning, and Break into AI.
 麻省理工学院（MIT）2018 年最新版「MIT 6.S094：深度学习和自动驾驶」。
 
 课程链接：<https://selfdrivingcars.mit.edu>
+
 网易云课堂链接：<http://study.163.com/course/courseMain.htm?courseId=1004938039>
 
 
@@ -116,34 +119,70 @@ Master Deep Learning, and Break into AI.
 #### <span class="org-todo todo TODO">TODO</span> <span class="section-num">3.6.2</span> 评价 {#评价}
 
 
+### <span class="section-num">3.7</span> 深度学习和强化学习高级课程 (Advanced Deep Learning & Reinforcement Learning) {#深度学习和强化学习高级课程--advanced-deep-learning-and-reinforcement-learning}
+
+
+#### <span class="section-num">3.7.1</span> 课程简介 {#课程简介}
+
+This course, taught originally at UCL and recorded for online access, has two interleaved parts that converge towards the end of the course. One part is on machine learning with deep neural networks, the other part is about prediction and control using reinforcement learning. The two strands come together when we discuss deep reinforcement learning, where deep neural networks are trained as function approximators in a reinforcement learning setting.
+
+The deep learning stream of the course will cover a short introduction to neural networks and supervised learning with TensorFlow, followed by lectures on convolutional neural networks, recurrent neural networks, end-to-end and energy-based learning, optimization methods, unsupervised learning as well as attention and memory. Possible applications areas to be discussed include object recognition and natural language processing.
+
+
+#### <span class="section-num">3.7.2</span> 课程资源链接 {#课程资源链接}
+
+-   Youtube - <https://www.youtube.com/playlist?list=PLqYmG7hTraZDNJre23vqCGIVpfZ%5FK2RZs>
+
+
+#### <span class="org-todo todo TODO">TODO</span> <span class="section-num">3.7.3</span> 评价 {#评价}
+
+
 ## <span class="org-todo todo TODO">TODO</span> <span class="section-num">4</span> 论文和文章 {#论文和文章}
 
 这里列出我看过的一些自己认为比较好的文章和论文，仅供大家参考。
 
 -   [这是一份优美的信息图，吴恩达点赞的 deeplearning.ai 课程总结](https://zhuanlan.zhihu.com/p/34346816) - 机器之心整理转载，添加备注并提供原稿下载，由 Tess Ferrandez 完成的一份有关 deeplearning.ai 课程信息图。该信息图提纲携领、形象且优美，值得参阅。2018.04
--
+-   [The Expressive Power of Neural Networks: A View from the Width](https://arxiv.org/abs/1709.02540?context=cs) -
+-   [ResNet with one-neuron hidden layers is a Universal Approximator](https://arxiv.org/pdf/1806.10909.pdf) -
 
 
-## <span class="org-todo todo TODO">TODO</span> <span class="section-num">5</span> 框架和工具 {#框架和工具}
-
-
-### <span class="org-todo todo TODO">TODO</span> <span class="section-num">5.1</span> Caffe {#caffe}
-
-
-### <span class="org-todo todo TODO">TODO</span> <span class="section-num">5.2</span> Tensorflow {#tensorflow}
-
-
-### <span class="org-todo todo TODO">TODO</span> <span class="section-num">5.3</span> PaddlePaddle {#paddlepaddle}
-
-
-## <span class="org-todo todo TODO">TODO</span> <span class="section-num">6</span> 数据集 {#数据集}
+## <span class="org-todo todo TODO">TODO</span> <span class="section-num">5</span> 数据集 {#数据集}
 
 -   MNIST -
--   ImageNet -
+-   [ImageNet](http://www.image-net.org) -
 -   COCO Object Detection -
 -   VOC Image Segementation -
--   Goopgle Open Images -
--   Kaggle
+-   [Google Open Images](https://storage.googleapis.com/openimages/web/index.html) - Open Images Dataset V4, 30,113,078 image-level labels on 19,794 categories.
+-   [Kaggle](https://www.kaggle.com) -
+
+
+### <span class="section-num">5.1</span> MINIST {#minist}
+
+
+### <span class="section-num">5.2</span> ImageNet {#imagenet}
+
+
+### <span class="section-num">5.3</span> Google Open Images {#google-open-images}
+
+Open Images Dataset V4, 15,440,132 boxes on 600 categories, 30,113,078 image-level labels on 19,794 categories.
+
+Open Images is a dataset of ~9M images that have been annotated with image-level labels and object bounding boxes.
+The training set of V4 contains 14.6M bounding boxes for 600 object classes on 1.74M images, making it the largest existing dataset with object location annotations. The boxes have been largely manually drawn by professional annotators to ensure accuracy and consistency. The images are very diverse and often contain complex scenes with several objects (8.4 per image on average). Moreover, the dataset is annotated with image-level labels spanning thousands of classes.
+
+
+### <span class="section-num">5.4</span> Kaggle {#kaggle}
+
+
+## <span class="org-todo todo TODO">TODO</span> <span class="section-num">6</span> 框架和工具 {#框架和工具}
+
+
+### <span class="org-todo todo TODO">TODO</span> <span class="section-num">6.1</span> Caffe {#caffe}
+
+
+### <span class="org-todo todo TODO">TODO</span> <span class="section-num">6.2</span> Tensorflow {#tensorflow}
+
+
+### <span class="org-todo todo TODO">TODO</span> <span class="section-num">6.3</span> PaddlePaddle {#paddlepaddle}
 
 
 ## <span class="section-num">7</span> 其他阅读列表 {#其他阅读列表}

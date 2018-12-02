@@ -1,0 +1,50 @@
+# -*- mode: org; coding: utf-8; -*-
+#+title:                  移动 WEB 前端开发框架
+#+author:                 Junahan
+#+email:                  junahan@outlook.com
+#+date:                   2018-11-19
+#+hugo_base_dir:          ../
+#+hugo_auto_set_lastmod:  t
+#+hugo_tags:              Web Mobile
+#+hugo_categories:        Web
+#+keywords:               web mobile
+#+hugo_draft:             true
+#+language:               cn
+#+options:                H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+options:                TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+infojs_opt:             view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+license:                CC BY 4.0
+
+* 摘要
+
+* 框架介绍
+** Apache Cordova
+[[https://cordova.apache.org/][Apache Cordova]] - Mobile apps with HTML, CSS & JS. Target multiple platforms with one code base.
+
+*** 特性
+- 跨平台代码重用 (Reusable code across platforms)
+- 支持离线场景 (Support for offline scenarios)
+- 支持原生设备 APIs 访问 (Access native device APIs)
+
+** PhoneGap
+[[https://phonegap.com/][PhoneGap]] - Build amazing mobile apps powered by open web tech. PhoneGap is an open source solution for building cross-platform mobile apps with standards-based Web technologies like HTML, JavaScript, CSS.
+
+** React Native
+[[https://facebook.github.io/react-native/][React Native]] (简称 RN) - Build native mobile apps using JavaScript and React. 使你能够在 Javascript 和 React 的基础上获得完全一致的开发体验，构建世界一流的原生 APP。是 Facebook 于 2015 年 4 月开源的跨平台移动应用开发框架。
+
+React Native 着力于提高多平台开发的开发效率 —— 仅需学习一次，编写任何平台。(Learn once, write anywhere)
+
+** Ionic Framework
+[[https://ionicframework.com/][Ionic Framework]] - Build amazing apps in one codebase, for any platform, with the web. 
+
+Ionic Native 封装 Cordova/PhoneGap 插件以支持原生功能 (is a TypeScript wrapper for Cordova/PhoneGap plugins that make adding any native functionality you need to your Ionic mobile app easy)。
+
+*** 特性
+
+* 参考文献
+1. Apache Cordova - https://cordova.apache.org/.
+3. PhoneGap - http://phonegap.com/.
+5. React Native - https://facebook.github.io/react-native/.
+7. Ionic Framework - https://ionicframework.com/.
+
+
