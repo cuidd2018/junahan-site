@@ -1,0 +1,68 @@
+#+TITLE:                      高效能人士的七个习惯-阅读笔记
+#+AUTHOR:                     Junahan
+#+EMAIL:                      junahan@outlook.com
+#+DATE:                       2018-12-10
+#+hugo_base_dir:              ../
+#+hugo_auto_set_lastmod:      t
+#+hugo_tags:                  "Seven Habits"
+#+hugo_categories:            "Seven Habits" "Reading"
+#+hugo_draft:                 true
+#+KEYWORDS:                   "seven habits" "effective" "Stephen R. Covey"
+#+LANGUAGE:                   CN
+#+OPTIONS:                    H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:                    TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:                 view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:                    CC BY 4.0
+
+* 摘要
+
+谁也无法说服他人改变，因为我们每个人都守着一扇只能从内开启的改变之门，不论动之以情或晓之以理，我们都不能替别人开门。-- Marilyn Ferguson.
+
+得之太易者必不受珍惜。唯有付出代价，万物始有价值。上苍深知如何为其产品制定合理的价格。 -- Thomas Paine.
+
+* 由内而外造就全面造就自己
+
+* 概论
+
+* One - 积极主动 (BE PROACTIVE)
+
+* Two - 以终为始 (BEGIN WITH THE END IN MIND)
+
+* Three - 要事第一 (PUT FIRST THINGS FIRST)
+
+* Four - 双赢思维 (THINK WIN-WIN)
+
+* Five - 知彼解己 (SEEK FIRST TO UNDERSTAND, THEN TO BE UNDERSTOOD)
+
+* Six - 统合综效 (SYNERGIZE)
+
+* Seven - 不断更新 (SHARPEN THE SAW)
+
+习惯七就是个人产能。它保护并优化你所拥有的最重要的资产————你自己。它从四个层面更新你的天性，那就是：身体、精神、智力、社会/情感。
+
+** 身体层面
+
+** 精神层面
+
+** 智力层面
+
+智力层面的更新主要考教育，借此不断学习知识，磨砺心志，开阔视野。
+
+养成定期阅读优秀文学作品的习惯是拓展思维的最佳方式，这是第二类事务，人们可以借此接触到当前和历史上最伟大的思想。我极力推荐大家从每个月读一本书开始，然后每两周读一本书，接着每周读一本书。“不读书的人跟文盲没什么两样。”
+
+磨砺心志的另一种有效方式是写作。通过不断记录自己的想法、经历、深刻见解和学习心得，我们的思路就会更加清晰、准确和连贯。
+
+组织和规划是另外两种与习惯二和习惯三相关的磨砺心智的方式，也就是以始为终，为实现磨砺心志这一目标二运筹帷幄。
+
+** 社会/情感层面
+
+** 平衡更新-综合统效-螺旋式上升
+“每天的个人领域的成功”（每天至少用一个消失实现身体、精神和智力层面的更新）是培养七个习惯的关键，完全在个人的影响圈范围内。第二类事务会集中必要精力将所有习惯整合到生活中，让你以原则作为生活的中心。
+
+为了实现良性循环，就必须学习、坚持、实践，并沿着螺旋式上升的路线不断提高实践的层次。
+
+* 由内而外造就自己
+
+
+
+
