@@ -102,6 +102,7 @@ The deep learning stream of the course will cover a short introduction to neural
 - [[https://zhuanlan.zhihu.com/p/34346816][这是一份优美的信息图，吴恩达点赞的 deeplearning.ai 课程总结]] - 机器之心整理转载，添加备注并提供原稿下载，由 Tess Ferrandez 完成的一份有关 deeplearning.ai 课程信息图。该信息图提纲携领、形象且优美，值得参阅。2018.04
 - [[https://arxiv.org/abs/1709.02540?context=cs][The Expressive Power of Neural Networks: A View from the Width]] - 
 - [[https://arxiv.org/pdf/1806.10909.pdf][ResNet with one-neuron hidden layers is a Universal Approximator]] -  
+- [[https://www.toutiao.com/a6655852255784206861][谷歌发布全球首个产品级超大规模移动端分布式机器学习系统]] - Google 在 arxiv 贴出的论文 “[[https://arxiv.org/pdf/1902.01046.pdf][Towards Federated Learning at scale: System Design]]"，论文描述了前面所说的全球首个产品级可扩展的联合学习 (Federated Learning) 系统，以及该系统的高级设计和一些挑战及其解决方案。这个方案确保数据在用户终端上，从而确保数据安全和隐私。2019.
 
 * TODO 数据集
 - MNIST - 
@@ -133,6 +134,9 @@ The training set of V4 contains 14.6M bounding boxes for 600 object classes on 1
 
 * 其他阅读列表
 - List of reading lists and survey papers - http://deeplearning.net/reading-list/ 
+- Deep-learning-ocean - https://github.com/osforscience/deep-learning-ocean
+- An Introduction to Deep Reinforcement Learning - https://arxiv.org/pdf/1811.12560.pdf
+
 
 #+BEGIN_QUOTE
 本作品采用[[http://creativecommons.org/licenses/by/4.0/][知识共享署名 4.0 国际许可协议]]进行许可。

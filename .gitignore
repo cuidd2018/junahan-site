@@ -4,3 +4,5 @@ themes
 *.log
 netlifyctl-debug.log
 netlify.toml
+ltximg/
+

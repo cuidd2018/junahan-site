@@ -1,13 +1,13 @@
 # -*- mode: org; coding: utf-8; -*-
 #+TITLE:              分布式系统 - 101
-#+AUTHOR:         Junahan
-#+EMAIL:             junahan@outlook.com 
-#+DATE:              2018-07-02
-#+LANGUAGE:    CN
-#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
-#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
-#+LICENSE:         CC BY 4.0
+#+AUTHOR:             Junahan
+#+EMAIL:              junahan@outlook.com 
+#+DATE:               2018-07-02
+#+LANGUAGE:           CN
+#+OPTIONS:            H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:            TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:         view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:            CC BY 4.0
 
 * 摘要
 
@@ -28,12 +28,27 @@ In particular, the CAP theorem implies that in the presence of a network partiti
 
 * BASE - Eventual Consistency
 
+* 分布式一致性算法 (Consensus Algorithm)
+一致性是分布式容错系统 (fault-tolerant distributed systems) 的最根本问题。
+
+** Paxos 算法
+[[https://en.wikipedia.org/wiki/Paxos_(computer_science)][Paxos]] [fn:1] 算法是 [[http://www.lamport.org][Leslie Lamport]] 提出的一种基于消息传递且具有高度容错特性的一致性算法。最初于 1998 年发表 (晦涩难懂)，并于 2001 年用更加容易接受的方法重新描述一遍，被称之为 [[http://research.microsoft.com/users/lamport/pubs/paxos-simple.pdf][Paxos Made Simple]][fn:3]。 
+
+** Raft 算法
+[[https://en.wikipedia.org/wiki/Raft_(computer_science)][Raft]][fn:2] 算法是除了 Paxos 之外的另外一个一致性算法。Raft 的目标是提供比 Paxos 更好理解的一致性算法。
+这里是著名的 Raft Leader 选举算法动画图。
+
 * 参考文献
 1. CAP Theorem,  https://en.wikipedia.org/wiki/CAP_theorem.
 2. ACID, https://en.wikipedia.org/wiki/ACID.
 3. BASE, https://en.wikipedia.org/wiki/Eventual_consistency.
-4. Paxos, https://en.wikipedia.org/wiki/Paxos_(computer_science).
-5. Leslie Lamport's home page, http://www.lamport.org.
-6. Paxos Made Simple, http://lamport.azurewebsites.net/pubs/pubs.html#paxos-simple.
-7. Raft, https://en.wikipedia.org/wiki/Raft_(computer_science).
-9. Raft Home, https://raft.github.io.
+5. Leslie Lamport's home page, 
+
+* Footnotes
+
+[fn:3] Paxos Made Simple, http://research.microsoft.com/users/lamport/pubs/paxos-simple.pdf, 2001
+
+[fn:2] Raft Home, https://raft.github.io, 2014
+
+[fn:1] http://research.microsoft.com/users/lamport/pubs/lamport-paxos.pdf ,1998
+

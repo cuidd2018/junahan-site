@@ -1,0 +1,433 @@
+% Created 2019-01-12 Sat 16:02
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Junahan}
+\date{2019-01-01}
+\title{数学之美读书笔记}
+\hypersetup{
+ pdfauthor={Junahan},
+ pdftitle={数学之美读书笔记},
+ pdfkeywords={数学 Mathematics},
+ pdfsubject={},
+ pdfcreator={Emacs 26.1 (Org mode 9.1.9)}, 
+ pdflang={Cn}}
+\begin{document}
+
+\maketitle
+
+\section{概述}
+\label{sec:org6642498}
+
+\section{统计语言模型 (Statistical Language Model)}
+\label{sec:org730328b}
+
+\subsection{语句的概率模型}
+\label{sec:org7b25c3c}
+一个句子是否合理，就看它的可能性大小如何。可能性可以使用概率来衡量。
+假设句子 S 由一连串特定顺序排列的词 \(w_1,w_2,\cdots,w_n\) 组成，则句子 S 的概率为：
+
+\begin{equation}
+P(S)=P(w_1,w_2,\cdots,w_n)
+\end{equation}
+
+利用条件概率，\(S\) 的概率等于每个词出现的条件概率相乘，展开 \(P(w_1,w_2,...,w_n)\) ：
+
+\begin{equation}
+P(w_1,w_2,\cdots,w_n) 
+= P(w_1)P(w_2|w_1)P(w_3|w_1,w_2) \cdots P(w_n|w_1,w_2,\cdots,w_{n-1})
+\end{equation}
+
+直接计算如上概率比较困难，借助于马尔可夫假设可以对如上条件概率进行估算。
+
+假设任意一个词 \(w_i\) 出现的概率只同它前面一个词 \(w_{i-1}\) 有关，S 出现的概率就可以采用如下公式估算：
+
+\begin{equation}
+P(S)=P(w_1) \middot P(w_2|w_1) \middot P(w_3|w_2) \cdots P(w_i|w_{i-1}) \cdots P(w_n|w_{n-1})
+\end{equation}
+
+这种假设在数学上称之为马尔可夫假设。对应的统计语言模型就是二元模型 (Bigram Model) 。也可以假设一个词由前面 N - 1 个词决定，对应的模型称为 N 元模型。
+
+要计算 P(S) ，接下来就需要估算条件概率 \(P(w_{i}|w_{i-1})\) 。根据定义：
+
+\begin{equation}
+P(w_{i}|w_{i-1}) = \frac{P(w_{i-1},w_{i})}{P(w_{i-1})}
+\end{equation}
+
+只要有足够的语料库 (Corpus)，就可以通过统计 \((w_{i-1},w_{i})\) 同时出现的次数及 \((w_{i-1})\) 单独出现的次数得到相应的频率：
+
+\begin{equation}
+f(w_{i-1},w_{i}) = \frac{\#(w_{i-1},w_{i})}{\#}
+\end{equation}
+
+\begin{equation}
+f(w_{i-1}) = \frac{\#(w_{i-1})}{\#}
+\end{equation}
+
+根据大数定律，只要统计量足够，相对频率就等于概率：
+
+\begin{equation}
+P(w_{i-1},w_{i}) \approx \frac{\#(w_{i-1},w_{i})}{\#}
+\end{equation}
+
+\begin{equation}
+P(w_{i-1}) \approx \frac{\#(w_{i-1})}{\#}
+\end{equation}
+
+因此：
+
+\begin{equation}
+P(w_{i}|w_{i-1}) \approx \frac{\#(w_{i-1},w_{i})}{\#(w_{i-1})}
+\end{equation}
+
+\subsection{大数定律和条件概率估算}
+\label{sec:org1bdffae}
+
+\subsection{零概率问题和平滑方法}
+\label{sec:org97afd08}
+
+\subsubsection{Good-Turing Estimate}
+\label{sec:org36315f2}
+
+\subsubsection{Zipf 定律 (Zipf's Law)}
+\label{sec:orgd6f846e}
+
+\subsubsection{卡茨退避法 (Katz backoff)}
+\label{sec:orgadde8aa}
+
+\section{马尔可夫链\footnote{马尔可夫链，\url{https://zh.wikipedia.org/wiki/\%E9\%A9\%AC\%E5\%B0\%94\%E5\%8F\%AF\%E5\%A4\%AB\%E9\%93\%BE}}和隐含马尔可夫模型}
+\label{sec:org48dd0b1}
+马尔可夫链
+
+\subsection{马尔可夫链}
+\label{sec:org063e95e}
+
+\subsection{隐含马尔可夫模型}
+\label{sec:org0697504}
+
+
+\section{信息的度量}
+\label{sec:org307649d}
+\subsection{香农信息熵 (Entropy)}
+\label{sec:org42bc255}
+信息熵（Entropy）用于度量信息的不确定性。信息熵由如下公式定义：
+
+\begin{equation}
+H(X)=-\sum\limits_{x\in X}P(x)logP(x)
+\end{equation}
+
+\subsection{条件熵 (Conditional Entropy)}
+\label{sec:org6cad02a}
+
+\begin{equation}
+H(X|Y) = -\sum\limits_{x\in X,y\in Y}P(x,y)logP(x|y)
+\end{equation}
+
+\subsection{不等式}
+\label{sec:org6f77f94}
+可以证明如下不等式成立：
+
+$$H(X) \ge H(X|Y)$$
+
+该不等式表明，多了 Y 的信息后，关于 X 的不确定性下降了！如果 Y 和 X 无关，则等号成立。
+
+\subsection{互信息 (Mutual Information)}
+\label{sec:org94d91b4}
+假定两个随机事件 X 和 Y ，他们的互信息定义如下：
+
+$$I(X;Y) = \sum\limits_{x\in x,y\in Y}P(x,y)log\frac{P(x,y)}{P(x)P(y)}$$
+
+互信息实际上就是随机事件 X 的熵和 已知 Y 条件下的条件熵的差异：
+
+$$I(X;Y) = H(X) - H(X|Y)$$
+
+$$I(X;Y) \in [0, min(H(X), H(Y))]$$
+
+当 X 和 Y 完全相关时：\(I(X;Y) = H(X)\) 且 \(H(X) = H(Y)\)
+
+在自然语言处理中，两个随机事件，或者语言特征的互信息是很容易计算的。只要有足够的语料，就不难估算互信息公式中的 P(X,Y) ，P(X) 和 P(Y) 三个概率，进而计算互信息。使用互信息可以很简单且有效的解决机器翻译中词义的二义性 (Ambiguation) 问题。
+
+\subsection{相对熵（Relative Entropy）}
+\label{sec:orge503b08}
+相对熵有时又成为交叉熵，用于衡量相关性，不同于互信息，相对熵用于衡量两个取值为正数的函数的相似性，它的定义如下：
+
+$$KL(f(x)||g(x)) = \sum\limits_{x\in X}f(x)log\frac{f(x)}{g(x)}$$
+
+相对熵的三条结论：
+\begin{enumerate}
+\item 对于两个完全相同的函数，他们的相对熵等于零。
+\item 相对熵越大，两个函数差异越大；反之，相对熵越小，两个函数差异越小。
+\item 对于概率分布或者概率密度函数，如果取值均大于零，相对熵可以度量两个随机分布的差异性。
+\end{enumerate}
+
+需要注意的是，相对熵是不对称的，即
+
+$$KL(f(x)||g(x)) \neq KL(g(x)||f(x))$$
+
+相对熵在自然语言处理中的应用：
+\begin{itemize}
+\item 衡量两个常用词在不同文本中的概率分布，看他们是否同义。
+\item 利用相对熵还可以得到信息检索中最重要的一个概念：词频率-逆向文档频率 (TF-IDF)。
+\end{itemize}
+
+\subsection{信息熵在语言模型中的应用}
+\label{sec:orga8a3c76}
+
+\section{搜索引擎技术}
+\label{sec:org60e0515}
+
+搜索引擎工作原理其实非常简单，建立一个搜索引擎需要做几件事：
+\begin{itemize}
+\item 自动下载尽可能多的网页；
+\item 建立快速有效的索引；
+\item 根据相关性对网页进行公平准确的排序；
+\end{itemize}
+
+搜索产品可以提炼成下载、索引和排序这三种基本的服务。
+
+\subsection{布尔代数}
+\label{sec:org31c3448}
+布尔运算是针对二进制的简单运算，简单且快速。
+
+搜索引擎本质上是在基于索引和关键字做简单的布尔运算。
+
+\subsection{索引}
+\label{sec:orga9901e9}
+最简单的索引结构是用一个很长的二进制数表示一个关键字是否出现在每篇文献中。有多少文献，就有多少位数，每一位对应一片文献，1 代表相应的文献有这个关键字，0 代表没有。当然，由于这个二进制数中的绝大多数位数都是零，因此只需要记录那些等于 1 的位数即可。于是，搜索引擎的索引就是一张大表：表的每一行对应一个关键词，而每一个关键词后面跟着一组数字，是包含该关键词的文献序号。
+
+搜索引擎会多所有词进行索引，这在工程上极具挑战性 - 数量巨大：
+
+假设互联网网页的数量级是 100 亿 (\$10\(_{\text{10}}\)) 个，词汇的大小是 30 万，那么这个索引的大小就是 100 亿 * 30 万 = 3，000 万亿的级别，就算是考虑到压缩，也在 30 万亿级别。这还不包含需要存储的额外信息。
+
+解决的方案：
+\begin{itemize}
+\item 将索引分成很多份 (Shards) 分别存储在不同的服务器上，查询任务也被分发到众多服务器上并行处理，并吧结果合并处理返回给客户。
+\item 根据网页的重要性、质量和访问的频率建立常用和不常用等不同级别的索引等以降低对资源的要求。
+\end{itemize}
+
+\subsection{图论和网络爬虫}
+\label{sec:orge8b736f}
+网络爬虫实质上就是运用图论中的遍历 (Traverse) 算法下载整个互联网。挑战在于如何快速有效的下载整个互联网。
+
+\subsubsection{图论}
+\label{sec:org48a42ec}
+
+\subsubsection{构建网络爬虫的工程要点}
+\label{sec:org901418f}
+\begin{itemize}
+\item BFS 还是 DFS ?
+\begin{itemize}
+\item 任务调度系统 (Scheduler) 需要考虑网页的重要性以及下载效率等因素以排定优先级。
+\item 整体而言，工程上，BFS 成分多一些。
+\end{itemize}
+\item 页面的分析和 URL 的提取 - 主要是现代网页大量使用脚本语言 (JavaScript) 且很多不规范，需要能够成功的解析和运行这些脚本才能够找到其中的 URL。
+\item 防止网页重复下载 - 采用散列表存储已经下载的网页，但需要维护高效的散列表以消除性能瓶颈。
+\begin{itemize}
+\item 明确每台下载服务器分工 - 根据 URL 分工，避免过多的判重。
+\item 在明确分工基础上，对 URL 判重做批量处理。
+\end{itemize}
+\end{itemize}
+
+\subsection{Google PageRank}
+\label{sec:org2867e6b}
+对于特定的查询，搜索结果的排名主要取决于两组信息：关于网页的质量信息 (Quality)；以及这个查询与网页内容的相关性信息 (Relevance)。PageRank 算法是衡量网页质量的算法。
+
+PageRank 的核心思想：
+\begin{itemize}
+\item 如果一个网页被很多其他网页所链接，说明它受到普遍的承认和信赖，那么它的排名就高。
+\item 网页排名高的网站贡献的链接权重大。
+\end{itemize}
+
+这个算法要解决两个难题：
+\begin{itemize}
+\item 计算网页排名的过程中需要用到网页本身的排名，通过把该问题转变成一个二维矩阵相乘，假设初始排名相同，采用迭代的方式收敛至真实排名来解决该问题，理论上可以证明无论初始值如何选择，算法都能保证网页皮阿明的估计值能够收敛到排名的真实值。
+\item 工程实现上，二维矩阵具有上百亿亿的量级，计算量巨大，PageRank 算法利用稀疏矩阵计算技巧解决该工程问题。
+\end{itemize}
+
+\subsubsection{PageRank 计算方法}
+\label{sec:org2e3f252}
+假定向量
+
+\begin{equation}
+B = (b_{1},b_{2}, \cdots ,b_{N})^{T}
+\end{equation}
+
+为 N 个网页的排名。矩阵
+
+\begin{equation}
+A = \\
+\begin{bmatrix}
+a_{11}&\cdots&a_{1n}&\cdots&a_{1M}\\
+\cdots& & & &\cdots\\
+a_{m1}&\cdots&a_{mn}&\cdots&a_{mM}\\
+\cdots& & & &\cdots\\
+a_{M1}&\cdots&a_{Mn}&\cdots&a_{MM}
+\end{bmatrix}
+\end{equation}
+
+为网页之间的链接数目，其中 \(a_{mn}\) 代表地 m 个网页指向第 n 个网页的链接数。A 是已知，B 未知，是我们要计算的。
+
+假定 \(B_{i}\) 是第 i 次迭代的结果，那么
+
+\begin{equation}
+B_{i} = A \cdot B_{i-1}
+\end{equation}
+
+初始假设：所有网页排名均为 1/N，即
+
+$$B_{0} = \left(\frac{1}{N},\frac{1}{N},\cdots,\frac{1}{N}\right)$$
+
+每次迭代，均可以计算出一个 \(B_{i}\) ，可以证明 \(B_{i}\) 最终会收敛于 B，此时：
+
+$$B = B \times A$$
+
+因此，当两次迭代的结果 \(B_{i}\) 和 \(B_{i-1}\) 之间的差异非常小，接近于零时，停止迭代运算，算法结束，一般而言，只要 10 次左右的迭代基本上就收敛了。
+
+由于网页之间的链接数量相对于互联网的规模来说非常稀疏，因此计算网页的排名也需要对零概率或者小概率事件进行平滑处理。网页排名是一个一维向量，对它的平滑处理智能利用一个小的常数 \(\alpha\) 。
+
+\begin{equation}
+B_{i} = \left[\frac{\alpha}{N} \cdot I + (1 - \alpha)A\right] \cdot B_{i-1}
+\end{equation}
+
+其中 \(N\) 是互联网网页的数量，\(\alpha\) 是一个（较小的）常数，\(I\) 是单位矩阵。
+
+网页排名的计算主要是矩阵的相乘，这种计算很容易分解成许多小任务，在多台计算机上并行处理。例如，可以利用 Google 并行计算工具 MapReduce 进行并行计算。
+
+\subsection{如何确定网页和查询的相关性}
+\label{sec:org951e9d7}
+今天，由于商业搜索引擎已经有了大量的用户点击数据，因此，对搜索相关性贡献最大的根据用户对常见搜索点击网页的结果得到的概率模型。
+
+对于影响搜索引擎质量的诸多因素，除了用户点击数据以外，可以归纳为如下四大类：
+
+\begin{enumerate}
+\item 完备的索引。
+\item 对网页质量的度量，比如 PageRank 就是解决这个问题的算法。
+\item 用户偏好。
+\item 确定网页和某个查询的相关性。
+\end{enumerate}
+
+\subsubsection{TF-IDF}
+\label{sec:org6b1156c}
+TF-IDF 是搜索关键词权重的科学度量。
+
+TF (Term Frequency / 单文本词频) 是关键词在文本中出现的次数除以文本总字数的商。度量网页和查询的相关性，一个简单的方法，就是直接使用各个关键词在网页中出现的总词频。如，一个查询短语包含 N 个关键词 \(w_{1}, w_{2}, \cdots, w_{N}\) ，它们在一个特定网页中的词频分别是： \(TF_{1}, TF_{2}, \cdots, TF_{N}\) 。那么，这个查询和该网页的相关性就是：
+
+\begin{equation}
+TF_{1} + TF_{2} + \cdots + TF_{N}
+\end{equation}
+
+这里假设每个词权重相同，但实际上，每个词对网页主题的贡献不同，例如，汉语中，“的”、“是” 等常用词，词频很高，但对主题几乎没有什么贡献，这些词称之为停止词 (Stop Word) 。更好的方法是为不同的关键词分配不同的权重。权重的设置满足如下条件：
+\begin{enumerate}
+\item 一个词预测主题的能力越强，权重越大，反之，权重越小。
+\item 停止词的权重为零。
+\end{enumerate}
+
+在信息检索中，使用最多的权重是 IDF (Inverse Document Frequency / 逆文本频率指数)，IDF 的定义如下：
+
+\begin{equation}
+IDF = log \left(\frac{D}{D_{w}} \right)
+\end{equation}
+
+其中，D 是全部网页数量，\(D_{w}\) 是全部网页中，出现关键词 w 的网页数。
+
+结合 TF 和 IDF ，度量网页和查询相关性的公式就是变成了关键词加权和
+
+\begin{equation}
+TF_{1} \cdot IDF_{1} + TF_{2} \cdot IDF_{2} + \cdots + TF_{N} \cdot IDF_{N}
+\end{equation}
+
+\subsection{小结}
+\label{sec:org91560ed}
+有了如何下载网页、建立索引和计算度量网页质量的 PageRank 算法以及计算度量查询和网页相关性的 TF-IDF 算法，就可以搭建一个简单的搜素引擎了。就今天而言（2019 年 1 月），商业搜索引擎通过运营积累下来的用户点击数据，能够产生更好的网页质量和查询网页相关性模型，从而获得更好的网页排名。
+
+\section{有限状态机和动态规划}
+\label{sec:orgfefbb5b}
+有限状态机和动态规划是地图和本地搜索的核心技术。智能手机的定位导航功能，有三项关键技术。
+
+\begin{enumerate}
+\item 利用卫星定位。
+\item 地址的识别。
+\item 根据用户输入的起点和终点，在地图上规划最短路线或者最快路线。
+\end{enumerate}
+
+\subsection{地址分析和有限状态机}
+\label{sec:orga8fce1e}
+地址的文法分析是上下文有关文法中相对简单的一种，因此有许多识别和分析方法，但最有效的是有限状态机。使用有限状态机识别地址，关键是要解决两个问题：
+
+\begin{enumerate}
+\item 通过一些有效的地址建立状态机；
+\item 既定一个有效状态机，地址字串的匹配算法；
+\end{enumerate}
+
+有了有限状态机后，就可以用它分析网页，找出网页中的地址部分，建立本地搜索的数据库。同样，也可以对用户输入的查询进行分析，挑出描述地址的部分。
+
+为了解决地址不标准以及错别字问题，需要进行模糊匹配，并给出一个字串为正确地址的可能性，科学家们提出了基于概率的有限状态机。
+
+\subsection{导航和动态规划}
+\label{sec:org2e6acd7}
+全球导航的关键算法是计算机科学图论中的动态规划 (Dynamic Programming) 算法。
+
+\subsection{FST and WFST Library}
+\label{sec:orgd1e2d17}
+
+\subsubsection{AT\&T FSM Library}
+\label{sec:orgb8b0292}
+The FSM library was developed by Mehryar Mohri, Fernando Peirera and Michael Riley when the authors were working at AT\&T Labs - Research External site. The library is available as binaries only for non-commercial use.
+
+The FSM library and the \href{http://www.openfst.org/twiki/bin/view/FST/WebHome}{OpenFst} library share the same textual representation.
+
+项目已经关闭，建议使用 \href{http://www.openfst.org/twiki/bin/view/FST/WebHome}{OpenFst} library。
+
+\subsubsection{OpenFst Library}
+\label{sec:orgfacd063}
+\href{http://www.openfst.org/twiki/bin/view/FST/WebHome}{OpenFst} is a library for constructing, combining, optimizing, and searching weighted finite-state transducers (FSTs). Weighted finite-state transducers are automata where each transition has an input label, an output label, and a weight. The more familiar finite-state acceptor is represented as a transducer with each transition's input and output label equal. Finite-state acceptors are used to represent sets of strings (specifically, regular or rational sets); finite-state transducers are used to represent binary relations between pairs of strings (specifically, rational transductions). The weights can be used to represent the cost of taking a particular transition.
+
+\section{余弦定理和新闻分类}
+\label{sec:orge61a16d}
+计算机并不能读懂新闻，而是新闻变成一组可以计算的数字 (向量)，然后再设计算法来计算任意两篇新闻（或者任意两段文本）之间的相似性。
+
+\subsection{新闻的特征向量}
+\label{sec:org779bcf1}
+新闻由词构成，相同的新闻用词类似，不同的新闻用词个不相同。虚词（如得、地、的）对主题贡献不大，实词更加重要。新闻的特征向量 (Feature Vector) 就是将一篇新闻中的所有实词，计算出他们的 TF-IDF 值，并按照词汇表的位置依次排列，就得到一个描述新闻的特征向量。
+
+\begin{center}
+\begin{tabular}{rrl}
+单词编号 & TF-IDF 值 & 汉字词\\
+1 & 0 & 阿\\
+2 & 0.0034 & 啊\\
+3 & 0 & 阿斗\\
+4 & 0.00052 & 阿姨\\
+\ldots{} & \ldots{} & \ldots{}\\
+789 & 0.034 & 服装\\
+\ldots{} & \ldots{} & \ldots{}\\
+64000 & 0.075 & 做作\\
+\end{tabular}
+\end{center}
+
+假定词汇表的数量是 N ，则每篇新闻都可以表示为一个 N 维的向量。有了新闻的特征向量，计算机就可以计算出新闻的形似程度。
+
+\subsection{向量距离的度量}
+\label{sec:org7a4b1de}
+向量的夹角是衡量两个向量距离的度量。而要计算两个向量的夹角，则需要用到余弦定理。
+
+\section{Reference}
+\label{sec:org2b8fa1f}
+\begin{enumerate}
+\item 马尔可夫链，\url{https://zh.wikipedia.org/wiki/\%E9\%A9\%AC\%E5\%B0\%94\%E5\%8F\%AF\%E5\%A4\%AB\%E9\%93\%BE}
+\item FST ,\url{https://en.wikipedia.org/wiki/Finite-state\_transducer}
+\item OpenFst, \url{http://www.openfst.org/twiki/bin/view/FST/WebHome}
+\item WFST Algorithms, \url{http://www.gavo.t.u-tokyo.ac.jp/\~novakj/wfst-algorithms.pdf}
+\end{enumerate}
+\end{document}

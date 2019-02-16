@@ -1,15 +1,16 @@
 # -*- mode: org; coding: utf-8; -*-
 #+TITLE:              MAC - Dev - 101
-#+AUTHOR:         Junahan
-#+EMAIL:             junahan@outlook.com
-#+DATE:              2018-04-29
-#+LANGUAGE:    CN
-#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
-#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
-#+LICENSE:         CC BY 4.0
+#+AUTHOR:             Junahan
+#+EMAIL:              junahan@outlook.com
+#+DATE:               2018-04-29
+#+LANGUAGE:           CN
+#+OPTIONS:            H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:            TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:         view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:            CC BY 4.0
 
 * 简介
+本问介绍在 MAC 环境下开发的常用工具的安装、配置和使用。
 
 * Homebrew
 ** Install Homebrew
@@ -43,7 +44,6 @@ echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebre
 source ~/.bash_profile
 #+END_SRC
 
-
 * SDKMan
 #+BEGIN_SRC shell
 $ curl -s "https://get.sdkman.io" | bash
@@ -63,10 +63,11 @@ brew cask install docker
 }
 #+END_SRC
 
-
 * Python
-
 * Maven
+#+BEGIN_SRC shell
+brew install maven
+#+END_SRC
 
 * Gradle
 #+BEGIN_SRC shell
@@ -86,6 +87,7 @@ brew cask install wireshark
 #+END_SRC
 
 * VPN Tool - Shimo
+
 * Cisco VPN Client
 ** AnyConnect 删除不干净无法重新安装 AnyConnect 的问题
 在删除 Cisco AnyConnect 的后，会出现无法重新安装 AnyConnect 的问题，解决方案：
@@ -113,19 +115,7 @@ sudo pkgutil --forget com.cisco.pkg.anyconnect.vpn
 
 注意：如上命令仅仅忘掉 =com.cisco.pkg.anyconnect.vpn=, 需要分别运行如上命令忘掉其他包信息。
 
-* 进程 =nsurlsessiond= 跑流量问题
 
-在终端中运行命令以终结 =nsurlsessiond=, =nsurlstoraged= 进程：
-
-#+BEGIN_SRC shell
-#!/bin/sh
-launchctl unload /System/Library/LaunchDaemons/com.apple.nsurlstoraged.plist
-launchctl unload /System/Library/LaunchDaemons/com.apple.nsurlsessiond.plist
-sudo launchctl unload /System/Library/LaunchDaemons/com.apple.nsurlsessiond.plist
-sudo launchctl unload /System/Library/LaunchDaemons/com.apple.nsurlstoraged.plist
-#+END_SRC
-
-* 
 * 参考文献
 1. Homebrew Home, https://brew.sh.
 3. SDKMan Home, http://sdkman.io.

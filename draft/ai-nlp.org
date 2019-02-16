@@ -1,0 +1,36 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:                      AI - NLP
+#+AUTHOR:                     Junahan
+#+EMAIL:                      junahan@outlook.com
+#+DATE:                       2019-01-05
+#+hugo_base_dir:              ../
+#+hugo_auto_set_lastmod:      t
+#+hugo_tags:                  AI NLP
+#+hugo_categories:            AI NLP
+#+hugo_draft:                 true
+#+KEYWORDS:                   AI NLP
+#+LANGUAGE:                   CN
+#+OPTIONS:                    H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:                    TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:                 view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:                    CC BY 4.0
+
+* Overview
+自然语言处理（NLP）是一个热门且重点的机器学习研究领域。
+
+* 统计语言模型 (Statistical Language Model)
+
+** 
+
+
+* 2018 Highlights
+It has been a big year for the field of natural language processing (NLP) and for machine learning as a whole. There have been many trends and breaking stories, with state-of-the-art results and new interesting research directions emerging. We owe all of this progress to the brilliant researchers around the world and the millions of developers devoting their full time to improve tools that make it easier for everyone to learn and progress the field. We have witnessed a rise in transfer learning and other niche areas of research such as AI Ethics.
+
+2018 年是自然语言处理（NLP）领域一个收获大年，也是机器学习的收获之年。伴随着最新研究结果和新的有趣的研究方向的出现，本年度有很多新趋势及突破性进展的故事。我们欠了那些来自全球，才华横溢的研究人员以及成百上千开发者一个人情，他们全力以赴地提升各种工具，让我们每个人更加容易的学习并在该领域取得进展。我们见证了本年度在迁移学习和其他一些研究领域如 AI 伦理方面的起飞。
+
+- NLP 2018 Highlights by Elvis - https://github.com/omarsar/nlp_highlights/blob/master/NLP_2018_Highlights.pdf.
+
+* Reference
+- NLP 2018 Highlights by Elvis - https://github.com/omarsar/nlp_highlights/blob/master/NLP_2018_Highlights.pdf.
+- 数学之美 by 吴军.
+

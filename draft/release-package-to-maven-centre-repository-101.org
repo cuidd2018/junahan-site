@@ -335,7 +335,7 @@ mvn nexus-staging:drop
 可以通过脚本或者 CI 系统或者使用 Maven Release 插件来自动化以上工作流，下面介绍使用 Maven Release 插件来实现自动化。
 
 * 使用 Maven Release 插件执行部署和发布
-使用 [[http://maven.apache.org/maven-release/maven-release-plugin][Maven Release 插件]] 可以自动化部署工作流，包括更新 Mavan POM 文件，执行 SCM 操作以及执行发布部署。使用 Maven Release 插件，需要确保：
+使用 [[http://maven.apache.org/maven-release/maven-release-plugin][Maven Release 插件]] 可以自动化部署工作流，包括更新 Maven POM 文件，执行 SCM 操作以及执行发布部署。使用 Maven Release 插件，需要确保：
 
 - 正确在 POM 中配置 SCM 信息以执行 SCM 相关的操作；
 - 正确在 POM 中配置 Nexus Staging 插件以执行部署相关操作；

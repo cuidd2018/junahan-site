@@ -1,0 +1,39 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:          Fabric + k8s 自动化运维
+#+AUTHOR:         Junahan
+#+EMAIL:          junahan@outlook.com 
+#+DATE:           2018-07-08
+#+LANGUAGE:       CN
+#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:     view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:        CC BY 4.0
+
+* 摘要
+本文主要关注在 k8s[fn:2] 环境下 Fabric[fn:3] 的自动化运维。[[https://github.com/hyperledger/cello][Hyperledger Cello]][fn:1] 支持在多种基础设施上（包括 k8s）部署和自动化运维 Fabric。其中项目 fabric-chart[fn:4] (by LordGoodman) 支持使用 Helm[fn:5] 来简化 Fabric 网络的部署和运维。
+
+* 基本思路
+参阅 [[https://github.com/hyperledger/cello][Hyperledger Cello]] 的方案，我们倾向于基于 k8s 做自动化运维，初步选择两种实现方案：
+- 使用 yaml 模版生成相应的 k8s 调度配置，并通过 k8s 原始 API 进行调度和管理；
+- 使用 Helm 简化配置，并通过 Helm API 进行调度和管理，好处是可能更加简单一些；
+
+* Hyperledger Cello
+[[https://github.com/hyperledger/cello][Hyperledger Cello]] 是超级账本的一个工具项目。Hyperledger Cello is a blockchain provision and operation system, which helps manage blockchain networks in an efficient way. 
+
+* MISC
+- 一篇介绍使用 Helm 部署 Fabric 的文章 - [[https://github.com/hainingzhang/articles/blob/master/fabric_helm/helmChartForFabric.pdf][使用 Helm Chart 在 Kubernetes 上部署 Fabric]]。
+- Kubernetes 中文指南 - https://jimmysong.io/kubernetes-handbook/.
+
+* Footnotes
+
+[fn:5] Helm - https://github.com/helm/helm
+
+[fn:4] fabric-chart - https://github.com/LordGoodman/fabric-chart.
+
+[fn:1] Hyperledger Cello - https://github.com/hyperledger/cello.
+
+[fn:3] Fabric - https://www.hyperledger.org/projects/fabric.
+
+[fn:2] Kubernetes - https://kubernetes.io/.
+
+

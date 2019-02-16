@@ -1,20 +1,19 @@
 # -*- mode: org; coding: utf-8; -*-
 #+TITLE:              Docker 101
-#+AUTHOR:         Junahan
-#+EMAIL:             junahan@outlook.com 
-#+DATE:              2018-07-01
-#+LANGUAGE:    CN
-#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
-#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
-#+LICENSE:         CC BY 4.0
+#+AUTHOR:             Junahan
+#+EMAIL:              junahan@outlook.com 
+#+DATE:               2018-07-01
+#+LANGUAGE:           CN
+#+OPTIONS:            H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:            TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:         view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:            CC BY 4.0
 
 * TODO 摘要
+Docker Containerization Unlocks the Potential for Dev and Ops. Freedom of choice, agile operations and integrated container security for legacy and cloud-native applications.
 
-** Docker 是什么
-
-** 为什么使用 Docker
-- 一个新的应用交付方式
+- A Modern Platform for All Applications - Docker unlocks the potential of your organization by giving developers and IT the freedom to build, manage and secure business-critical applications without the fear of technology or infrastructure lock-in.
+- 一个新的应用交付方式 - 开箱即用
 - 可移植性 (Portability) - 
 - 服务发现 (Services Discovery) - 
 - 负载均衡 (Load Balancing) - 
@@ -22,13 +21,7 @@
 - 性能 (Performance) - 
 - 可扩展性 (Scalability) - 
 
-** 问题和限制
-- 
-
-
 ** FAQ
-
-* TODO 快速启动
 
 * 容器网络
 ** 网络概述
@@ -96,7 +89,6 @@ $ sudo iptables -P FORWARD ACCEPT
 
 ** 使用 Overlay 网络
 
-
 * TODO 管理应用数据
 Docker 提供两种方法用于存储文件和数据至宿主机器，存储卷 (volumes) 和绑定挂载点 (bind mounts) 。如果在 Linux 下运行，也可以使用 =tmpfs= 挂载点。
 - Volumes - 存储卷是宿主文件系统的一部分，由 Docker 创建和管理 (/var/lib/docker/volumns/ on Linux)。非 Docker 进程不应当修改存储卷内容。推荐使用该方式。
@@ -134,7 +126,6 @@ Docker 提供两种方法用于存储文件和数据至宿主机器，存储卷 
 - Swarm services
 
 *** TODO 应用自定义元数据至 Docker 对象
-
 
 *** 修剪不再使用的对象
 可以通过 =prune= 命令修剪不再使用的 Docker 对象。
@@ -175,8 +166,7 @@ docker inspect --format '{{join .Args " , "}}' container
 ** 配置 Docker Daemon
 
 ** 配置容器
-
-
+   
 * 编写 Dockerfile
 
 * 工具

@@ -1,13 +1,13 @@
 # -*- mode: org; coding: utf-8; -*-
-#+TITLE:              Java 开发者知识点汇总 - 101
-#+AUTHOR:         Junahan
-#+EMAIL:             junahan@outlook.com 
-#+DATE:              2018-05-12
-#+LANGUAGE:    CN
-#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
-#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
-#+LICENSE:         CC BY 4.0
+#+TITLE:              开发者知识点汇总 - Java
+#+AUTHOR:             Junahan
+#+EMAIL:              junahan@outlook.com 
+#+DATE:               2018-05-12
+#+LANGUAGE:           CN
+#+OPTIONS:            H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:            TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:         view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:            CC BY 4.0
 
 * 摘要
 本文根据作者多年的从业经验，包括面试和被面试的经历，汇总的有关知识要点，主要是适用于 Java 高级技术岗位方向，除了 Java 相关的章节外，其他章节也适用于其他编程相关的高级职位方向。本文主要包含 Java、SQL、算法基础、软件复用和设计模式、高并发架构设计、安全、DevOps、优化等主题。
@@ -196,9 +196,14 @@ A. 先跳过吧，让我好好想一想，随后回答您 ......
 
 ** SQL 事务
 
+** SQL 优化
+- 慢查询 (Slow Query) 分析
+- 
+
 ** Mysql
 
-* 数据结构和算法分析
+* TODO NoSQL
+* TODO 数据结构和算法分析
 了解一些基本的数据结构，基础算法和算法分析。
 
 ** 数据结构
@@ -207,7 +212,39 @@ A. 先跳过吧，让我好好想一想，随后回答您 ......
 - Tree - 树形数据结构被用于大型数据库索引。如 B/B+树等。
 - Graph - N/A.
 
-** 算法分析
+** 算法分析和计算复杂度
+
+** 算法范例
+*** 分治 (Divide-and-conquer)
+分治算法[fn:1]思想的基础是多分支递归。通过递归的方法将问题拆分为两个或多个相同或者相关的子任务，直至问题简化到能够直接解决为止。
+
+有很多算法使用了分治思想，比较出名的算法包括：
+- 快速排序 (Quick Sort)
+- 归并排序 (Merge Sort)
+- 离散傅立叶变换 (Discrete Fourier Transform (FFT))
+
+*** 动态规划 (Dynamic Programming)
+动态规划[fn:2]类似于分治算法，具有两个关键属性的问题可以使用动态规划算法：
+- 可优化子结构 (Optimal Substructure) - 存在可优化子结构。
+- 重叠子问题 (Overlapping sub-problems) - 子问题的规模必须更小，每次递归都是一遍一遍的解决相同的子问题而不是产生一个更小规模的子问题（这点是区分分治算法的标志）。
+
+用动态规划思想解决问题的算法：
+- 图的最短路径算法 - Dijkstra's algorithm
+- 图最短路径算法 - Bellman–Ford algorithm
+- Fibonacci 数列；
+
+*** 贪心算法 (Greedy Algorithm)
+贪心算法[fn:3]是一种通过在每一步选择当前最优方案，以期望最终得到全局最优方案的算法。这种算法通常并不一定能够达到全局最优，但可以在合理的时间内通过局部最优的方法逼近全局最优。贪心算法适用的问题具有如下属性：
+- 可优化子结构 - 存在可优化子结构 (和动态规划类似)
+- 贪心选择属性 (Greedy Choice Property) - 针对当前子问题选择最优，每次迭代均选择当前最优，而不考虑此前的选择，从而简化问题。这也是贪心算法和动态规划的不同之处
+
+如果贪心算法被证明可以对一类问题产生最优方案，通常会选择贪心算法，因为贪心算法通常快于其他的优化算法 (如动态规划)。
+
+著名的贪心算法：
+- 最小生成树算法 (Minimum Spanning Trees) - 如 [[https://en.wikipedia.org/wiki/Kruskal%2527s_algorithm][Kruskal's algorithm]] and [[https://en.wikipedia.org/wiki/Prim%2527s_algorithm][Prim's algorithm]] 
+- 最优哈夫曼编码树 (Optimum Huffman Trees)
+
+** 常用算法
 *** 排序算法
 记住一个事实 - 排序算法的最差和平均时间代价为 O(n*log(n))。
 
@@ -250,7 +287,7 @@ Design patterns were originally grouped into the categories: creational patterns
 - 对于[[https://en.wikipedia.org/wiki/Concurrency_pattern][并发模式]], 如 Lock, Thread Pool, Scheduler, Thread-local 等，看看 Java Concurrent 的设计，基本也就有了。
 - 对于[[https://en.wikipedia.org/wiki/Architectural_pattern][架构风格和模式]] , 主要了解 [[https://en.wikipedia.org/wiki/Model-view-controller][MVC]] , DI, [[https://en.wikipedia.org/wiki/Aspect-oriented_programming][AOP]], [[http://microservices.io/patterns/microservices.html][MSA (Micro Service Architecture)]] 等。
 
-* 系统架构
+* TODO 系统架构
 1. Challenge - high concurrency, high availability, low latency
 2. Horizontal Scalability - meet high concurrent challenge
  - AFAP stateless service
@@ -259,6 +296,7 @@ Design patterns were originally grouped into the categories: creational patterns
  - Automation deployment
 3. Low latency - 快速响应用户请求，和高并发不同，这个指标强调的是用户的响应时间，需要在纵向上进行端到端的优化
 
+** OO
 ** SOA
 ** Microservices
 ** Service Mesh
@@ -379,7 +417,7 @@ Design patterns were originally grouped into the categories: creational patterns
  - 结论和反馈 - 针对改进措施和方案效果的评价结论和反馈，作为下一轮改进的输入
 
 ** 方法论
-- 直觉 - 依赖于天才的直觉
+- 直觉 - 依赖于经验及直觉
 - 统计学方法
  - Data Collection - Access log, APP log, System log
  - Data Analysis - Statistic Diagram - Heat Map, Distribution Diagram, ECHARTS
@@ -482,3 +520,12 @@ End-to-end Tracing System 是指一套能够穿透业务系统前后端的业务
 #+BEGIN_QUOTE
 本作品采用[[http://creativecommons.org/licenses/by/4.0/][知识共享署名 4.0 国际许可协议]]进行许可。
 #+END_QUOTE
+
+* Footnotes
+
+[fn:3] Greedy Algorithm, https://en.wikipedia.org/wiki/Greedy_algorithm.
+
+[fn:2] Dynamic Programming, https://en.wikipedia.org/wiki/Dynamic_programming#Computer_programming.
+
+[fn:1] Divide-and-conquer algorithm, https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm.
+

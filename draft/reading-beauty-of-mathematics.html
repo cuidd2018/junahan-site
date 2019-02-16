@@ -1,0 +1,1104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="CN" xml:lang="CN">
+<head>
+<!-- 2019-01-20 Sun 15:31 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>数学之美读书笔记</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Junahan" />
+<meta name="keywords" content="数学 Mathematics" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">数学之美读书笔记</h1>
+
+<div id="outline-container-orge40154e" class="outline-2">
+<h2 id="orge40154e"><span class="section-number-2">1</span> 概述</h2>
+</div>
+
+<div id="outline-container-org8c9f861" class="outline-2">
+<h2 id="org8c9f861"><span class="section-number-2">2</span> 统计语言模型 (Statistical Language Model)</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgf81eb46" class="outline-3">
+<h3 id="orgf81eb46"><span class="section-number-3">2.1</span> 语句的概率模型</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+一个句子是否合理，就看它的可能性大小如何。可能性可以使用概率来衡量。
+假设句子 S 由一连串特定顺序排列的词 \(w_1,w_2,\cdots,w_n\) 组成，则句子 S 的概率为：
+</p>
+
+\begin{equation}
+P(S)=P(w_1,w_2,\cdots,w_n)
+\end{equation}
+
+<p>
+利用条件概率，\(S\) 的概率等于每个词出现的条件概率相乘，展开 \(P(w_1,w_2,...,w_n)\) ：
+</p>
+
+\begin{equation}
+P(w_1,w_2,\cdots,w_n) 
+= P(w_1)P(w_2|w_1)P(w_3|w_1,w_2) \cdots P(w_n|w_1,w_2,\cdots,w_{n-1})
+\end{equation}
+
+<p>
+直接计算如上概率比较困难，借助于马尔可夫假设可以对如上条件概率进行估算。
+</p>
+
+<p>
+假设任意一个词 \(w_i\) 出现的概率只同它前面一个词 \(w_{i-1}\) 有关，S 出现的概率就可以采用如下公式估算：
+</p>
+
+\begin{equation}
+P(S)=P(w_1)P(w_2|w_1)P(w_3|w_2) \cdots P(w_i|w_{i-1}) \cdots P(w_n|w_{n-1})
+\end{equation}
+
+<p>
+这种假设在数学上称之为马尔可夫假设。对应的统计语言模型就是二元模型 (Bigram Model) 。也可以假设一个词由前面 N - 1 个词决定，对应的模型称为 N 元模型。
+</p>
+
+<p>
+要计算 P(S) ，接下来就需要估算条件概率 \(P(w_{i}|w_{i-1})\) 。根据定义：
+</p>
+
+\begin{equation}
+P(w_{i}|w_{i-1}) = \frac{P(w_{i-1},w_{i})}{P(w_{i-1})}
+\end{equation}
+
+<p>
+只要有足够的语料库 (Corpus)，就可以通过统计 \((w_{i-1},w_{i})\) 同时出现的次数及 \((w_{i-1})\) 单独出现的次数得到相应的频率：
+</p>
+
+\begin{equation}
+f(w_{i-1},w_{i}) = \frac{\#(w_{i-1},w_{i})}{\#}
+\end{equation}
+
+\begin{equation}
+f(w_{i-1}) = \frac{\#(w_{i-1})}{\#}
+\end{equation}
+
+<p>
+根据大数定律，只要统计量足够，相对频率就等于概率：
+</p>
+
+\begin{equation}
+P(w_{i-1},w_{i}) \approx \frac{\#(w_{i-1},w_{i})}{\#}
+\end{equation}
+
+\begin{equation}
+P(w_{i-1}) \approx \frac{\#(w_{i-1})}{\#}
+\end{equation}
+
+<p>
+因此：
+</p>
+
+\begin{equation}
+P(w_{i}|w_{i-1}) \approx \frac{\#(w_{i-1},w_{i})}{\#(w_{i-1})}
+\end{equation}
+</div>
+</div>
+
+<div id="outline-container-orgb4f9703" class="outline-3">
+<h3 id="orgb4f9703"><span class="section-number-3">2.2</span> 大数定律和条件概率估算</h3>
+</div>
+
+<div id="outline-container-org5d0d57e" class="outline-3">
+<h3 id="org5d0d57e"><span class="section-number-3">2.3</span> 零概率问题和平滑方法</h3>
+<div class="outline-text-3" id="text-2-3">
+</div>
+<div id="outline-container-orgdf44533" class="outline-4">
+<h4 id="orgdf44533"><span class="section-number-4">2.3.1</span> Good-Turing Estimate</h4>
+</div>
+
+<div id="outline-container-org9bc5163" class="outline-4">
+<h4 id="org9bc5163"><span class="section-number-4">2.3.2</span> Zipf 定律 (Zipf's Law)</h4>
+</div>
+
+<div id="outline-container-orgc8aabbe" class="outline-4">
+<h4 id="orgc8aabbe"><span class="section-number-4">2.3.3</span> 卡茨退避法 (Katz backoff)</h4>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf395a7f" class="outline-2">
+<h2 id="orgf395a7f"><span class="section-number-2">3</span> <span class="todo TODO">TODO</span> 马尔可夫链<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>和隐含马尔可夫模型</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+马尔可夫链
+</p>
+</div>
+
+<div id="outline-container-orge360d1e" class="outline-3">
+<h3 id="orge360d1e"><span class="section-number-3">3.1</span> 马尔可夫链</h3>
+</div>
+
+<div id="outline-container-org7e5889f" class="outline-3">
+<h3 id="org7e5889f"><span class="section-number-3">3.2</span> 隐含马尔可夫模型</h3>
+</div>
+</div>
+
+<div id="outline-container-org2713dba" class="outline-2">
+<h2 id="org2713dba"><span class="section-number-2">4</span> 信息的度量</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orga83d908" class="outline-3">
+<h3 id="orga83d908"><span class="section-number-3">4.1</span> 香农信息熵 (Entropy)</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+信息熵（Entropy）用于度量信息的不确定性。信息熵由如下公式定义：
+</p>
+
+\begin{equation}
+H(X)=-\sum\limits_{x\in X}P(x)logP(x)
+\end{equation}
+</div>
+</div>
+
+<div id="outline-container-org5e884ca" class="outline-3">
+<h3 id="org5e884ca"><span class="section-number-3">4.2</span> 条件熵 (Conditional Entropy)</h3>
+<div class="outline-text-3" id="text-4-2">
+\begin{equation}
+H(X|Y) = -\sum\limits_{x\in X,y\in Y}P(x,y)logP(x|y)
+\end{equation}
+</div>
+</div>
+
+<div id="outline-container-orgd8db9bc" class="outline-3">
+<h3 id="orgd8db9bc"><span class="section-number-3">4.3</span> 不等式</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+可以证明如下不等式成立：
+</p>
+
+<p>
+\[H(X) \ge H(X|Y)\]
+</p>
+
+<p>
+该不等式表明，多了 Y 的信息后，关于 X 的不确定性下降了！如果 Y 和 X 无关，则等号成立。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd84983a" class="outline-3">
+<h3 id="orgd84983a"><span class="section-number-3">4.4</span> 互信息 (Mutual Information)</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+假定两个随机事件 X 和 Y ，他们的互信息定义如下：
+</p>
+
+<p>
+\[I(X;Y) = \sum\limits_{x\in x,y\in Y}P(x,y)log\frac{P(x,y)}{P(x)P(y)}\]
+</p>
+
+<p>
+互信息实际上就是随机事件 X 的熵和 已知 Y 条件下的条件熵的差异：
+</p>
+
+<p>
+\[I(X;Y) = H(X) - H(X|Y)\]
+</p>
+
+<p>
+\[I(X;Y) \in [0, min(H(X), H(Y))]\]
+</p>
+
+<p>
+当 X 和 Y 完全相关时：\(I(X;Y) = H(X)\) 且 \(H(X) = H(Y)\)
+</p>
+
+<p>
+在自然语言处理中，两个随机事件，或者语言特征的互信息是很容易计算的。只要有足够的语料，就不难估算互信息公式中的 P(X,Y) ，P(X) 和 P(Y) 三个概率，进而计算互信息。使用互信息可以很简单且有效的解决机器翻译中词义的二义性 (Ambiguation) 问题。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6ca3e3c" class="outline-3">
+<h3 id="org6ca3e3c"><span class="section-number-3">4.5</span> 相对熵（Relative Entropy）</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+相对熵有时又成为交叉熵，用于衡量相关性，不同于互信息，相对熵用于衡量两个取值为正数的函数的相似性，它的定义如下：
+</p>
+
+<p>
+\[KL(f(x)||g(x)) = \sum\limits_{x\in X}f(x)log\frac{f(x)}{g(x)}\]
+</p>
+
+<p>
+相对熵的三条结论：
+</p>
+<ol class="org-ol">
+<li>对于两个完全相同的函数，他们的相对熵等于零。</li>
+<li>相对熵越大，两个函数差异越大；反之，相对熵越小，两个函数差异越小。</li>
+<li>对于概率分布或者概率密度函数，如果取值均大于零，相对熵可以度量两个随机分布的差异性。</li>
+</ol>
+
+<p>
+需要注意的是，相对熵是不对称的，即
+</p>
+
+<p>
+\[KL(f(x)||g(x)) \neq KL(g(x)||f(x))\]
+</p>
+
+<p>
+相对熵在自然语言处理中的应用：
+</p>
+<ul class="org-ul">
+<li>衡量两个常用词在不同文本中的概率分布，看他们是否同义。</li>
+<li>利用相对熵还可以得到信息检索中最重要的一个概念：词频率-逆向文档频率 (TF-IDF)。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org16c21f5" class="outline-3">
+<h3 id="org16c21f5"><span class="section-number-3">4.6</span> 信息熵在语言模型中的应用</h3>
+</div>
+</div>
+
+<div id="outline-container-org65f9ab6" class="outline-2">
+<h2 id="org65f9ab6"><span class="section-number-2">5</span> <span class="todo TODO">TODO</span> 搜索引擎技术</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+搜索引擎工作原理其实非常简单，建立一个搜索引擎需要做几件事：
+</p>
+<ul class="org-ul">
+<li>自动下载尽可能多的网页；</li>
+<li>建立快速有效的索引；</li>
+<li>根据相关性对网页进行公平准确的排序；</li>
+</ul>
+
+<p>
+搜索产品可以提炼成下载、索引和排序这三种基本的服务。
+</p>
+</div>
+
+<div id="outline-container-orgee47d93" class="outline-3">
+<h3 id="orgee47d93"><span class="section-number-3">5.1</span> 布尔代数</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+布尔运算是针对二进制的简单运算，简单且快速。
+</p>
+
+<p>
+搜索引擎本质上是在基于索引和关键字做简单的布尔运算。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf47b434" class="outline-3">
+<h3 id="orgf47b434"><span class="section-number-3">5.2</span> 索引</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+最简单的索引结构是用一个很长的二进制数表示一个关键字是否出现在每篇文献中。有多少文献，就有多少位数，每一位对应一片文献，1 代表相应的文献有这个关键字，0 代表没有。当然，由于这个二进制数中的绝大多数位数都是零，因此只需要记录那些等于 1 的位数即可。于是，搜索引擎的索引就是一张大表：表的每一行对应一个关键词，而每一个关键词后面跟着一组数字，是包含该关键词的文献序号。
+</p>
+
+<p>
+搜索引擎会多所有词进行索引，这在工程上极具挑战性 - 数量巨大：
+</p>
+
+<p>
+假设互联网网页的数量级是 100 亿 ($10<sub>10</sub>) 个，词汇的大小是 30 万，那么这个索引的大小就是 100 亿 * 30 万 = 3，000 万亿的级别，就算是考虑到压缩，也在 30 万亿级别。这还不包含需要存储的额外信息。
+</p>
+
+<p>
+解决的方案：
+</p>
+<ul class="org-ul">
+<li>将索引分成很多份 (Shards) 分别存储在不同的服务器上，查询任务也被分发到众多服务器上并行处理，并吧结果合并处理返回给客户。</li>
+<li>根据网页的重要性、质量和访问的频率建立常用和不常用等不同级别的索引等以降低对资源的要求。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org19694cc" class="outline-3">
+<h3 id="org19694cc"><span class="section-number-3">5.3</span> 图论和网络爬虫</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+网络爬虫实质上就是运用图论中的遍历 (Traverse) 算法下载整个互联网。挑战在于如何快速有效的下载整个互联网。
+</p>
+</div>
+
+<div id="outline-container-org631cb34" class="outline-4">
+<h4 id="org631cb34"><span class="section-number-4">5.3.1</span> 图论</h4>
+</div>
+
+<div id="outline-container-orgaad761b" class="outline-4">
+<h4 id="orgaad761b"><span class="section-number-4">5.3.2</span> 构建网络爬虫的工程要点</h4>
+<div class="outline-text-4" id="text-5-3-2">
+<ul class="org-ul">
+<li>BFS 还是 DFS ?
+<ul class="org-ul">
+<li>任务调度系统 (Scheduler) 需要考虑网页的重要性以及下载效率等因素以排定优先级。</li>
+<li>整体而言，工程上，BFS 成分多一些。</li>
+</ul></li>
+<li>页面的分析和 URL 的提取 - 主要是现代网页大量使用脚本语言 (JavaScript) 且很多不规范，需要能够成功的解析和运行这些脚本才能够找到其中的 URL。</li>
+<li>防止网页重复下载 - 采用散列表存储已经下载的网页，但需要维护高效的散列表以消除性能瓶颈。
+<ul class="org-ul">
+<li>明确每台下载服务器分工 - 根据 URL 分工，避免过多的判重。</li>
+<li>在明确分工基础上，对 URL 判重做批量处理。</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgeb031bb" class="outline-3">
+<h3 id="orgeb031bb"><span class="section-number-3">5.4</span> Google PageRank</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+对于特定的查询，搜索结果的排名主要取决于两组信息：关于网页的质量信息 (Quality)；以及这个查询与网页内容的相关性信息 (Relevance)。PageRank 算法是衡量网页质量的算法。
+</p>
+
+<p>
+PageRank 的核心思想：
+</p>
+<ul class="org-ul">
+<li>如果一个网页被很多其他网页所链接，说明它受到普遍的承认和信赖，那么它的排名就高。</li>
+<li>网页排名高的网站贡献的链接权重大。</li>
+</ul>
+
+<p>
+这个算法要解决两个难题：
+</p>
+<ul class="org-ul">
+<li>计算网页排名的过程中需要用到网页本身的排名，通过把该问题转变成一个二维矩阵相乘，假设初始排名相同，采用迭代的方式收敛至真实排名来解决该问题，理论上可以证明无论初始值如何选择，算法都能保证网页皮阿明的估计值能够收敛到排名的真实值。</li>
+<li>工程实现上，二维矩阵具有上百亿亿的量级，计算量巨大，PageRank 算法利用稀疏矩阵计算技巧解决该工程问题。</li>
+</ul>
+</div>
+
+<div id="outline-container-org29fa38e" class="outline-4">
+<h4 id="org29fa38e"><span class="section-number-4">5.4.1</span> PageRank 计算方法</h4>
+<div class="outline-text-4" id="text-5-4-1">
+<p>
+假定向量
+</p>
+
+\begin{equation}
+B = (b_{1},b_{2}, \cdots ,b_{N})^{T}
+\end{equation}
+
+<p>
+为 N 个网页的排名。矩阵
+</p>
+
+\begin{equation}
+A = \\
+\begin{bmatrix}
+a_{11}&\cdots&a_{1n}&\cdots&a_{1M}\\
+\cdots& & & &\cdots\\
+a_{m1}&\cdots&a_{mn}&\cdots&a_{mM}\\
+\cdots& & & &\cdots\\
+a_{M1}&\cdots&a_{Mn}&\cdots&a_{MM}
+\end{bmatrix}
+\end{equation}
+
+<p>
+为网页之间的链接数目，其中 \(a_{mn}\) 代表地 m 个网页指向第 n 个网页的链接数。A 是已知，B 未知，是我们要计算的。
+</p>
+
+<p>
+假定 \(B_{i}\) 是第 i 次迭代的结果，那么
+</p>
+
+\begin{equation}
+B_{i} = A \cdot B_{i-1}
+\end{equation}
+
+<p>
+初始假设：所有网页排名均为 1/N，即
+</p>
+
+<p>
+\[B_{0} = \left(\frac{1}{N},\frac{1}{N},\cdots,\frac{1}{N}\right)\]
+</p>
+
+<p>
+每次迭代，均可以计算出一个 \(B_{i}\) ，可以证明 \(B_{i}\) 最终会收敛于 B，此时：
+</p>
+
+<p>
+\[B = B \times A\]
+</p>
+
+<p>
+因此，当两次迭代的结果 \(B_{i}\) 和 \(B_{i-1}\) 之间的差异非常小，接近于零时，停止迭代运算，算法结束，一般而言，只要 10 次左右的迭代基本上就收敛了。
+</p>
+
+<p>
+由于网页之间的链接数量相对于互联网的规模来说非常稀疏，因此计算网页的排名也需要对零概率或者小概率事件进行平滑处理。网页排名是一个一维向量，对它的平滑处理智能利用一个小的常数 \(\alpha\) 。
+</p>
+
+\begin{equation}
+B_{i} = \left[\frac{\alpha}{N} \cdot I + (1 - \alpha)A\right] \cdot B_{i-1}
+\end{equation}
+
+<p>
+其中 \(N\) 是互联网网页的数量，\(\alpha\) 是一个（较小的）常数，\(I\) 是单位矩阵。
+</p>
+
+<p>
+网页排名的计算主要是矩阵的相乘，这种计算很容易分解成许多小任务，在多台计算机上并行处理。例如，可以利用 Google 并行计算工具 MapReduce 进行并行计算。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5f18682" class="outline-3">
+<h3 id="org5f18682"><span class="section-number-3">5.5</span> 如何确定网页和查询的相关性</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+今天，由于商业搜索引擎已经有了大量的用户点击数据，因此，对搜索相关性贡献最大的根据用户对常见搜索点击网页的结果得到的概率模型。
+</p>
+
+<p>
+对于影响搜索引擎质量的诸多因素，除了用户点击数据以外，可以归纳为如下四大类：
+</p>
+
+<ol class="org-ol">
+<li>完备的索引。</li>
+<li>对网页质量的度量，比如 PageRank 就是解决这个问题的算法。</li>
+<li>用户偏好。</li>
+<li>确定网页和某个查询的相关性。</li>
+</ol>
+</div>
+
+<div id="outline-container-orge63912f" class="outline-4">
+<h4 id="orge63912f"><span class="section-number-4">5.5.1</span> TF-IDF</h4>
+<div class="outline-text-4" id="text-5-5-1">
+<p>
+TF-IDF 是搜索关键词权重的科学度量。
+</p>
+
+<p>
+TF (Term Frequency / 单文本词频) 是关键词在文本中出现的次数除以文本总字数的商。度量网页和查询的相关性，一个简单的方法，就是直接使用各个关键词在网页中出现的总词频。如，一个查询短语包含 N 个关键词 \(w_{1}, w_{2}, \cdots, w_{N}\) ，它们在一个特定网页中的词频分别是： \(TF_{1}, TF_{2}, \cdots, TF_{N}\) 。那么，这个查询和该网页的相关性就是：
+</p>
+
+\begin{equation}
+TF_{1} + TF_{2} + \cdots + TF_{N}
+\end{equation}
+
+<p>
+这里假设每个词权重相同，但实际上，每个词对网页主题的贡献不同，例如，汉语中，“的”、“是” 等常用词，词频很高，但对主题几乎没有什么贡献，这些词称之为停止词 (Stop Word) 。更好的方法是为不同的关键词分配不同的权重。权重的设置满足如下条件：
+</p>
+<ol class="org-ol">
+<li>一个词预测主题的能力越强，权重越大，反之，权重越小。</li>
+<li>停止词的权重为零。</li>
+</ol>
+
+<p>
+在信息检索中，使用最多的权重是 IDF (Inverse Document Frequency / 逆文本频率指数)，IDF 的定义如下：
+</p>
+
+\begin{equation}
+IDF = log \left(\frac{D}{D_{w}} \right)
+\end{equation}
+
+<p>
+其中，D 是全部网页数量，\(D_{w}\) 是全部网页中，出现关键词 w 的网页数。
+</p>
+
+<p>
+结合 TF 和 IDF ，度量网页和查询相关性的公式就是变成了关键词加权和
+</p>
+
+\begin{equation}
+TF_{1} \cdot IDF_{1} + TF_{2} \cdot IDF_{2} + \cdots + TF_{N} \cdot IDF_{N}
+\end{equation}
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8b9d100" class="outline-3">
+<h3 id="org8b9d100"><span class="section-number-3">5.6</span> <span class="todo TODO">TODO</span> 搜索结果权威性</h3>
+<div class="outline-text-3" id="text-5-6">
+<p>
+互联网上的内容众多，但很多内容并不可靠，PageRank 算法和网页相关性算法并不能解决内容权威性问题。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga140901" class="outline-3">
+<h3 id="orga140901"><span class="section-number-3">5.7</span> 小结</h3>
+<div class="outline-text-3" id="text-5-7">
+<p>
+有了如何下载网页、建立索引和计算度量网页质量的 PageRank 算法以及计算度量查询和网页相关性的 TF-IDF 算法，就可以搭建一个简单的搜素引擎了。就今天而言（2019 年 1 月），商业搜索引擎通过运营积累下来的用户点击数据，能够产生更好的网页质量和查询网页相关性模型，从而获得更好的网页排名。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb792d47" class="outline-2">
+<h2 id="orgb792d47"><span class="section-number-2">6</span> 有限状态机和动态规划</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+有限状态机和动态规划是地图和本地搜索的核心技术。智能手机的定位导航功能，有三项关键技术。
+</p>
+
+<ol class="org-ol">
+<li>利用卫星定位。</li>
+<li>地址的识别。</li>
+<li>根据用户输入的起点和终点，在地图上规划最短路线或者最快路线。</li>
+</ol>
+</div>
+
+<div id="outline-container-org233c312" class="outline-3">
+<h3 id="org233c312"><span class="section-number-3">6.1</span> 地址分析和有限状态机</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+地址的文法分析是上下文有关文法中相对简单的一种，因此有许多识别和分析方法，但最有效的是有限状态机。使用有限状态机识别地址，关键是要解决两个问题：
+</p>
+
+<ol class="org-ol">
+<li>通过一些有效的地址建立状态机；</li>
+<li>既定一个有效状态机，地址字串的匹配算法；</li>
+</ol>
+
+<p>
+有了有限状态机后，就可以用它分析网页，找出网页中的地址部分，建立本地搜索的数据库。同样，也可以对用户输入的查询进行分析，挑出描述地址的部分。
+</p>
+
+<p>
+为了解决地址不标准以及错别字问题，需要进行模糊匹配，并给出一个字串为正确地址的可能性，科学家们提出了基于概率的有限状态机。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2c715dc" class="outline-3">
+<h3 id="org2c715dc"><span class="section-number-3">6.2</span> 导航和动态规划</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+全球导航的关键算法是计算机科学图论中的动态规划 (Dynamic Programming) 算法。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga50ac17" class="outline-3">
+<h3 id="orga50ac17"><span class="section-number-3">6.3</span> FST<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> and WFST<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup> Library</h3>
+<div class="outline-text-3" id="text-6-3">
+</div>
+<div id="outline-container-org44b7b89" class="outline-4">
+<h4 id="org44b7b89"><span class="section-number-4">6.3.1</span> AT&amp;T FSM Library</h4>
+<div class="outline-text-4" id="text-6-3-1">
+<p>
+The FSM library was developed by Mehryar Mohri, Fernando Peirera and Michael Riley when the authors were working at AT&amp;T Labs - Research External site. The library is available as binaries only for non-commercial use.
+</p>
+
+<p>
+The FSM library and the <a href="http://www.openfst.org/twiki/bin/view/FST/WebHome">OpenFst</a> library share the same textual representation.
+</p>
+
+<p>
+项目已经关闭，建议使用 <a href="http://www.openfst.org/twiki/bin/view/FST/WebHome">OpenFst</a> library。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgda58fcc" class="outline-4">
+<h4 id="orgda58fcc"><span class="section-number-4">6.3.2</span> OpenFst<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup> Library</h4>
+<div class="outline-text-4" id="text-6-3-2">
+<p>
+<a href="http://www.openfst.org/twiki/bin/view/FST/WebHome">OpenFst</a> is a library for constructing, combining, optimizing, and searching weighted finite-state transducers (FSTs). Weighted finite-state transducers are automata where each transition has an input label, an output label, and a weight. The more familiar finite-state acceptor is represented as a transducer with each transition's input and output label equal. Finite-state acceptors are used to represent sets of strings (specifically, regular or rational sets); finite-state transducers are used to represent binary relations between pairs of strings (specifically, rational transductions). The weights can be used to represent the cost of taking a particular transition.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc0f877b" class="outline-2">
+<h2 id="orgc0f877b"><span class="section-number-2">7</span> 余弦定理和新闻分类</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+计算机并不能读懂新闻，而是新闻变成一组可以计算的数字 (向量)，然后再设计算法来计算任意两篇新闻（或者任意两段文本）之间的相似性。
+</p>
+</div>
+
+<div id="outline-container-org5dc4b83" class="outline-3">
+<h3 id="org5dc4b83"><span class="section-number-3">7.1</span> 新闻的特征向量</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+新闻由词构成，相同的新闻用词类似，不同的新闻用词个不相同。虚词（如得、地、的）对主题贡献不大，实词更加重要。新闻的特征向量 (Feature Vector) 就是将一篇新闻中的所有实词，计算出他们的 TF-IDF 值，并按照词汇表的位置依次排列，就得到一个描述新闻的特征向量。
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">单词编号</td>
+<td class="org-right">TF-IDF 值</td>
+<td class="org-left">汉字词</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-left">阿</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">0.0034</td>
+<td class="org-left">啊</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-right">0</td>
+<td class="org-left">阿斗</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-right">0.00052</td>
+<td class="org-left">阿姨</td>
+</tr>
+
+<tr>
+<td class="org-right">&#x2026;</td>
+<td class="org-right">&#x2026;</td>
+<td class="org-left">&#x2026;</td>
+</tr>
+
+<tr>
+<td class="org-right">789</td>
+<td class="org-right">0.034</td>
+<td class="org-left">服装</td>
+</tr>
+
+<tr>
+<td class="org-right">&#x2026;</td>
+<td class="org-right">&#x2026;</td>
+<td class="org-left">&#x2026;</td>
+</tr>
+
+<tr>
+<td class="org-right">64000</td>
+<td class="org-right">0.075</td>
+<td class="org-left">做作</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+假定词汇表的数量是 N ，则每篇新闻都可以表示为一个 N 维的向量。有了新闻的特征向量，计算机就可以计算出新闻的形似程度。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2a0368c" class="outline-3">
+<h3 id="org2a0368c"><span class="section-number-3">7.2</span> 向量距离的度量</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+向量的夹角是衡量两个向量距离的度量。而要计算两个向量的夹角，则需要用到余弦定理。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9c5520c" class="outline-2">
+<h2 id="org9c5520c"><span class="section-number-2">8</span> 信息指纹及其应用</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-org5876f3e" class="outline-3">
+<h3 id="org5876f3e"><span class="section-number-3">8.1</span> 信息指纹</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+任何一段信息都可以对应一个不太长的随机数，作为区分两端信息的指纹。常用的信息指纹算法有 <code>MD5</code> ，以及 <code>SHA-1</code> 。
+</p>
+
+<p>
+信息指纹可用于：
+</p>
+<ul class="org-ul">
+<li>集合相同的判定；</li>
+<li>判定集合基本相同 - 例如通过对比部分关键信息的指纹，相似哈希算法可用于这个目的；</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaa56670" class="outline-3">
+<h3 id="orgaa56670"><span class="section-number-3">8.2</span> 相似哈希 (Simhash)</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+相似哈希是一种特殊的信息指纹，是 Moses Charikar<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup> 在 2002 年提出，Google 在网页爬虫中使用了该方法并把结果发表在 WWW <sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup> 会议上。相似哈希的特点是，如果两段信息的形似哈希相差越小，这段信息的形似性就越高。如果它们的形似哈希相同，则它们必定相同。如果只有少数权重小的词不同，其余词都相同，几乎可以肯定它们的相似哈希也会相同。
+</p>
+
+<p>
+相似哈希不仅可以用于判定两个网页的形似行，也可以适用于其他类似场景，如视频匹配。视频匹配的两个核心技术是关键帧提取和特征提取。关键帧对于视频的重要性就如同主题词对于新闻的重要性一样，处理视频首先是要找到关键帧，接下来就是要用一组信息指纹来表示这些关键帧，有了这些信息指纹以后，视频匹配就类似于比较两个集合元素是否相同了。这种算法可以被用于解决视频盗版问题。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge06ee79" class="outline-3">
+<h3 id="orge06ee79"><span class="section-number-3">8.3</span> 读者扩展</h3>
+</div>
+</div>
+
+<div id="outline-container-org5b75cc2" class="outline-2">
+<h2 id="org5b75cc2"><span class="section-number-2">9</span> <span class="todo TODO">TODO</span> 最大熵模型</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+最大熵原理指出，对于一个随机事件的概率分布进行预测时，我们的预测应当满足全部已知条件，而对于未知的情况不做任何主观假设。在这种情况下，概率分布最均匀，预测的风险最小。由于这个概率分布的信息熵最大，人们把这种模型叫做”最大熵模型”。
+</p>
+
+<p>
+最大熵模型应用广泛：
+</p>
+<ul class="org-ul">
+<li>自然语言处理，如词性标注、句法分析、语言模型和机器翻译等；</li>
+<li>网页的排序；</li>
+<li>证劵自动化交易等；</li>
+</ul>
+
+<p>
+假定搜索网页排序需要考虑 20 种特征，\(\{x_1,x_2, \cdots ,x_{20}\}\) , 待排序网页是 \(d\) ，那么：
+</p>
+
+\begin{equation}
+P(d|x_1,x_2, \cdots ,x_{20}) 
+= \frac{1}{Z(x_1,x_2, \cdots ,x_{20})} e^{ \lambda_{1}(x_{1},d) + \lambda_{2}(x_{2},d) + \cdots + \lambda_{20}(x_{20},d) }
+\end{equation}
+
+<p>
+归一化因子：
+</p>
+\begin{equation}
+Z(x_{1},x_{2}, \cdots ,x_{20}) = 
+\sum\limits_{d} e^{\lambda_{1}(x_{1},d)+\lambda_{2}(x_{2},d)+ \cdots + \lambda_{20}(x_{20},d)}
+\end{equation}
+</div>
+
+<div id="outline-container-orge65c3cb" class="outline-3">
+<h3 id="orge65c3cb"><span class="section-number-3">9.1</span> 最大熵模型的训练算法</h3>
+<div class="outline-text-3" id="text-9-1">
+</div>
+<div id="outline-container-org8baa05e" class="outline-4">
+<h4 id="org8baa05e"><span class="section-number-4">9.1.1</span> GIS<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup></h4>
+</div>
+<div id="outline-container-org390c296" class="outline-4">
+<h4 id="org390c296"><span class="section-number-4">9.1.2</span> IIS<sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup></h4>
+</div>
+<div id="outline-container-orgbb19c1d" class="outline-4">
+<h4 id="orgbb19c1d"><span class="section-number-4">9.1.3</span> WuJun<sup><a id="fnr.9" class="footref" href="#fn.9">9</a></sup></h4>
+</div>
+</div>
+
+<div id="outline-container-orge585880" class="outline-3">
+<h3 id="orge585880"><span class="section-number-3">9.2</span> 小结</h3>
+<div class="outline-text-3" id="text-9-2">
+<p>
+最大熵模型可以将各种信息整合到一个统一的模型中。它有很多良好的特性：从形式上看，它非常简单，非常优美；从效果上看，它是唯一一种既能满足各个信息源的限制条件，又能保证平滑性 (Smooth) 的模型。其应用十分广泛，但计算量巨大。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcbb6e18" class="outline-3">
+<h3 id="orgcbb6e18"><span class="section-number-3">9.3</span> <span class="todo TODO">TODO</span> 读者扩展</h3>
+</div>
+</div>
+
+<div id="outline-container-orga52bb34" class="outline-2">
+<h2 id="orga52bb34"><span class="section-number-2">10</span> 拼音输入法的数学原理</h2>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+马尔可夫链，<a href="https://zh.wikipedia.org/wiki/%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E9%93%BE">https://zh.wikipedia.org/wiki/马尔可夫链</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+FST ,<a href="https://en.wikipedia.org/wiki/Finite-state_transducer">https://en.wikipedia.org/wiki/Finite-state_transducer</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+WFST Algorithms, <a href="http://www.gavo.t.u-tokyo.ac.jp/~novakj/wfst-algorithms.pdf">http://www.gavo.t.u-tokyo.ac.jp/~novakj/wfst-algorithms.pdf</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+OpenFst, <a href="http://www.openfst.org/twiki/bin/view/FST/WebHome">http://www.openfst.org/twiki/bin/view/FST/WebHome</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
+Moses Charikar, Similarity Estimation Techniques from Rounding Algorithms, Proceedings of the 34th Annual ACM Symposium on Theory of Computing, 2002.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara"><p class="footpara">
+Gurmeet Singh Manku, Arvind Jain and Anish Das Sarma, Detecting Near-Duplicates for Web Crawling, WWW2007, 2007.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7">7</a></sup> <div class="footpara"><p class="footpara">
+Csiszar, I. A Geometric Interpretation of Darroch and Ratcliff's Generalized Iterative Scaling. The Annals of Statistics. Vol. 17, No.3, pp.1409-1413. 1989.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8">8</a></sup> <div class="footpara"><p class="footpara">
+Della Pietra, S., Della Pietra, V. &amp;Lafferty, J. Inducing Features of Random Fields, IEEETrans. On Pattern Analysis and Machine Intelligence. vol.19, No.4, pp280-393, 1997
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.9" class="footnum" href="#fnr.9">9</a></sup> <div class="footpara"><p class="footpara">
+Wu, J, Maximum entropy language modeling with non-local dependencies, Ph.D dissertation, www.cs.jhu.edu/~junwu/publications/dissertation.pdf,2002.
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2019-01-01</p>
+<p class="author">Author: Junahan</p>
+<p class="date">Created: 2019-01-20 Sun 15:31</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

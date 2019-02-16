@@ -1,0 +1,54 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              Docker 概述
+#+AUTHOR:             Junahan
+#+EMAIL:              junahan@outlook.com 
+#+DATE:               2019-02-6
+#+LANGUAGE:           CN
+#+OPTIONS:            H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:            TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:         view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:            CC BY 4.0
+
+#+BEGIN_QUOTE
+原文：[[https://docs.docker-cn.com/engine/docker-overview/][Docker Overview]] (来自 Docker 官网)
+
+译者：Junahan (junahan@outlook.com)
+#+END_QUOTE
+
+* 摘要
+Docker 是一个开发、交付、运行应用的开放平台。
+
+* Docker 平台
+
+* Docker 引擎
+
+* 能够使用 Docker 做什么？
+
+* Docker 架构
+
+** Docker 守护进程 (daemon)
+
+** Docker 客户端 
+
+** Docker 注册中心
+
+** Docker 对象
+
+* 底层技术
+Docker 使用 Go 语言写成，借助于 Linux 内核的一些特性实现其功能。
+
+** 命名空间 (Namespaces)
+
+** 控制组 (Control groups)
+
+** 统一文件系统 (Union file systems)
+
+** 容器格式 (Container format)
+Docker 引擎组合包装命名空间、控制组、和统一文件系统为容器格式。默认容器格式是 =libcontainer= 。将来，Docker 也会通过整合如 BSD Jails 或者 Solaris Zones 技术而支持其他容器格式。
+
+* 进阶
+- 阅读 [[https://docs.docker-cn.com/engine/installation/#installation][安装 Docker 引擎]]
+- 动手实践，请阅读 [[Get Started With Docker][开始 Docker 指南]]
+- 获取例子和深入主题，请阅读 [[https://docs.docker-cn.com/engine/userguide/][Docker 引擎用户手册]]
+
+

@@ -1,24 +1,69 @@
 # -*- mode: org; coding: utf-8; -*-
-#+TITLE:              Kubernetes 101
+#+TITLE:          Kubernetes 101
 #+AUTHOR:         Junahan
-#+EMAIL:             junahan@outlook.com 
-#+DATE:              2018-07-08
-#+LANGUAGE:    CN
+#+EMAIL:          junahan@outlook.com 
+#+DATE:           2018-07-08
+#+LANGUAGE:       CN
 #+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
-#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
-#+LICENSE:         CC BY 4.0
+#+INFOJS_OPT:     view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:        CC BY 4.0
 
 * 摘要
-** Kubernates 是什么
-Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.
+[[https://kubernetes.io][Kubernetes]] is an open-source system for automating deployment, scaling, and management of containerized applications.
 
-** 为什么使用 Kubernates
+* 安装和配置 Minikube
+** 安装 Minikube
+在终端上运行如下命令安装 Minikube (v0.31.0).
+#+BEGIN_SRC shell
+brew cask install minikube
+#+END_SRC
 
-** 问题和限制
+** 安装 Hyperkit
+这里使用 Hyperkit driver. 运行如下命令安装 =docker-machine-driver-hyperkit= (v1.0.0)
+#+BEGIN_SRC shell
+brew install docker-machine-driver-hyperkit
+#+END_SRC
 
-* 安装和配置Minikube
+** 启动 Minikube
+运行如下命令启动 Minikube:
+#+BEGIN_SRC shell
+minikube start --logtostderr --v=3 --vm-driver=hyperkit
+#+END_SRC
+
+该命令启动 Minikube 并打印详细的日志至控制台以便于对启动过程进行详细的了解。一旦成功启动后，再次启动，只需要运行 =minikube start= 命令即可。
+
+** 配置 Minikube 使用 Proxy
+#+BEGIN_SRC
+$ minikube start --docker-env=HTTP_PROXY=http://$YOURPROXY:PORT \
+                 --docker-env=HTTPS_PROXY=https://$YOURPROXY:PORT
+#+END_SRC
+
+* Helm[fn:2]
+[[https://github.com/helm/helm][Helm]] - The Kubernetes Package Manager.
+Helm is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes resources.
+
+Use Helm to:
+- Find and use popular software packaged as Helm charts to run in Kubernetes
+- Share your own applications as Helm charts
+- Create reproducible builds of your Kubernetes applications
+- Intelligently manage your Kubernetes manifest files
+- Manage releases of Helm packages
+
+* Knative[fn:1]
+Kubernetes-based platform to build, deploy, and manage modern serverless workloads.
+
+* 值得关注的项目
+- Spark k8s Operator - https://github.com/GoogleCloudPlatform/spark-on-k8s-operator
 
 * 参考文献
 1. Kubernates Home, https://kubernetes.io.
 11. Kubernetes 中文指南, https://jimmysong.io/kubernetes-handbook/, By Jimmy Song
+13. Minikube with hyperkit,https://blog.arkey.fr/2018/06/18/minikube-with-hyperkit/
+
+* Footnotes
+
+[fn:2] Helm - https://github.com/helm/helm
+
+[fn:1] Knative github - https://github.com/knative/.
+

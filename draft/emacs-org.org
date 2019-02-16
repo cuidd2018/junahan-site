@@ -1,0 +1,22 @@
+#+title:                  Emacs Org Model
+#+author:                 Junahan
+#+email:                  junahan@outlook.com
+#+date:                   2019-01-31
+#+hugo_base_dir:          ../
+#+hugo_auto_set_lastmod:  t
+#+hugo_tags:              Emacs org-mode
+#+hugo_categories:        Emacs "Emacs Org"
+#+hugo_draft:             true
+#+language:               cn
+#+options:                H:3 num:nil toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+options:                TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+infojs_opt:             view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+license:                CC BY 4.0
+
+* 摘要
+
+* Org Agenda
+
+** 阅读参考
+- [[https://blog.csdn.net/u014801157/article/details/24372485][熟练使用 org-mode 管理日常事务]] - by [[https://blog.csdn.net/u014801157/article/details/24372485][金子哦]]。
+

@@ -1,0 +1,21 @@
+#+title:                  ORK - Objectives and Key Results
+#+author:                 Junahan
+#+email:                  junahan@outlook.com
+#+date:                   2018-11-19
+#+hugo_base_dir:          ../
+#+hugo_auto_set_lastmod:  t
+#+hugo_tags:              Web Mobile
+#+hugo_categories:        Web
+#+keywords:               web mobile
+#+hugo_draft:             true
+#+language:               cn
+#+options:                H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+options:                TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+infojs_opt:             view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+license:                CC BY 4.0
+
+* 摘要
+
+* 阅读列表
+- [[https://felipecastro.com/resource/The-Beginners-Guide-to-OKR.pdf][The Beginners Guide to OKR]] by Felipe Castro.
+

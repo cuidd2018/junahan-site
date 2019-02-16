@@ -11,76 +11,18 @@
 
 * 简介
 
-* Homebrew
-** Install Homebrew
-在终端运行如下命令安装 Homebrew。
-#+BEGIN_SRC 
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-#+END_SRC
+* Fescar[fn:1]
+阿里开源的分布式事物解决方案。
 
-** 配置 HOMEBREW 国内 MIRROR
-*** 替换现有上游
-#+BEGIN_SRC sh
-cd "$(brew --repo)"
-git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git
-cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
-git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
-brew update
-#+END_SRC
-
-*** 使用 homebrew-science 或者 homebrew-python
-#+BEGIN_SRC sh
-cd "$(brew --repo)/Library/Taps/homebrew/homebrew-science"
-git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-science.git
-cd "$(brew --repo)/Library/Taps/homebrew/homebrew-python"
-git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-python.git
-brew update
-#+END_SRC
-
-*** Homebrew-bottles 镜像
-#+BEGIN_SRC sh
-echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles' >> ~/.bash_profile
-source ~/.bash_profile
-#+END_SRC
+* Knative[fn:2]
+Kubernetes-based platform to build, deploy, and manage modern serverless workloads.
 
 
-* SDKMan
-#+BEGIN_SRC shell
-$ curl -s "https://get.sdkman.io" | bash
-#+END_SRC
+* Big Data
+- awesome-bigdata - https://github.com/onurakpolat/awesome-bigdata
 
-* Docker
-** 安装
-#+BEGIN_SRC shell
-brew cask install docker
-#+END_SRC
+* Footnotes
 
-** 配置使用国内 Registry
-修改 =/etc/docker/daemon.json= 配置文件，添加如下配置。修改完毕后，运行 =docker deamon= 重新启动守护进程。
-#+BEGIN_SRC 
-{
-  "registry-mirrors": ["https://registry.docker-cn.com"]
-}
-#+END_SRC
+[fn:2] Knative github - https://github.com/knative
 
-
-* Python
-
-* Maven
-
-* Gradle
-#+BEGIN_SRC shell
-brew install gradle bash-completion gradle-completion
-
-# Source completion scripts from bash-completion in your bash profile
-echo '[ -f $(brew --prefix)/etc/bash_completion ] && . $(brew --prefix)/etc/bash_completion' >> ~/.bash_profile
-
-# Load changes to bash profile
-source ~/.bash_profile
-#+END_SRC
-
-* 参考文献
-1. Homebrew Home, https://brew.sh.
-3. SDKMan Home, http://sdkman.io.
-5. Dokder Document, https://docs.docker.com.
-
+[fn:1] Fescar github - https://github.com/alibaba/fescar

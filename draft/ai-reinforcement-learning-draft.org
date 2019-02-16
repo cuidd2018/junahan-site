@@ -1,13 +1,19 @@
 # -*- mode: org; coding: utf-8; -*-
-#+TITLE:              Reinforcement Learning - MISC
-#+AUTHOR:         Junahan
-#+EMAIL:             junahan@outlook.com
-#+DATE:              2018-05-11
-#+LANGUAGE:    CN
-#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
-#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
-#+LICENSE:         CC BY 4.0
+#+TITLE:                      AI - Reinforcement Learning
+#+AUTHOR:                     Junahan
+#+EMAIL:                      junahan@outlook.com
+#+DATE:                       2018-05-11
+#+hugo_base_dir:              ../
+#+hugo_auto_set_lastmod:      t
+#+hugo_tags:                  AI "Reinforcement Learning" 深度学习 增强学习
+#+hugo_categories:            AI "Reinforcement Learning" 深度学习 增强学习
+#+hugo_draft:                 false
+#+KEYWORDS:                   "reinforcement learning" 深度学习 增强学习
+#+LANGUAGE:                   CN
+#+OPTIONS:                    H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:                    TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:                 view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:                    CC BY 4.0
 
 * 摘要
 
