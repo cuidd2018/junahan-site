@@ -21,6 +21,9 @@ Kubernetes-based platform to build, deploy, and manage modern serverless workloa
 * Big Data
 - awesome-bigdata - https://github.com/onurakpolat/awesome-bigdata
 
+* AI
+- Machine Learning Mindmap - https://github.com/dformoso/machine-learning-mindmap
+
 * Footnotes
 
 [fn:2] Knative github - https://github.com/knative

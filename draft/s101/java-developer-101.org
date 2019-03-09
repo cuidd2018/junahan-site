@@ -10,7 +10,7 @@
 #+LICENSE:            CC BY 4.0
 
 * 摘要
-本文根据作者多年的从业经验，包括面试和被面试的经历，汇总的有关知识要点，主要是适用于 Java 高级技术岗位方向，除了 Java 相关的章节外，其他章节也适用于其他编程相关的高级职位方向。本文主要包含 Java、SQL、算法基础、软件复用和设计模式、高并发架构设计、安全、DevOps、优化等主题。
+本文根据作者多年的从业经验，包括面试和被面试的经历，汇总的有关知识要点，主要是适用于 Java 高级技术岗位方向，除了 Java 相关的章节外，其他章节也适用于其他编程相关的高级职位方向。本文主要包含 Java、SQL、算法基础、软件复用和设计模式、系统架构设计、安全、DevOps、优化等主题。
 
 希望该文能够对你有所帮助。如果有你有意补充本文遗漏的主题或者发现本文的任何谬误，欢迎联系我 - junahan@outlook.com。
 
@@ -32,6 +32,11 @@ A. 是的，我部分阅读过 OpenJDK8 源代码。
 - 变量的生命周期 - 全局、局部和静态
 - 对象的生命周期 - 全局、局部和静态
 
+** Java Generic 编程
+- 编译器范型和范型擦除 - Java 引入泛型擦除的原因是避免因为引入泛型而导致运行时创建不必要的类从而增加不必要的运行时开销。
+- 类定义中的泛型是不会被擦除的，通过定义一个匿名内部类的方式，可以在运行时获得泛型信息。
+- Bridge Method - 在编译范型类型子类（继承自范型类型父类或者范型类型接口）时，编译器会创建一个称为 bridge method 的方法以保护多态。
+
 ** Java Container API
 Java Container 从最早期的 Array, Vector, HashTable 发展和完善到 List, HashMap，Queue，以及各类适用于并发场合的容器版本，并完整的支持范型。空闲的时候，读一读 JDK 源码有关容器的实现，有助对数据机构和算法的理解。选择容器的时候，请注意使用的场合和要求，在多线程环境下，特别要留意线程安全问题。
 - Collections - Java 容器的静态工厂类，通过该静态工厂，可以创建各类常用容器
@@ -40,14 +45,10 @@ Java Container 从最早期的 Array, Vector, HashTable 发展和完善到 List,
 - PriorityQueue - 使用数组实现，实质上是一个最小值堆（Balance binary min-heap) 
 
 ** Java Thread and Concurrent API
-*** Java 线程原语
-- Object 类的线程基础设施 - 每个 Java 引用对象 (继承自 Object ) 都有一个与之关联的隐含的互斥 (Mutex or Monitor) ，可以使用 =suynchronized= 语句来锁定和解锁，除此之外，每个引用对象还有一个与之关联的等待设置 (Wait Set) ，等待设置通过 wait, notify, notifyAll 方法原子操作。每个 Java 类本身 (如 Foo.class) 也有和引用对象同样的隐含互斥和等待设置，这可以用来保护静态共享资源；
-- 互斥 (Mutex) 和 =synchronized= 关键字 - =synchronized= 关键字使用互斥，并自动加锁和解锁，可作用于方法级别和代码块级别；
-- 条件变量 (Condition Variable) 和 wait/notify/notifyAll 配合使用；
-- =volatile= 关键字 - 是另外一个有关线程安全的机制，该关键字可用于保护共享变量而无需加锁，Java 内存模型确保该变量的值在多线程环境下的一致性；
-- ThreadLocal - 理解 ThreadLocal 的基本原理，很简单的方法是看一看 =ThreadLocal= 类的源代码和  JDK 文档 - 实质上它用 Map 数据结构实现；
-- 如何安全而优雅的结束线程 - 原则是不要尝试结束线程，只有线程自己知道该如何退出，如设置检查点，使用 =stop= 变量；
-- Java 内存模型 - 由 JSR-133 规范定义，[[http://www.cs.umd.edu/~pugh/java/memoryModel/][JSR-133 The Java Memory Model]] 仍然维护 JSR-133  的相关信息（JSR-133 规范完成后，相关内容被整合进[[https://docs.oracle.com/javase/specs/jls/se8/html/index.html][ Java 语言规范]]) ，[[http://gee.cs.oswego.edu/dl/jmm/cookbook.html][The JSR-133 Cookbook for Compiler Writers]] (by Doug Lea) 也是一份值得阅读的文章 (不一定要去写编译器) ；
+*** Java 线程基础
+- 除了能够应用外，要深入理解线程相关的几个关键字和方法 - =synchronized=, =volatile=, =final=, =wait()=, =notify()=, =notifyAll()=, =interrupt()= 。
+- 阅读和理解 Java 语言规范中有关 [[https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html][Java Thread and Locks]] 一章的内容。该章节中文版本，请参阅 [[https://javadoop.com/post/Threads-And-Locks-md][深入分析 java 8 编程语言规范：Threads and Locks]] 一文，其中包含了 Java 内存模型 (JMM) 规范 (JSR-133)。
+- 更加深入的了解，可阅读 [[http://gee.cs.oswego.edu/dl/jmm/cookbook.html][The JSR-133 Cookbook for Compiler Writers]] (by Doug Lea) 一文 (不一定要去写编译器)。
 
 *** Concurrent API
 Concurrent 包提供了 Java 多线程编程方便且容易使用的 API，包括各种用于多线程环境的容器、Thread Pool、支持原子操作的常用基本类型替代版本，以及锁和条件变量等多线程基础设施。
@@ -116,35 +117,32 @@ Java 安全框架通过安全提供者机制支持可插入安全服务，并通
 - XML Signature - 产生和验证 XML 签名
 - Security Provider - 通过一个提供者框架机制，允许加载不同提供者实现的安全服务。
 
-** Java 内存管理
+** GC
 - 区分几个概念 - JVM 栈 (JVM Stack), 方法区域 (Method Aerea), 本地方法栈 (Native Method Stack), 帧 (Frame) 和方法调用过程中栈的相关操作，方法的局部变量被存放在线程的栈帧内 (Frame) ，不会被其他线程访问
 - 堆内存 (Heap Memory) - Heap 由 GC 管理并在不同 JVM Thread 间共享。Heap 用于存储类实例和数组
-
-** GC
 - 了解 GC 对堆内存 (Heap Memory) 管理的细节，如 Heap Memory Layout 以及 GC 的工作原理等会有所帮助
 - 不能控制 GC 何时开始收集垃圾，垃圾收集期间，可能会导致应用响应延迟 (Latency，应用暂时停止响应)
 - GC 的性能会影响系统的吞吐量 (Throughput) ，尤其是在大型服务系统中（10% 的 GC 工作负载会在有 32 个处理器系统上导致高达 75% 系统吞吐量的损失）。因此，GC 的选择和调优会变得很有必要。GC 的调优是建立在吞吐量和延迟的相对平衡上。相关详情，请参阅 [[https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/toc.html][HotSpot Virtual Machine Garbage Collection Tuning Guide]]
 
 ** Java IO/NIO
 ** TODO JPA 和 ORM
-
 ** TODO JMS 和 消息队列
 ** TODO JTA
 ** TODO Java Web
-
-** TODO Frameworks
+** TODO Frameworks and Tools
 - Spring Boot
 - Struts2
 - Guice
 - Shiro
 - Kafka
 - Redis
+
+** TODO JVM
 ** TODO MISC
 *** TODO JMH - JVM 基准测试工具 - JMH is a Java harness for building, running, and analysing nano/micro/milli/macro benchmarks written in Java and other languages targetting the JVM.
 *** TODO Zipkin - a distributed tracing system.
-** JVM
 
-** 问题示例
+** TODO 问题示例
 *** 示例 I
 基于如下 Java 代码回答问题。
 #+BEGIN_SRC java
@@ -198,12 +196,12 @@ A. 先跳过吧，让我好好想一想，随后回答您 ......
 
 ** SQL 优化
 - 慢查询 (Slow Query) 分析
-- 
+- 索引
+- 分库分表
 
-** Mysql
+** TODO MySql
 
-* TODO NoSQL
-* TODO 数据结构和算法分析
+* 数据结构和算法
 了解一些基本的数据结构，基础算法和算法分析。
 
 ** 数据结构
@@ -212,11 +210,9 @@ A. 先跳过吧，让我好好想一想，随后回答您 ......
 - Tree - 树形数据结构被用于大型数据库索引。如 B/B+树等。
 - Graph - N/A.
 
-** 算法分析和计算复杂度
-
 ** 算法范例
 *** 分治 (Divide-and-conquer)
-分治算法[fn:1]思想的基础是多分支递归。通过递归的方法将问题拆分为两个或多个相同或者相关的子任务，直至问题简化到能够直接解决为止。
+[[https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm][分治算法]]思想的基础是多分支递归。通过递归的方法将问题拆分为两个或多个相同或者相关的子任务，直至问题简化到能够直接解决为止。
 
 有很多算法使用了分治思想，比较出名的算法包括：
 - 快速排序 (Quick Sort)
@@ -224,7 +220,7 @@ A. 先跳过吧，让我好好想一想，随后回答您 ......
 - 离散傅立叶变换 (Discrete Fourier Transform (FFT))
 
 *** 动态规划 (Dynamic Programming)
-动态规划[fn:2]类似于分治算法，具有两个关键属性的问题可以使用动态规划算法：
+[[https://en.wikipedia.org/wiki/Dynamic_programming#Computer_programming][动态规划]]类似于分治算法，具有两个关键属性的问题可以使用动态规划算法：
 - 可优化子结构 (Optimal Substructure) - 存在可优化子结构。
 - 重叠子问题 (Overlapping sub-problems) - 子问题的规模必须更小，每次递归都是一遍一遍的解决相同的子问题而不是产生一个更小规模的子问题（这点是区分分治算法的标志）。
 
@@ -234,7 +230,7 @@ A. 先跳过吧，让我好好想一想，随后回答您 ......
 - Fibonacci 数列；
 
 *** 贪心算法 (Greedy Algorithm)
-贪心算法[fn:3]是一种通过在每一步选择当前最优方案，以期望最终得到全局最优方案的算法。这种算法通常并不一定能够达到全局最优，但可以在合理的时间内通过局部最优的方法逼近全局最优。贪心算法适用的问题具有如下属性：
+[[https://en.wikipedia.org/wiki/Greedy_algorithm][贪心算法]]是一种通过在每一步选择当前最优方案，以期望最终得到全局最优方案的算法。这种算法通常并不一定能够达到全局最优，但可以在合理的时间内通过局部最优的方法逼近全局最优。贪心算法适用的问题具有如下属性：
 - 可优化子结构 - 存在可优化子结构 (和动态规划类似)
 - 贪心选择属性 (Greedy Choice Property) - 针对当前子问题选择最优，每次迭代均选择当前最优，而不考虑此前的选择，从而简化问题。这也是贪心算法和动态规划的不同之处
 
@@ -288,7 +284,10 @@ Design patterns were originally grouped into the categories: creational patterns
 - 对于[[https://en.wikipedia.org/wiki/Architectural_pattern][架构风格和模式]] , 主要了解 [[https://en.wikipedia.org/wiki/Model-view-controller][MVC]] , DI, [[https://en.wikipedia.org/wiki/Aspect-oriented_programming][AOP]], [[http://microservices.io/patterns/microservices.html][MSA (Micro Service Architecture)]] 等。
 
 * TODO 系统架构
-1. Challenge - high concurrency, high availability, low latency
+1. 挑战 
+ - high concurrency, high availability, low latency
+ - 治理
+ - 维护
 2. Horizontal Scalability - meet high concurrent challenge
  - AFAP stateless service
  - No dependences in same layer (Horizontal)
@@ -296,21 +295,10 @@ Design patterns were originally grouped into the categories: creational patterns
  - Automation deployment
 3. Low latency - 快速响应用户请求，和高并发不同，这个指标强调的是用户的响应时间，需要在纵向上进行端到端的优化
 
-** OO
-** SOA
-** Microservices
-** Service Mesh
-
-* 分布式服务架构和治理
-** Dubbo
-- Alibaba opensource framework as apache project.
-- A generic distribution framework
-
-** Spring Cloud
-- 
-
-** OSGi Framework
-- Using zookeeper as distribution service register.
+** TODO OO
+** TODO SOA
+** TODO Microservices
+** TODO Service Mesh
 
 * 系统安全
 建议参阅 OWASP 有关安全的指引，例如 OWASP Top 10 项目所列举的一些有关安全威胁，OWASP 也提供详细的有关 Web、Mobile 及其他方面有关安全的指引。
@@ -364,7 +352,7 @@ Design patterns were originally grouped into the categories: creational patterns
 1. 采用敏捷开发过程 - 快速迭代 - Feature Planning > Story > Design > Implement > Testing > Release
 2. 持续集成 (Continues Integration) - Nightly build and automation integration testing (Jenkins)
 3. 持续交付 (Continues Deployment) - 
-4. System health monitoring and alarm
+4. 系统监控和告警 (System health monitoring and alarm)
  - Database
  - Cache server
  - RPC
@@ -427,7 +415,7 @@ Design patterns were originally grouped into the categories: creational patterns
  - Training - 训练网络
  - 推理预测 - 发现问题
 
-** 优化内容示例
+** 优化内容
 *** 用户体验优化
 - UI 布局
 - 提升商品推荐系统的准确度和转化率
@@ -442,42 +430,13 @@ Design patterns were originally grouped into the categories: creational patterns
 - 系统并发吞吐量 - 以并发吞吐量为目标，优化系统高并发条件下的性能
 - 快速响应 - 以快速响应用户请求为目标，优化系统的性能
 
-** Monitoring System
-系统的优化和治理离不开监控系统，一些框架如 Dubbo, Spring Boot, OSGi Framework 都内置针对系统监控的机制。
-
-*** [[https://prometheus.io][Prometheus]]
-From metrics to insight, power your metrics and alerting with a leading open-source monitoring solution.
-
-** Tracing System
-*** 什么是 End-to-end Tracing System
-End-to-end Tracing System 是指一套能够穿透业务系统前后端的业务日志及分析系统。其特点是能够有效的穿透整个业务系统，从最前端的业务开始一直到最后端的数据逻辑层。该系统能够带来的好处包括：
-1. 能够有效的关联整个业务，有助于收集到高质量数据并为数据分析带来便利；
-2. 有助于跟踪系统每个部分的性能；
-3. 有助于识别和发现系统问题；
-4. 有助于识别和发现安全攻击；
-
-*** 建立的方法
-建立这样的一套系统并不容易，需要业务设计开发上的协调一致，通常发生的情形时，前段业务系统为用户的访问创建了一个唯一标示（例如访问令牌），而到后端的业务日志中却并不记录该标示，从而无法使用该标示穿透整个业务系统日志记录。
-- 协调整个前后端业务系统使用一个唯一标示（如访问令牌），并包含该唯一标示进入业务日志系统中，技术上可以是需要手动将唯一标示编码进入业务日志 (如提供统一的用于 Tracing System 库)，也可以是自动注入的方式加入业务日志系统（如使用 [[https://en.wikipedia.org/wiki/Aspect-oriented_programming][AOP]] 技术提供 Tracing System 注入切面）。
-- 自动收集 Tracing System 日志并导入一个日志分析系统进行分析；
-- 提供 Tracing System 数据访问用户接口，为数据分析员和相关人员提供一致的访问入口；
-- 提供符合规范 (如 [[http://opentracing.io][OpenTracing]]) 的实现以向 Tracing System 上报相关数据；
-
-*** 技术和工具
-1. Dapper - 
-3. [[https://zipkin.io][Zipkin]] - a distributed tracing system.
-5. [[https://github.com/sourcegraph/appdash][Appdash]] - Appdash is an application tracing system for Go, based on Google's Dapper and Twitter's Zipkin.
-7. HTrace - 
-9. X-Trace - 
-11. [[http://opentracing.io][OpenTracing]] - Vendor-neutral APIs and instrumentation for distributed tracing.
-13. ML 技术，可以对 Tracking Log 建立 ML Model 进行训练和预测。
-
 * 参考文献
 1. W3school SQL 教程,  http://www.w3school.com.cn/sql/.
 2. JDK API Document, https://docs.oracle.com/javase/8/docs/api/index.html.
 3. OpenJdk Home, http://openjdk.java.net/projects/jdk8/.
 4. HotSport VM Garbage Collection Tuning Guide, https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/toc.html.
 5. Java Language Specification for JSE8, https://docs.oracle.com/javase/specs/jls/se8/html/index.html.
+6. 深入分析 java 8 编程语言规范：Threads and Locks, https://javadoop.com/post/Threads-And-Locks-md, 2018.
 6. JSR-133 Cookbook, http://gee.cs.oswego.edu/dl/jmm/cookbook.html.
 7. Java 多线程编程, [美] Bil Lewis, Daniel J. Berg 著，关欣、史宗海等译，电子工业出版社出版，2000.
 8. Amdahl's law, https://en.wikipedia.org/wiki/Amdahl%27s_law
@@ -520,12 +479,3 @@ End-to-end Tracing System 是指一套能够穿透业务系统前后端的业务
 #+BEGIN_QUOTE
 本作品采用[[http://creativecommons.org/licenses/by/4.0/][知识共享署名 4.0 国际许可协议]]进行许可。
 #+END_QUOTE
-
-* Footnotes
-
-[fn:3] Greedy Algorithm, https://en.wikipedia.org/wiki/Greedy_algorithm.
-
-[fn:2] Dynamic Programming, https://en.wikipedia.org/wiki/Dynamic_programming#Computer_programming.
-
-[fn:1] Divide-and-conquer algorithm, https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm.
-

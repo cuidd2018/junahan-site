@@ -1,13 +1,13 @@
 # -*- mode: org; coding: utf-8; -*-
 #+TITLE:              JVM - 101
-#+AUTHOR:         Junahan
-#+EMAIL:             junahan@outlook.com 
-#+DATE:              2018-06-27
-#+LANGUAGE:    CN
-#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
-#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
-#+LICENSE:         CC BY 4.0
+#+AUTHOR:             Junahan
+#+EMAIL:              junahan@outlook.com 
+#+DATE:               2018-06-27
+#+LANGUAGE:           CN
+#+OPTIONS:            H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:            TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:         view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:            CC BY 4.0
 
 * 摘要
 - The Java Virtual Machine (i.e. JVM) is an abstract computing machine. Like a real computing machine, it has an instruction set and manipulates various memory areas at run time.
@@ -79,8 +79,6 @@ A frame is used to store data and partial results, as well as to perform dynamic
 - A new frame is created each time a method is invoked. A frame is destroyed when its method invocation completes, whether that completion is normal or abrupt (it throws an uncaught exception). 
 - Frames are allocated from the Java Virtual Machine stack of the thread creating the frame.
 - Each frame has its own array of local variables, its own operand stack, and a reference to the run- time constant pool of the class of the current method.
-
-
 
 * 参考文献
 1. JVM Specification, Java SE 8 Edition, https://docs.oracle.com/javase/specs/jvms/se8/jvms8.pdf.

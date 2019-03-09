@@ -1,0 +1,60 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              Fabric 国密算法支持
+#+AUTHOR:             Junahan
+#+EMAIL:              junahan@outlook.com 
+#+DATE:               2019-03-08
+#+LANGUAGE:           CN
+#+OPTIONS:            H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:            TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:         view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:            CC BY 4.0
+
+* 摘要
+
+* 改造方案
+
+** 涉及组件
+- Fabric Core - 针对 Fabric BCCSP 扩展以支持国密算法；
+- Fabric CA - 扩展 Fabric CA 以支持国密算法，包括；
+- Fabric SDK - 改进 Java SDK 以支持国密算法，利用 JCP 框架扩展国密算法支持；
+- fabric-baseimage、fabric-baseos 镜像扩展支持国密算法；
+
+* 相关开源项目
+
+** Golang 国密算法库
+苏州同济区块链研究院有限公司开放的 [[https://github.com/tjfoc/fabric-ca-gm][Golang 国密算法库 gmsm]]。
+
+- 支持国密 SM2/SM3/SM4
+
+*** 注意事项
+- 缺少细节文档
+
+** Fabric CA
+
+支持国密的 [[https://github.com/tjfoc/fabric-ca-gm][Fabric CA 服务 fabric-ca-gm]]。
+
+*** 注意事项
+- 缺少文档；
+- 一年前的代码，没有更新，也没有正式的发布版本，看起来已经没人维护了；
+
+** Fabric 国密算法支持补丁
+
+该国[[https://github.com/flyinox/fabric-sm-patch][密算法补丁]]由 flyinox 提供。根据项目描述：
+
+- 用于 Hyperledger Fabric 项目支持国密算法，支持 V1.1.x 以上版本
+- cryptogen 工具配套支持
+- 当前版本采用非插件方式
+
+*** 注意事项
+
+- 仅支持 V1.1.x 系列版本；
+- 缺乏测试；
+- 缺少文档；
+
+* 参考文献
+1. Golang 国密算法库，https://github.com/tjfoc/gmsm 苏州同济区块链研究院有限公司.
+3. Hyperledger Fabric CA，https://github.com/tjfoc/fabric-ca-gm, 苏州同济区块链研究院有限公司.
+5. Fabric SM patch, https://github.com/flyinox/fabric-sm-patch, 刘地军.
+7. 国密在超级账本Fabric中的应用，http://60.205.214.182:8089/uploads/content/20180423/5addad3dc4495_05o.pdf。
+
+
