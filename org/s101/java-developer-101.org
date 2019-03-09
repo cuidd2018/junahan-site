@@ -48,6 +48,7 @@ Java Container 从最早期的 Array, Vector, HashTable 发展和完善到 List,
 *** Java 线程基础
 - 除了能够应用外，要深入理解线程相关的几个关键字和方法 - =synchronized=, =volatile=, =final=, =wait()=, =notify()=, =notifyAll()=, =interrupt()= 。
 - 阅读和理解 Java 语言规范中有关 [[https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html][Java Thread and Locks]] 一章的内容。该章节中文版本，请参阅 [[https://javadoop.com/post/Threads-And-Locks-md][深入分析 java 8 编程语言规范：Threads and Locks]] 一文，其中包含了 Java 内存模型 (JMM) 规范 (JSR-133)。
+- 有关更多 JSR-133 信息，请参阅 [[http://www.cs.umd.edu/~pugh/java/memoryModel/][The Java Memory Model]]，以及 [[http://ifeve.com/wp-content/uploads/2014/03/JSR133%25E4%25B8%25AD%25E6%2596%2587%25E7%2589%2588.pdf][JSR-133 中文版本]]。
 - 更加深入的了解，可阅读 [[http://gee.cs.oswego.edu/dl/jmm/cookbook.html][The JSR-133 Cookbook for Compiler Writers]] (by Doug Lea) 一文 (不一定要去写编译器)。
 
 *** Concurrent API

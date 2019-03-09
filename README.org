@@ -17,7 +17,15 @@
 - [[file:org/s101/streaming-server-101.org][流媒体服务器-101]] - 针对流媒体服务器的一个初步调查。
 
 * Service Mesh
+** Service Mesh 社区
+推荐访问和加入国内 [[http://www.servicemesher.com/][ServiceMesher 社区]]，该社区相当活跃，包含很多原创以及翻译的文章和书籍。
+
+- [[https://github.com/servicemesher/getting-started-with-knative][Knative 入门]] - 由 [[http://www.servicemesher.com/][ServiceMesher 社区]]成员共同翻译。
+- [[https://github.com/servicemesher/istio-knowledge-map][Istio 知识图谱]] - [[https://github.com/orgs/servicemesher/teams/istio-knowledge-map-working-group/members][Istio 知识图谱工作组]]是 [[http://www.servicemesher.com/][ServiceMesher 社区]]的一个分支，旨在通过协作加强 Service Mesh 的理论学习，共同学习，共同进步，同时推动 Service Mesh 技术的推广。
+
+** 相关文章
 1. [[file:org/envoy-the-universal-data-plane-api-cn.org][Envoy 通用数据平面 API]] - 翻译 [[https://blog.envoyproxy.io/the-universal-data-plane-api-d15cec7a][The universal data plane APIs]]，介绍通用数据平面 API 的由来和动机。
+2. [[https://github.com/servicemesher/getting-started-with-knative][Knative 入门]] - 由 [[http://www.servicemesher.com/][ServiceMesher 社区]]成员共同翻译。
 
 * Blockchain
 1. [[file:org/blockchain/bitcoin-wallet-security.org][比特币钱包安全]] - 介绍比特币钱包安全相关内容，特别是冷热钱包相关主题。(完工)
