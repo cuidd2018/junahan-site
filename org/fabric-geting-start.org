@@ -1,20 +1,20 @@
 # -*- mode: org; coding: utf-8; -*-
-#+TITLE:              Fabric 快速开始
-#+AUTHOR:         Junahan
-#+AUTHOR_LINK:  https://github.com/junahan
-#+EMAIL:             junahan@outlook.com 
-#+DATE:              2018-07-16
-#+hugo_base_dir: ../
+#+TITLE:                 Fabric 快速开始
+#+AUTHOR:                Junahan
+#+AUTHOR_LINK:           https://github.com/junahan
+#+EMAIL:                 junahan@outlook.com 
+#+DATE:                  2018-07-16
+#+hugo_base_dir:         ../
 #+hugo_auto_set_lastmod: t
-#+hugo_tags: Blockchain Hyperledger Fabric 超级账本 区块链
-#+hugo_categories: Blockchain
-#+hugo_keywords: hyperledger fabric 超级账本
-#+hugo_draft: false
-#+LANGUAGE:    CN
-#+OPTIONS:         H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS:         TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
-#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
-#+LICENSE:          CC BY 4.0
+#+hugo_tags:             Blockchain Hyperledger Fabric 超级账本 区块链
+#+hugo_categories:       Blockchain
+#+hugo_keywords:         hyperledger fabric 超级账本
+#+hugo_draft:            false
+#+LANGUAGE:              CN
+#+OPTIONS:               H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:               TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:            view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:               CC BY 4.0
 
 * 摘要
 本文介绍使用 Fabric Sample 快速在本地搭建一个基本的 Fabric 链码测试环境。

@@ -1,0 +1,70 @@
+# -*- mode: org; coding: utf-8; -*-
+#+TITLE:              Junahan's Site
+#+AUTHOR:             Junahan
+#+EMAIL:              junahan@outlook.com 
+#+DATE:               2018-03-30
+#+LANGUAGE:           CN
+#+OPTIONS:            H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:            TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:         view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:            CC BY 4.0
+
+* Overview 
+相关文章，阅读列表等的汇总。部分内容会通过 Hugo 发布到[[https://junahan.netlify.com/][我的个人网站]]。
+
+* S101 系列
+- [[file:org/s101/release-package-to-maven-centre-repository-101.org][如何发布项目包至 Maven 中心仓库-101]] - 以我发布的开源项目[[https://github.com/junahan/struts2-protobuf-plugin/tree/master/plugin-demo][ Struts2 Protobuf Plugin]] 为例，简明扼要的入门教程。
+- [[file:org/s101/streaming-server-101.org][流媒体服务器-101]] - 针对流媒体服务器的一个初步调查。
+
+* Service Mesh
+1. [[file:org/envoy-the-universal-data-plane-api-cn.org][Envoy 通用数据平面 API]] - 翻译 [[https://blog.envoyproxy.io/the-universal-data-plane-api-d15cec7a][The universal data plane APIs]]，介绍通用数据平面 API 的由来和动机。
+
+* Blockchain
+1. [[file:org/blockchain/bitcoin-wallet-security.org][比特币钱包安全]] - 介绍比特币钱包安全相关内容，特别是冷热钱包相关主题。(完工)
+2. [[file:org/bitcoin-lightning-network-introduction.org][比特币闪电网络介绍]] - 有关比特币闪电网络的简单介绍。(完工)
+3. [[file:org/blockchain/Bitcoin-Lightning-Network-Paper-cn.org][比特币闪电网络论文]] - 翻译比特币闪电网络论文。(TODO...)
+4. [[file:org/blockchain/interledger_architecture.org][Interledger 架构]] - Interledger 架构。(TODO...)
+5. [[file:org/blockchain/solidity-dev-env.org][Solidity 开发环境和工具]] - 根据个人学习经验总结的有关 Solidity 开发环境和工具安装，配置和基本使用。(TODO...)
+7. [[file:org/fabric-geting-start.org][Fabric 快速开始]] - 结合 Fabric Sample 启动一个用户开发和测试的网络环境。
+9. [[file:org/fabric-ca-user-guide-cn.org][Fabric CA 用户指南]] - 完成对 Fabric CA User Guide 的翻译。
+
+* AI
+1. [[file:org/ai-reading-list.org][AI 阅读列表]] - 根据我学习 AI 的经验总结的一份学习列表，包括书籍、课程、工具以及相关文章等。
+
+* 项目相关
+** Strut2 Protobuf Plugin
+[[https://github.com/junahan/struts2-protobuf-plugin][Strut2 Protobuf Plugin]] 是我发布的开源项目，该项目主要特性：
+- 提供工具类库，支持将 protobuf 消息域的值转换为类型兼容的 Java 对象属性值，反之依然；
+- 将 protobuf 消息域的值自动转换为对应的 Action 对象属性值；
+- 支持将 protobuf 消息作为 Struts2 Result - 包括成功的 Response，验证错误（包括字段/动作错误）或者异常，均可以通过 protobuf 消息结果返回。
+
+欢迎使用或者为该项目贡献代码、帮助测试和提出任何问题。
+该项目 Github 地址是：https://github.com/junahan/struts2-protobuf-plugin
+
+* 推荐书单
+** TODO 2019 年度 (未完待续)
+1. 《高效能人士的七个习惯》 - 史蒂芬•柯维（Stephen R. Covey）著。
+ - 我在HP工作的时候曾经参加过的一门培训课程。一本值得多次重温的好书；
+ - 年度重读；
+2. 《数学之美》 - 吴军著。
+ - 实用的数学科普著作。
+3. 《这就是 OKR》 - [美] 约翰•杜尔 (John Doerr) 著；曹仰锋 王永贵 译，中信出版集团，2018。
+ - 2019 将 OKR 应用于个人目标管理。
+
+** 2018 年度
+1. 《原则》 （PRINCIPLES）（生活和工作）- 瑞•达利欧（Ray Dalio）著。理顺思路，解决困惑，一本值得多次重读的好书。 
+2. 《奇点临近》 - Ray Kurzweil 著。这本书最重要的观点是科技变革的速度遵循指数函数而非我们熟知的线形函数。
+3. 《第四次工业革命》 - Klaus Schwab 著。
+4. 《跳着踢踏舞去上班》 - Carol.J.Loomis 著。介绍巴菲特及其投资理念和案例的一系列文章。
+5. 《聪明的投资者》 - 本杰明•格雷厄姆著。巴菲特力荐 - 有史以来，关于投资的最佳著作。
+6. 《高效能人士的七个习惯》 - 史蒂芬•柯维（Stephen R. Covey）著。我在HP工作的时候曾经参加过的一门培训课程。一本值得多次重温的好书。
+7. 《玻璃笼子》（The Glass）- 尼古拉斯•卡尔（Nichelas Carr）著。
+8. 《终极算法》（The Master Algorithm）- 佩德罗•多明戈斯 (Pedro Domingos)著、 黄芳萍译。讲述机器学习和人工智能如何重塑世界。
+9. 《人类简史：从动物到上帝》（Brief History of Humankind）- 尤瓦尔•诺亚•哈拉里（Yuval Noah Harari）著。重读，我已经重读该书至少三遍。以三大革命（认知革命、农业革命、科学革命）为脉络讲述人类历史。作者思路新奇、语言幽默使得这本书精彩纷呈，值得多次重读。
+10. 《哈利.波特》（全集）- J.K. Rowling 著。陪儿子一起读的书。
+11. 《南京大屠杀》（The Rape of Nangking）- 张纯如著。历史厚重，不能拉仇恨，更不能忘却。1937年12月13日，南京大屠杀发生，77年后，2014年2月23日，中国十二届全国人大常委会第七次会议通过决议，将每年12月13日设立为南京大屠杀死难者国家公祭日。
+12. 《“错误”的行为》（MISBEHAVING）- 理查德•泰勒（Richard H. Thaler）著。行为经济学关于世界的思考，从个人到商业和社会。值得重读。
+
+#+BEGIN_QUOTE
+本作品采用[[http://creativecommons.org/licenses/by/4.0/][知识共享署名 4.0 国际许可协议]]进行许可。
+#+END_QUOTE
