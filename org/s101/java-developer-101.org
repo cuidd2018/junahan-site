@@ -47,7 +47,7 @@ Java Container 从最早期的 Array, Vector, HashTable 发展和完善到 List,
 ** Java Thread and Concurrent API
 *** Java 线程基础
 - 除了能够应用外，要深入理解线程相关的几个关键字和方法 - =synchronized=, =volatile=, =final=, =wait()=, =notify()=, =notifyAll()=, =interrupt()= 。
-- 阅读和理解 Java 语言规范中有关 [[https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html][Java Thread and Locks]] 一章的内容。该章节中文版本，请参阅 [[https://javadoop.com/post/Threads-And-Locks-md][深入分析 java 8 编程语言规范：Threads and Locks]] 一文，其中包含了 Java 内存模型 (JMM) 规范 (JSR-133)。
+- 阅读和理解 Java 语言规范中有关 [[https://docs.oracle.com/javase/specs/jls/se8/html/jls-17.html][Java Thread and Locks]] 一章的内容。该章节中文版本，请参阅 [[https://javadoop.com/post/Threads-And-Locks-md][深入分析 java 8 编程语言规范：Threads and Locks]] 一文，其中包含了 Java 内存模型 (JMM) 规范 (JSR-133) 的部分介绍。
 - 有关更多 JSR-133 信息，请参阅 [[http://www.cs.umd.edu/~pugh/java/memoryModel/][The Java Memory Model]]，以及 [[http://ifeve.com/wp-content/uploads/2014/03/JSR133%25E4%25B8%25AD%25E6%2596%2587%25E7%2589%2588.pdf][JSR-133 中文版本]]。
 - 更加深入的了解，可阅读 [[http://gee.cs.oswego.edu/dl/jmm/cookbook.html][The JSR-133 Cookbook for Compiler Writers]] (by Doug Lea) 一文 (不一定要去写编译器)。
 
@@ -125,6 +125,9 @@ Java 安全框架通过安全提供者机制支持可插入安全服务，并通
 - 不能控制 GC 何时开始收集垃圾，垃圾收集期间，可能会导致应用响应延迟 (Latency，应用暂时停止响应)
 - GC 的性能会影响系统的吞吐量 (Throughput) ，尤其是在大型服务系统中（10% 的 GC 工作负载会在有 32 个处理器系统上导致高达 75% 系统吞吐量的损失）。因此，GC 的选择和调优会变得很有必要。GC 的调优是建立在吞吐量和延迟的相对平衡上。相关详情，请参阅 [[https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/toc.html][HotSpot Virtual Machine Garbage Collection Tuning Guide]]
 
+*** Java 引用类型
+
+
 ** Java IO/NIO
 ** TODO JPA 和 ORM
 ** TODO JMS 和 消息队列
@@ -138,7 +141,6 @@ Java 安全框架通过安全提供者机制支持可插入安全服务，并通
 - Kafka
 - Redis
 
-** TODO JVM
 ** TODO MISC
 *** TODO JMH - JVM 基准测试工具 - JMH is a Java harness for building, running, and analysing nano/micro/milli/macro benchmarks written in Java and other languages targetting the JVM.
 *** TODO Zipkin - a distributed tracing system.
@@ -285,21 +287,44 @@ Design patterns were originally grouped into the categories: creational patterns
 - 对于[[https://en.wikipedia.org/wiki/Architectural_pattern][架构风格和模式]] , 主要了解 [[https://en.wikipedia.org/wiki/Model-view-controller][MVC]] , DI, [[https://en.wikipedia.org/wiki/Aspect-oriented_programming][AOP]], [[http://microservices.io/patterns/microservices.html][MSA (Micro Service Architecture)]] 等。
 
 * TODO 系统架构
-1. 挑战 
- - high concurrency, high availability, low latency
- - 治理
- - 维护
-2. Horizontal Scalability - meet high concurrent challenge
- - AFAP stateless service
- - No dependences in same layer (Horizontal)
- - Leverage lower layer distribution cache service for stateful session context - move state from front layers to lower layer dedicate system
- - Automation deployment
-3. Low latency - 快速响应用户请求，和高并发不同，这个指标强调的是用户的响应时间，需要在纵向上进行端到端的优化
+An [[https://en.wikipedia.org/wiki/Architectural_pattern][Architectural Pattern]] is a general, reusable solution to a commonly occurring problem in software architecture within a given context.Architectural patterns are similar to software design patterns but have a broader scope. The architectural patterns address various issues in software engineering, such as computer hardware performance limitations, high availability and minimization of a business risk. Some architectural patterns have been implemented within software frameworks.
 
 ** TODO OO
 ** TODO SOA
-** TODO Microservices
-** TODO Service Mesh
+** 微服务 (Microservices)
+[[https://microservices.io/patterns/cn/microservices.html][Microservices]][fn:1] - also known as the [[https://microservices.io/patterns/cn/microservices.html][microservice architecture]] - is an architectural style that structures an application as a collection of services that are
+
+- Highly maintainable and testable
+- Loosely coupled
+- Independently deployable
+- Organized around business capabilities.
+
+The microservice architecture enables the continuous delivery/deployment of large, complex applications. It also enables an organization to evolve its technology stack.
+
+*** TODO 框架和工具
+- Spring Boot/Cloud - 
+
+** 服务网格 (Service Mesh)
+[[https://blog.buoyant.io/2017/04/25/whats-a-service-mesh-and-why-do-i-need-one/][服务网格]]是一个基础设施层，用于处理服务间通信。云原生应用有着复杂的服务拓扑，服务网格保证请求可以在这些拓扑中可靠地穿梭。在实际应用当中，服务网格通常是由一系列轻量级的网络代理组成的，它们与应用程序部署在一起，但应用程序不需要知道它们的存在。
+
+- 它是专用的基础设施层。
+- 轻量级高性能网络代理。
+- 提供安全的、快速的、可靠地服务间通讯。
+- 与实际应用部署一起，但对应用透明。
+
+*** 为什使用 Service Mesh
+通过将核心的通信部分从应用程序中拆分出来并成为基础设施，可以为应用程序提供一个无侵入的基础框架服务，从而减轻应用程序开发和部署的复杂性。
+
+*** TODO 框架和工具
+- Linkerd - 
+- Envoy - 
+- Istio - 
+- Conduit - 
+
+*** 进阶阅读
+- [[https://blog.buoyant.io/2017/04/25/whats-a-service-mesh-and-why-do-i-need-one/][What’s a service mesh? And why do I need one?]] - by [[https://blog.buoyant.io/author/william/][WILLIAM MORGAN]], 2017。
+- [[http://philcalcado.com/2017/08/03/pattern_service_mesh.html][Pattern: Service Mesh]] - by Phil Calçado, 有关 Service Mesh 模式的定义，相当简洁和清晰。[[http://www.infoq.com/cn/articles/pattern-service-mesh?from%3Dawesome-servicemesh][中文版本]]由[[http://www.infoq.com/cn/profile/%E8%96%9B%E5%91%BD%E7%81%AF][薛命灯]]翻译。
+- [[https://skyao.io/publication/istio-introduction/][服务网格新生代-Istio]] (By [[https://skyao.io][敖小剑]]) - 针对 Istio 的介绍。
 
 * 系统安全
 建议参阅 OWASP 有关安全的指引，例如 OWASP Top 10 项目所列举的一些有关安全威胁，OWASP 也提供详细的有关 Web、Mobile 及其他方面有关安全的指引。
@@ -445,6 +470,7 @@ Design patterns were originally grouped into the categories: creational patterns
 13. Design Patterns, https://www.oodesign.com.
 14. Software Design Pattern, https://en.wikipedia.org/wiki/Software_design_pattern.
 15. Architectural Pattern, https://en.wikipedia.org/wiki/Architectural_pattern.
+16. Microservices Pattern, https://microservices.io/patterns/cn/microservices.html.
 17. MSA, http://microservices.io/patterns/microservices.html.
 19. OWASP Top 10, https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project.
 21. OWASP Mobile Top 10, https://www.owasp.org/index.php/Mobile_Top_10_2016-Top_10.
@@ -480,3 +506,5 @@ Design patterns were originally grouped into the categories: creational patterns
 #+BEGIN_QUOTE
 本作品采用[[http://creativecommons.org/licenses/by/4.0/][知识共享署名 4.0 国际许可协议]]进行许可。
 #+END_QUOTE
+
+

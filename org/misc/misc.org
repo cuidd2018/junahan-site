@@ -1,22 +1,25 @@
 # -*- mode: org; coding: utf-8; -*-
 #+TITLE:              MAC - MISC
-#+AUTHOR:         Junahan
-#+EMAIL:             junahan@outlook.com
-#+DATE:              2018-04-29
-#+LANGUAGE:    CN
-#+OPTIONS:        H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS:        TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
-#+INFOJS_OPT:   view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
-#+LICENSE:         CC BY 4.0
+#+AUTHOR:             Junahan
+#+EMAIL:              junahan@outlook.com
+#+DATE:               2018-04-29
+#+LANGUAGE:           CN
+#+OPTIONS:            H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:            TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT:         view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LICENSE:            CC BY 4.0
 
 * 简介
+这里提供一个临时存放关注内容信息的地方。
+
+* Ghidra
+[[https://www.nsa.gov/resources/everyone/ghidra/][Ghidra]][fn:3] 是 NSA 开源的一款逆向工程工具。
 
 * Fescar[fn:1]
-阿里开源的分布式事物解决方案。
+阿里开源的分布式事务解决方案。
 
 * Knative[fn:2]
 Kubernetes-based platform to build, deploy, and manage modern serverless workloads.
-
 
 * Big Data
 - awesome-bigdata - https://github.com/onurakpolat/awesome-bigdata
@@ -25,6 +28,8 @@ Kubernetes-based platform to build, deploy, and manage modern serverless workloa
 - Machine Learning Mindmap - https://github.com/dformoso/machine-learning-mindmap
 
 * Footnotes
+
+[fn:3] Ghidra Home - https://www.nsa.gov/resources/everyone/ghidra/
 
 [fn:2] Knative github - https://github.com/knative
 

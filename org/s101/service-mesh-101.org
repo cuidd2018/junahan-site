@@ -38,7 +38,7 @@ A service mesh is a dedicated infrastructure layer for handling service-to-servi
 - 截止目前 (2018 年 7 月)，相关基础设施还处于快速发展阶段，尚未达到产品应用的成熟度；
 
 * [[http://philcalcado.com/2017/08/03/pattern_service_mesh.html][服务网格模式]]
-该模式由 Phil Calçado 发表于 2017 年 8 月。该文章以网络堆栈的演化为类比，以熔断和服务发现为列子，阐述了微服务架构如何符合逻辑的将常用熔断和服务发现抽象并从业务逻辑层剥离至独立运行的边车 (Sidecar) 层，进一步由边车节点相互链接构成的服务网格 (Service Mesh) ，而后又引入控制平面 (Control Plane) 的概念。文章简洁明了，推荐阅读。[[http://www.infoq.com/cn/articles/pattern-service-mesh?from%3Dawesome-servicemesh][中文版本 ]]由[[http://www.infoq.com/cn/profile/%E8%96%9B%E5%91%BD%E7%81%AF][薛命灯]] 翻译。
+该模式由 Phil Calçado 发表于 2017 年 8 月。该文章以网络堆栈的演化为类比，以熔断和服务发现为列子，阐述了微服务架构如何符合逻辑的将常用熔断和服务发现抽象并从业务逻辑层剥离至独立运行的边车 (Sidecar) 层，进一步由边车节点相互链接构成的服务网格 (Service Mesh) ，而后又引入控制平面 (Control Plane) 的概念。文章简洁明了，推荐阅读。[[http://www.infoq.com/cn/articles/pattern-service-mesh?from%3Dawesome-servicemesh][中文版本]]由[[http://www.infoq.com/cn/profile/%E8%96%9B%E5%91%BD%E7%81%AF][薛命灯]]翻译。
 
 * 服务网格需求及标准功能
 ** 需求
@@ -80,7 +80,8 @@ A service mesh is a dedicated infrastructure layer for handling service-to-servi
 - SOFA mesh - 蚂蚁金服计划中的服务网格产品，详情请参阅 [[https://skyao.io/publication/service-mesh-explore/][大规模微服务架构下的 Service Mesh 探索之路]]，By [[https://skyao.io][敖小剑]]。
 
 * 推荐阅读列表
-- [[http://philcalcado.com/2017/08/03/pattern_service_mesh.html][Pattern: Service Mesh]] - by Phil Calçado, 有关 Service Mesh 模式的定义，相当简洁和清晰。[[http://www.infoq.com/cn/articles/pattern-service-mesh?from%3Dawesome-servicemesh][中文版本 ]]由[[http://www.infoq.com/cn/profile/%E8%96%9B%E5%91%BD%E7%81%AF][薛命灯]] 翻译。
+- [[https://blog.buoyant.io/2017/04/25/whats-a-service-mesh-and-why-do-i-need-one/][What’s a service mesh? And why do I need one?]] - by [[https://blog.buoyant.io/author/william/][WILLIAM MORGAN]], 2017。
+- [[http://philcalcado.com/2017/08/03/pattern_service_mesh.html][Pattern: Service Mesh]] - by Phil Calçado, 有关 Service Mesh 模式的定义，相当简洁和清晰。[[http://www.infoq.com/cn/articles/pattern-service-mesh?from%3Dawesome-servicemesh][中文版本]]由[[http://www.infoq.com/cn/profile/%E8%96%9B%E5%91%BD%E7%81%AF][薛命灯]]翻译。
 - [[https://skyao.io/publication/istio-introduction/][服务网格新生代-Istio]] (By [[https://skyao.io][敖小剑]]) - 针对 Istio 的介绍。
 - [[https://yq.aliyun.com/articles/606655][浅谈 Service Mesh 体系中的 Envoy]] (By [[https://yq.aliyun.com/users/1211452223316191][中间件小哥]]) - 针对 Envoy 的介绍。
 
