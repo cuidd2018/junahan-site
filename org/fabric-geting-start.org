@@ -1,5 +1,5 @@
 # -*- mode: org; coding: utf-8; -*-
-#+TITLE:                 Fabric 快速开始
+#+TITLE:                 Fabric 入门
 #+AUTHOR:                Junahan
 #+AUTHOR_LINK:           https://github.com/junahan
 #+EMAIL:                 junahan@outlook.com 

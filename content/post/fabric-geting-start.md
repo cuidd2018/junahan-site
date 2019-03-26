@@ -1,8 +1,8 @@
 +++
-title = "Fabric 快速开始"
+title = "Fabric 入门"
 author = "Junahan"
 date = 2018-07-16
-lastmod = 2018-08-02T08:10:13+08:00
+lastmod = 2019-03-18T18:05:14+08:00
 tags = ["Blockchain", "Hyperledger", "Fabric", "超级账本", "区块链"]
 categories = ["Blockchain"]
 draft = false
