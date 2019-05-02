@@ -1,7 +1,7 @@
-#+title:                  ORK - Objectives and Key Results
+#+title:                  ORK - 阅读笔记
 #+author:                 Junahan
 #+email:                  junahan@outlook.com
-#+date:                   2018-11-19
+#+date:                   2019-03-01
 #+hugo_base_dir:          ../
 #+hugo_auto_set_lastmod:  t
 #+hugo_tags:              Web Mobile
@@ -16,30 +16,61 @@
 
 * 摘要
 
-* 历史
 
-* 为什么使用 OKR
+* 什么是 OKR
+OKR (目标和关键结果) 是一个由公司、团队和个人协同制定目标的方法。OKR 方法起源于 Intel，并于 1999 年被 Google 采用，是帮助 Google 实现 10 倍速增长的管理方法。OKR 方法简单易行，容易实施。
 
-* 四个利器
+* OKR 的特性
+- 敏捷 (Agile Goals) - OKR 采用敏捷方法。通过使用更短的目标周期，公司得以对变化作出快速相应。
+- 简易 (Simplicity) - 使用 OKR 相当简单明了并且 OKR 本身亦容易理解。
+- 透明 (Transparency) - OKR 的首要目的是在组织协同一致的目标。OKR 需要在组织的各个层面进行公开。
+- 聚焦 (Focus) - OKRs 是一系列精心策划的目标，指明组织的方向，聚焦于重要的优先事项。
+- Nested Cadences - OKR 适应不同的节奏和周期：
+ - 战略节奏 (strategic cadence) - 公司高层，长期的目标，通常以年度计。
+ - 战术节奏 (Tactical cadence) - 团队短期目标，通常以季度计。
+ - 运营节奏 (Operational cadence) - 用于追踪结果和任务。
+- 双向目标设定 (Bidirectional Goal Setting) - OKR uses a market-based approach that is simultaneously bottom-up and top-down. This model creates engagement and a better understanding of the strategy while making the process simpler and faster.
+- 富有野心的目标 (Ambitious Goals) - OKR believes in enabling the team to set challenging goals. Goals that make the team rethink the way they work to reach peak performance.
+- 和奖励脱钩 (Decoupling Rewards) - Separating OKRs from compensation and promotions is crucial to enable ambitious goals. OKR is a management tool, not an employee evaluation tool.
 
+* OKR 的优势
+- 敏捷 (Agility) - Shorter goal cycles enable faster adjustments and better adaptation to change increasing innovation and reducing risks and waste.
+- 聚焦和纪律 (Focus and Discipline) - The reduced number of goals creates focus in the organization and more discipline efforts and initiatives.
+- 促进一致和跨职能协同 (Alignment and Cross-functional Cooperation) - The use of shared OKRs improves collaboration among different teams, solving interdependencies and unifying competing initiatives.
+- 节省设置目标的时间 - (Reduced Time for Setting Goals) - OKR simplicity makes the goal setting process faster and easier, drastically reducing the time and resources spent on setting goals.
+- 清晰的沟通 (Clear Communication) - Transparency and simplicity enable the team to understand the goals and priorities of the organization as well as how each individual can contribute.
+- 提升员工参与度 (Employee Engagement) - OKR bottom-up approach for goal setting connects the employees with the company's objectives, increasing engagement.
+- 自治和责任 (Autonomy and Accountability) - Teams receive a clear direction and are free to choose how to achieve their OKRs. They become responsible for their objectives.
+- 富有野心的目标 (Bolder Goals) - Decoupling OKRs from compensation and using stretch goals, even partially, enable the team to set ambitious, challenging goals.
+
+* OKR 的四个利器
 ** 利器 I - 对优先事项的聚焦和承诺
+- 为自己的 OKR 循环设置合适的节奏。推荐双重追踪，即季度 OKR (用于短期目标) 和年度 OKR (用于长期策略) 并行部署。
 - 成功的组织聚焦于少数能够产生实质性差异的举措，并推迟哪些不怎么紧迫的事项。
+- 管理的艺术 ———— 在于能够从看似同样重要的选择中选择一个、两个或三个能充分发挥杠杆作用并能让你专注于此的活动。
 - 一套有效的目标设定系统始于组织高层的严谨思考，领导者需要投入时间和经理去选择重要的事情。
+- 最高层级的目标必须是重要的 ———— OKR 既不是一个什么都要完成的愿望清单，也不是团队日常任务的综合。它们是一系列精心策划的目标，值得特别关注。
+- 在组织的使命宣言、战略计划或者领导者明确的广泛主题中寻找设定最高层 OKR 的依据。
+- 除了聚焦之外，承诺也是 OKR 第一利器中的核心元素。
+- 为了制定实施计划并加强领导者的承诺，在 OKR 退出阶段中应该以高层管理为主。在征召个别员工加入之前，让这个过程获得动力。
+- 制定一个 OKR 领头人，确保每个人在每个周期中花一定的时间来选择什么最重要。
 - 目标和关键结果是目标设定的阴阳两面 ———— 原则与实践、愿景与执行。其中，目标往往能鼓舞人心且与长远计划有关，而关键结果往往接地气且是可衡量的。
 - 明确时间框架可以进一步突出工作的焦点和承诺，事实上，没有任何东西能够像截止日期那样推动我们前进。
 - 季度 OKR 的设定最适合与当今快速变化的市场保持同步，以三个月为期限可能会防止工作中的拖延症，并带来实际的业绩增长。
 - 目标设定也有一些基本的规则：关键结果应该是明确的、具体的、可衡量的，产出和投入的组合（匹配）对其有所帮助。
 - 少即是多，季度 OKR 的理想数量往往介于 3 到 5 个之间。
-- 最高层级的目标必须是重要的 ———— OKR 既不是一个什么都要完成的愿望清单，也不是团队日常任务的综合。它们是一系列精心策划的目标，值得特别关注。
-- 管理的艺术 ———— 在于能够从看似同样重要的选择中选择一个、两个或三个能充分发挥杠杆作用并能让你专注于此的活动。
 - 简洁和聚焦是第一利器的核心所在。
-- 除了聚焦之外，承诺也是 OKR 第一利器中的核心元素。
+- OKR 成功的唯一最重要元素，是组织领导者的信念和支持。
 
 ** 利器 II - 团队工作的协同和联系
 - 随着社交媒体的突破性成长，透明性已经成为组织日常运营的默认设置，这是一条通往卓越的快速通道。
 - 在 OKR 系统中，即使最基层的员工也可以清晰地看到每个人的目标。
+- 在全体大会上解释为什么 OKR 对于组织如此重要。然后，不断重复这个重要的信息，直到你自己都感到厌烦为止。
 - 透明性还能在组织中播下合作的种子，促进员工之间的合作。
 - OKR 系统会将重复多余的任务暴露出来，从而为组织节省大量的时间和金钱。
+- 当部署由高层驱动的垂直层级 OKR 时，应欢迎一线员工的加入。
+- 创新往往产生于公司的基层边缘，而很少产生于权力中心。
+- 鼓励公司内自下而上的 OKR 应占合适比例 (大约一半)。
 - 当目标从计划转向执行时，管理者和员工都必须将自己每天的工作与组织的愿景联系起来，这种联系就是”协同“。
 - 对任何组织来说，协同的价值无论怎么强调都不为过。
 - 适度的层级和关联往往可以使组织运营更加协同一致，但目标都沿着组织层次过度关联时，往往带来不利影响 ———— 丧失敏捷性、缺乏灵活性、员工被边沿化、单一维度的垂直纵向联系。
@@ -67,8 +98,9 @@
 - 要有意识的总结、提炼和阐明关键的经验教训 ———— 我们并不是从经验中学习，而是通过反思经验来学习 (出自美国著名的哲学家、教育家约翰-杜威)。
 - 红黄绿三色区域和打分标准 
 
-** 利器 IV - 挑战不可能
+** 利器 IV - 充分延展进而挑战不可能
 - 最大的风险是什么也不做。
+- 建立一种自由的环境。在这种环境下，允许每个人出现失败，而无须收到批判。
 - OKR 促使我们远离舒适区，带领我们超越能力的边界，不断向梦想靠近。
 - 目标设计的越具有挑战性，所产生的结果越佳 ———— 挑战性目标有利于塑造创业文化，它迫使人们打破原有的思维局限，让企业经营更加出色。
 - OKR 可以分类为愿景型目标和承诺型目标 - 两者有本质的不同
@@ -76,8 +108,68 @@
  - 愿景型目标要具有野心，具有挑战性，以未来为导向；
 - 10 倍速原则
 
-* 如何推动 OKR
+* 如何设定 OKR
 
-* 阅读列表
-- [[https://felipecastro.com/resource/The-Beginners-Guide-to-OKR.pdf][The Beginners Guide to OKR]] by Felipe Castro.
+** Doerr's Goal Formula
+
+I will (Objective) as measured by (this set of Key Results).
+
+** 目标设定
+- Objectives should be simple, short and easy to memorize.
+- Objectives shouldn't be boring.
+
+** 关键结果设定
+- Separate metrics from tasks.
+- Set few of them. Usually between 2 and 5 per objective.
+
+* OKR 实践
+** 
+ 
+* OKR 和持续性绩效管理 (CFR)
+- OKR 和 CFR 能够帮助组织进行自上而下的调整，创建“团队第一”的工作关系网，实现组织成员“自下而上”的自治和参与，这是价值观驱动型公司的核心特征。
+- 为了解决变成真正问题之前的“问题”，并为陷入困境的员工提供所需要的支持，将年度绩效管理转换为持续性绩效管理。
+- 把前瞻性的 OKR 与事后反馈的年度评价区分开来，有助于实现那些野心勃勃的目标。将目标达成和奖金支票等同起来，会招致欺诈和规避风险的行为。
+- 用透明的、基于强度的、多维度的绩效评估取代竞争性评级和员工排名。在这些数字背后，考虑员工的团队合作能力、沟通情况和目标设定的雄心。
+- 依靠内在动机来激励员工，如提供有目的的工作和成长机会，而非单纯的财务激励，这些激励要素的作用将更为强大。
+- 为了强化积极的商业成果，在指定结构性目标的同时，贯彻正在实施的 CFR 计划。透明的 OKR 使得指导变得更加具体而有效。持续的 CFR 计划保证每天的工作准时完成，并促进员工之间的真正合作。
+- 在管理者和员工之间的绩效驱动沟通中，允许员工设置工作计划，而管理者的角色则是学习和指导。
+- 通过两种方式进行绩效反馈，一种是临时性的反馈，另外一种则是多方向的、不受组织架构约束的反馈。
+- 使用逆名“动向”调查，对专项工作或员工士气进行实时反馈。
+- 在跨智能的 OKR 中，通过点对点的反馈，加强团队和部之间的联系。
+- 利用同行的任何来提升员工参与度和绩效。为了获得最大的影响，绩效的识别应当是频繁、具体及高度可见的，并与顶层的 OKR 绑定在一起。
+
+* 公司文化和 OKR
+- 让顶层的 OKR 与组织的使命 (Mission)、愿景 (Vision) 与核心价值 (Value) 保持一致。
+- 通过语言传达文化价值固然重要，但最重要的是通过行动来实现企业文化的价值。
+- 通过协作和问责来提升最佳绩效。OKR 是总体目标，把这些关键结果分配到个人，并让他们对其负起责任。
+- 为了发展高激励文化，在支持工作行为的“催化剂” (OKR) 和人与人之间的支持行为甚至随机善举这样的“营养液” (CFR) 之间构建平衡。
+- 使用 OKR，提高透明度、清晰度、目的性和大局方向；开展 CFR，培养积极、热情、拓展性思维，并每天都有所改进。
+- 在执行 OKR 之前，要注意解决文化障碍的必要性，尤其是其中的问责和信任问题。
+
+* 常见的 OKR 错误使用
+- 设置无法测量的关键结果 - 每一个关键结果必须可以度量；
+- 太多的 OKR 或者关键结果 - 少即是多，OKR 要聚焦于高优先级事项；
+- 在关键结果里面包含任务 - 关键结果不是任务列表，它代表通向成功的产出；
+- 自上而下设定 OKR - OKR 不是瀑布模型；
+- 闭门造车创建 OKR - 设定 OKR 时，团队要相互沟通和协作，否则很难实现统一；
+- 设置它然后忘掉它 - OKR 需要定期跟踪、反馈和总结；
+- OKR 和奖励绑定 - OKR 是一个管理工具而非绩效评估工具；
+- 简单盲目的复制 Google - OKR 要适合组织，适合组织文化；
+
+* Keywords
+- 聚焦 (Focus) - 聚焦于优先事项
+- 承诺 (Commitment) - 
+- 简易 (Simplicity) - 使用 OKR 方法非常直接了当，OKR 本身也很容易理解。
+- 透明 (Transparency) - 透明能在组织中播下合作的种子。
+- 开放 (Open) - 
+- 连接 (Connection) - 就像人类大脑拥有数百万亿级的连接，这些连接涌现出智慧。开放型组织中人与人彼此连接的能力也会涌现出合作和创新。
+- 合作 (Cooperation) - 合作本身就是我们彼此连接的能力，也就是增长和创新的动力和源泉。
+- 团队第一 (Team First) - 
+- 参与 (Engagement) - 
+- 自治 (Autonomy) - 
+
+* 参考文献
+1. [[https://felipecastro.com/resource/The-Beginners-Guide-to-OKR.pdf][The Beginners Guide to OKR]] by Felipe Castro.
+2. 《这就是 OKR》 - [美] 约翰•杜尔 (John Doerr) 著；曹仰锋 王永贵 译，中信出版集团，2018。
+3. http://www.whatmatters.com
 

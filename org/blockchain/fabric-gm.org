@@ -10,8 +10,10 @@
 #+LICENSE:            CC BY 4.0
 
 * 摘要
+国密算法的支持没有被包含在 Fabric 的官方支持中，国内有相关企业（如苏州同济区块链研究院) 在这方面做了一些研究并开源了一些有关国密算法的项目。
 
 * 改造方案
+建议改造方案 - 使用 Golang 底层对国密算法的支持库，扩展 Fabric BCCSP (Block Chain Crypt Service Provider) , CA 和 SDK 以支持完整的国密算法。
 
 ** 涉及组件
 - Fabric Core - 针对 Fabric BCCSP 扩展以支持国密算法；

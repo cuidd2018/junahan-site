@@ -24,6 +24,11 @@ Kubernetes-based platform to build, deploy, and manage modern serverless workloa
 * Big Data
 - awesome-bigdata - https://github.com/onurakpolat/awesome-bigdata
 
+
+* Distribution System
+- [[https://github.com/brpc/braft][BRaft]] - 百度开源的优秀 C++ Raft 实现。
+- [[https://github.com/alipay/sofa-jraft][SOFAJRaft]] - 蚂蚁金服开源的 Java Raft 实现。
+
 * AI
 - Machine Learning Mindmap - https://github.com/dformoso/machine-learning-mindmap
 

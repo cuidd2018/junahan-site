@@ -1,29 +1,29 @@
 # -*- mode: org; coding: utf-8; -*-
-#+TITLE:              Solidity 开发工具组合 - In Mac
-#+AUTHOR:         Junahan
-#+EMAIL:             junahan@outlook.com 
-#+DATE:              2018-05-04
-#+hugo_base_dir: ../../
-#+hugo_auto_set_lastmod: t
-#+hugo_tags: Ethereum Solidity
-#+hugo_categories: Blockchain
-#+hugo_draft: false
-#+keywords: ethereum solidity blockchain
-#+language:  cn
-#+options:  H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+options:  TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
-#+infojs_opt:  view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
-#+license:  CC BY 4.0
+#+TITLE:                  Solidity 开发工具组合 - In Mac
+#+AUTHOR:                 Junahan
+#+EMAIL:                  junahan@outlook.com 
+#+DATE:                   2018-05-04
+#+hugo_base_dir:          ../../
+#+hugo_auto_set_lastmod:  t
+#+hugo_tags:              Ethereum Solidity
+#+hugo_categories:        Blockchain
+#+hugo_draft:             false
+#+keywords:               ethereum solidity blockchain
+#+language:               cn
+#+options:                H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+options:                TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+infojs_opt:             view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+license:                CC BY 4.0
 
 * 摘要
 本文根据作者搭建 Solidity 开发环境的经验，做了一些基本梳理，并推荐了逐步进阶的工具套件组合。
 
 /提醒：本文提到的相关环境仅在 =Mac OS - Darwin Kernel Version 17.5.0= 上搭建和验证。/
 
-/提醒：Solidity 语言甚至是 Ethereum 都在快速的发展之中，相应的工具和组合也在不断完善和发展之中，请注意本文所述所使用的各工具版本，这里列出一些相关版本号供参考：/
+/提醒：Solidity 语言和 Ethereum 都在快速的发展之中，相应的工具和组合也在不断完善和发展之中，请注意本文所述所使用的各工具版本，这里列出一些相关版本号供参考：/
 
 - Go-ethereum 1.8.7-stable (可以通过 =geth version= 查看版本号)
-- Solidity 0.4.23+commit.124ca40d.Darwin.appleclang (可以通过 =solc --version= 查看版本号)
+- Solidity 0.4.23 + commit.124ca40d.Darwin.appleclang (可以通过 =solc --version= 查看版本号)
 - Remix-ide 0.6.2 (可以通过 =npm -g list remix-ide= 查看版号 )
 
 * 开发环境和工具
@@ -95,7 +95,7 @@ solc --version
 [[https://ws4.sinaimg.cn/large/006tKfTcgy1ftv2v7tyy1j30q40i440j.jpg
 # file:images/remix-run-web3-provider.png]]
 
-你也可以配置 Geth 连接测试网络，详情请参阅[[*Ethereum %E7%BD%91%E7%BB%9C][Ethereum 网络]] 。同样的，通过使用 Web3 Provider 选项连接 Geth 节点，即可在不同的网络进行代码测试和调试。
+你也可以配置 Geth 连接测试网络，详情请参阅 [[*Ethereum %E7%BD%91%E7%BB%9C][Ethereum 网络]] 。同样的，通过使用 Web3 Provider 选项连接 Geth 节点，即可在不同的网络进行代码测试和调试。
 
 ** TODO 开发框架组合
 建议使用 [[http://truffleframework.com/docs/][Truffle 框架]]，Truffle 框架号称是以太坊瑞士军刀。该框架是一个开发环境、测试框架，目标是使以太坊开发者的日常工作更加容易。该框架包括：
@@ -117,7 +117,7 @@ Truffle v4.1.8 (core: 4.1.8)
 Solidity v0.4.23 (solc-js)
 #+END_SRC
 
-*** TODO 快速启用
+*** TODO 入门
 
 ** 其他工具
 *** Remix App
@@ -132,9 +132,6 @@ yarn dist
 
 安装包位于 =remix-app/dist= 目录。
 
-*** Puppeth
-Puppeth 可用于帮助创建私有网络，详情请参阅[[*%E4%BD%BF%E7%94%A8 Puppeth %E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89%E7%BD%91%E7%BB%9C][使用 Puppeth 搭建私有网络]]。
-
 * APIs
 Enthereum 提供 [[https://github.com/ethereum/wiki/wiki/JSON-RPC#json-rpc-methods][RPC API]] 和 [[https://web3js.readthedocs.io/en/1.0/][Web3 API]]。RPC API 是底层 API，Web3 API 由 JavaScript 语言写成，建立在 RPC API 基础之上，更加易于使用。在智能合约开发过程中，可以通过 Geth Console 使用 Web3 API 进行账户配置，测试等。
 
@@ -146,16 +143,14 @@ Enthereum 提供 [[https://github.com/ethereum/wiki/wiki/JSON-RPC#json-rpc-metho
 - Solo - 临时开发网络，可挖矿，采用 PoA 共识算法，预先设定一个开发者账户，默认发生交易的时候挖矿，也可以定义挖矿间隔。可以使用 =geth --dev= 命令启动 Geth 节点并连接开发网络。
 - 私有网络 -  可以自己动手搭建私有网络以测试智能合约代码。Puppeth 工具可以帮助创建私有网络。
 
-** TODO 使用 Puppeth 搭建私有网络
-
 * 参考文献
 1. Ethereum Homestead Document, http://www.ethdocs.org/en/latest/.
 2. RPC APIs, https://github.com/ethereum/wiki/wiki/JSON-RPC#json-rpc-methods.
 3. Web3 Document, http://web3js.readthedocs.io/en/1.0/web3.html.
 4. JavaScript API wiki, https://github.com/ethereum/wiki/wiki/JavaScript-API.
-5. Solidiky Document, https://solidity.readthedocs.io
+5. Solidity Document, https://solidity.readthedocs.io
 7. Truffle, http://truffleframework.com
-9. EthereumToken Contracts, https://github.com/ConsenSys/Tokens.
+9. Ethereum Token Contracts, https://github.com/ConsenSys/Tokens.
 
 #+BEGIN_QUOTE
 本作品采用[[http://creativecommons.org/licenses/by/4.0/][知识共享署名 4.0 国际许可协议]]进行许可。

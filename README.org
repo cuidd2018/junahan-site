@@ -13,7 +13,7 @@
 相关文章，阅读列表等的汇总。部分内容会通过 Hugo 发布到[[https://junahan.netlify.com/][我的个人网站]]。
 
 * S101 系列
-- [[file:org/s101/release-package-to-maven-centre-repository-101.org][如何发布项目包至 Maven 中心仓库-101]] - 以我发布的开源项目[[https://github.com/junahan/struts2-protobuf-plugin/tree/master/plugin-demo][ Struts2 Protobuf Plugin]] 为例，简明扼要的入门教程。
+- [[file:org/s101/release-package-to-maven-centre-repository-101.org][如何发布项目包至 Maven 中心仓库-101]] - 以项目[[https://github.com/junahan/struts2-protobuf-plugin/tree/master/plugin-demo][ Struts2 Protobuf Plugin]] 为例，简明扼要的入门教程。
 - [[file:org/s101/streaming-server-101.org][流媒体服务器-101]] - 针对流媒体服务器的一个初步调查。
 
 * Service Mesh
@@ -33,7 +33,7 @@
 3. [[file:org/blockchain/Bitcoin-Lightning-Network-Paper-cn.org][比特币闪电网络论文]] - 翻译比特币闪电网络论文。(TODO...)
 4. [[file:org/blockchain/interledger_architecture.org][Interledger 架构]] - Interledger 架构。(TODO...)
 5. [[file:org/blockchain/solidity-dev-env.org][Solidity 开发环境和工具]] - 根据个人学习经验总结的有关 Solidity 开发环境和工具安装，配置和基本使用。(TODO...)
-7. [[file:org/fabric-geting-start.org][Fabric 快速开始]] - 结合 Fabric Sample 启动一个用户开发和测试的网络环境。
+7. [[file:org/fabric-geting-start.org][Fabric 入门]] - 结合 Fabric Sample 启动一个用户开发和测试的网络环境。
 9. [[file:org/fabric-ca-user-guide-cn.org][Fabric CA 用户指南]] - 完成对 Fabric CA User Guide 的翻译。
 
 * AI
@@ -41,13 +41,16 @@
 
 * 项目相关
 ** Strut2 Protobuf Plugin
-[[https://github.com/junahan/struts2-protobuf-plugin][Strut2 Protobuf Plugin]] 是我发布的开源项目，该项目主要特性：
-- 提供工具类库，支持将 protobuf 消息域的值转换为类型兼容的 Java 对象属性值，反之依然；
-- 将 protobuf 消息域的值自动转换为对应的 Action 对象属性值；
-- 支持将 protobuf 消息作为 Struts2 Result - 包括成功的 Response，验证错误（包括字段/动作错误）或者异常，均可以通过 protobuf 消息结果返回。
+[[https://github.com/junahan/struts2-protobuf-plugin][Strut2 Protobuf Plugin]] 是一个简单的开源工具，该项目主要特性：
+- 提供工具类库，支持将 =protobuf= 消息域的值转换为类型兼容的 Java 对象属性值，反之依然；
+- 将 =protobuf= 消息域的值自动转换为对应的 Action 对象属性值；
+- 支持将 =protobuf= 消息作为 Struts2 Result - 包括成功的 Response，验证错误（包括字段/动作错误）或者异常，均可以通过 =protobuf= 消息结果返回。
 
 欢迎使用或者为该项目贡献代码、帮助测试和提出任何问题。
 该项目 Github 地址是：https://github.com/junahan/struts2-protobuf-plugin
+
+** Knative 入门
+[[https://github.com/servicemesher/getting-started-with-knative][Knative 入门]] - 由 [[http://www.servicemesher.com/][ServiceMesher 社区]]成员共同翻译。
 
 * 推荐书单
 ** TODO 2019 年度 (未完待续)
@@ -63,11 +66,13 @@
 5. 《穷查理宝典：查理·芒格智慧箴言录》- [美] 彼得·考夫曼 (Peter D: Kaufman), 李继宏 (译者)；中信出版集团; 第1版 (2016年8月1日)。
  - 期待
 6. 《教养的迷思》- [美] 朱迪斯·哈里斯 (Judith R. Harris); 上海译文出版社；
- - 期待
+ - 偏向学术化的小说，像是一篇超级论文，比读论文要有趣的多；
+ - 让我能够合理的解释孩子的行为，改变我和孩子相处的方式；
 7. 《富足：改变人类未来的 4 大力量》- [美] 彼得·戴曼迪斯 (Peter H. Diamandis), 史蒂芬·科特勒 (Steven Kotler)，贾拥民 (译者); 浙江人民出版社 (2016)。
- - 期待
+ - 指数思维模式，这点和《奇点临近》类似；
 8. 《格林斯潘传》 - [美] 塞巴斯蒂安·马拉比 (Sebastian Mallaby), 巴曙松 (译者), 陈剑 (译者); 浙江人民出版社 (2019)。
- - 期待
+ - 美联储是这样运作的？
+ - 经济调控决策看起来就是一帮聪明人通过投票在一个黑屋子里面决定的，而且和政治纠缠在一起；
 
 ** 2018 年度
 1. 《原则》 （PRINCIPLES）（生活和工作）- 瑞·达利欧（Ray Dalio）著。理顺思路，解决困惑，一本值得多次重读的好书。 

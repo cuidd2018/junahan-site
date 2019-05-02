@@ -62,6 +62,8 @@ A service mesh is a dedicated infrastructure layer for handling service-to-servi
 - 
 - 
 
+* 安全
+
 * 工具和框架
 ** TODO Linkerd
 
@@ -84,6 +86,7 @@ A service mesh is a dedicated infrastructure layer for handling service-to-servi
 - [[http://philcalcado.com/2017/08/03/pattern_service_mesh.html][Pattern: Service Mesh]] - by Phil Calçado, 有关 Service Mesh 模式的定义，相当简洁和清晰。[[http://www.infoq.com/cn/articles/pattern-service-mesh?from%3Dawesome-servicemesh][中文版本]]由[[http://www.infoq.com/cn/profile/%E8%96%9B%E5%91%BD%E7%81%AF][薛命灯]]翻译。
 - [[https://skyao.io/publication/istio-introduction/][服务网格新生代-Istio]] (By [[https://skyao.io][敖小剑]]) - 针对 Istio 的介绍。
 - [[https://yq.aliyun.com/articles/606655][浅谈 Service Mesh 体系中的 Envoy]] (By [[https://yq.aliyun.com/users/1211452223316191][中间件小哥]]) - 针对 Envoy 的介绍。
+- [[https://www.youtube.com/watch?v=yLceM2-ILuw][Istio: Security of the mesh and security in the mesh]] - by gadi.naor。
 
 * 参考文献
 1. Microservices Home, http://microservices.io.
